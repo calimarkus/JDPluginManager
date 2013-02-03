@@ -4,6 +4,8 @@
 
 Using a lot of XCode Plugins? This will give you an overview of all installed Plugins and open their directories easily.
 
+![Screenshot](https://raw.github.com/jaydee3/JDListInstalledPlugins/master/screenshot.png "Screenshot")
+
 I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.
 
 ## Installation
