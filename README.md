@@ -4,7 +4,7 @@
 
 Using a lot of XCode Plugins? This will give you an overview of all installed Plugins and open their directories easily. It adds a new MenuItem "Installed Plugins" in the Edit Menu of Xcode.
 
-![Screenshot](https://raw.github.com/jaydee3/JDListInstalledPlugins/master/screenshot.png "Screenshot")
+![Screenshot](screenshot.png "Screenshot")
 
 I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.
 
