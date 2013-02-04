@@ -1,0 +1,40 @@
+/* 
+  Localizables.strings
+  ListInstalledPluginsTest
+
+  Created by Markus Emrich on 04.02.13.
+  Copyright (c) 2013 nxtbgthng. All rights reserved.
+*/
+
+
+// general
+"keyOK"     = "OK";
+"keyCancel" = "Cancel";
+
+// menu items
+"keyPluginsMenuItemTitle"       = "Installed Plugins";
+"keyEmptyMenuItemTitle"         = "- No installed Plugins -";
+"keyShowDirectoryMenuItemTitle" = "Reveal plugin directory";
+"keyInstallMenuItemTitle"       = "Install a new plugin…";
+
+// uninstalling
+"keyUninstall" = "Uninstall";
+"keyUninstallAlertTitleFormat"   = "Uninstall Plugin '%@'?";
+"keyUninstallAlertMessageFormat" = "This will move the plugin '%@' to your trash. \n\nIt won't be loaded after the next start of %@.";
+
+// installing
+"keyInstall" = "Install";
+"keyInstallAlertTitleFormat" = "Enter plugin repository URL";
+"keyInstallAlertMessage"     = "The URL must be a git repository. The project contents must be a buildable xcode project.";
+"keyInstallAlertExampleText" = "git@github.com:jaydee3/JDListInstalledPlugins.git";
+"keyInstallProgressTitle"    = "Installing plugin…";
+"keyInstallProgressMessage"  = "Will checkout and build project now…";
+
+// errors
+"keyErrorXcodeToolsMissingTitle"   = "xcodebuild/xcodeproj not found";
+"keyErrorXcodeToolsMissingMessage" = "Xcode must be in installed in /Applications. Also install the Command Line Tools from the Xcode Settings, if you haven't already.";
+
+"keyErrorGitMissingTitle"   = "git not found";
+"keyErrorGitMissingMessage" = "You need to have git installed (/usr/bin/git) in order to install plugins. Please install git.";
+
+

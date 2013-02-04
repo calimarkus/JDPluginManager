@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
-		D277852B16C058A2001711DE /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2182AF216C057FC0042339D /* Localizable.strings */; };
-		D28058C816BF06C300B5CFA5 /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D28058C716BF06C300B5CFA5 /* JDListInstalledPlugins.m */; };
+		D2162C2E16C06ED100B9742B /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2A16C06ED100B9742B /* JDListInstalledPlugins.m */; };
+		D2162C2F16C06ED100B9742B /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */; };
+		D23AC6F516C0780000ABB3E2 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2162C2D16C06ED100B9742B /* Localizable.strings */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,7 +21,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
-				D277852B16C058A2001711DE /* Localizable.strings in CopyFiles */,
+				D23AC6F516C0780000ABB3E2 /* Localizable.strings in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,10 +31,13 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		7F2EB899145057EA00E97A87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8D5B49B6048680CD000E48DA /* JDListInstalledPlugins.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDListInstalledPlugins.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
-		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D2182AF216C057FC0042339D /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = SOURCE_ROOT; };
-		D28058C616BF06C300B5CFA5 /* JDListInstalledPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDListInstalledPlugins.h; sourceTree = SOURCE_ROOT; };
-		D28058C716BF06C300B5CFA5 /* JDListInstalledPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDListInstalledPlugins.m; sourceTree = SOURCE_ROOT; };
+		D2162C2716C06ED100B9742B /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = JDListInstalledPlugins/global.h; sourceTree = SOURCE_ROOT; };
+		D2162C2816C06ED100B9742B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = JDListInstalledPlugins/Info.plist; sourceTree = SOURCE_ROOT; };
+		D2162C2916C06ED100B9742B /* JDListInstalledPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDListInstalledPlugins.h; path = JDListInstalledPlugins/JDListInstalledPlugins.h; sourceTree = SOURCE_ROOT; };
+		D2162C2A16C06ED100B9742B /* JDListInstalledPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDListInstalledPlugins.m; path = JDListInstalledPlugins/JDListInstalledPlugins.m; sourceTree = SOURCE_ROOT; };
+		D2162C2B16C06ED100B9742B /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = JDListInstalledPlugins/JDPluginInstaller.h; sourceTree = SOURCE_ROOT; };
+		D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = JDListInstalledPlugins/JDPluginInstaller.m; sourceTree = SOURCE_ROOT; };
+		D2162C2D16C06ED100B9742B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDListInstalledPlugins/Localizable.strings; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +76,8 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D2182AF216C057FC0042339D /* Localizable.strings */,
-				8D5B49B7048680CD000E48DA /* Info.plist */,
+				D2162C2816C06ED100B9742B /* Info.plist */,
+				D2162C2D16C06ED100B9742B /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -89,8 +93,11 @@
 		7F411B0C15FABAC6002F77B6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D28058C616BF06C300B5CFA5 /* JDListInstalledPlugins.h */,
-				D28058C716BF06C300B5CFA5 /* JDListInstalledPlugins.m */,
+				D2162C2716C06ED100B9742B /* global.h */,
+				D2162C2916C06ED100B9742B /* JDListInstalledPlugins.h */,
+				D2162C2A16C06ED100B9742B /* JDListInstalledPlugins.m */,
+				D2162C2B16C06ED100B9742B /* JDPluginInstaller.h */,
+				D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -148,7 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D28058C816BF06C300B5CFA5 /* JDListInstalledPlugins.m in Sources */,
+				D2162C2E16C06ED100B9742B /* JDListInstalledPlugins.m in Sources */,
+				D2162C2F16C06ED100B9742B /* JDPluginInstaller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,7 +176,7 @@
 				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = JDListInstalledPlugins/Info.plist;
 				INSTALL_PATH = "/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 				LD_RUNPATH_SEARCH_PATHS = /Developer;
 				PRODUCT_NAME = JDListInstalledPlugins;

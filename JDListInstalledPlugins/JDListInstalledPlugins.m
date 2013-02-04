@@ -7,12 +7,9 @@
 //
 
 #import "JDListInstalledPlugins.h"
+#import "JDPluginInstaller.h"
+#import "global.h"
 
-#if JDListInstalledPluginsTest == 1
-    #define JDLocalize(keyName) NSLocalizedString(keyName, nil)
-#else
-    #define JDLocalize(keyName) NSLocalizedStringFromTableInBundle(keyName, @"Localizable", [NSBundle bundleForClass:[self class]], nil)
-#endif
 
 NSString *const xcodePluginSuffix = @".xcplugin";
 NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
@@ -55,6 +52,8 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
     [self extendXcodeMenu];
 }
 
+#pragma mark build menu
+
 - (void)extendXcodeMenu
 {
     NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
@@ -78,6 +77,14 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
         
         // add each plugin as subitem
         [self readAndAddPluginsToMenu:[installedPluginsItem submenu]];
+		
+        // separator
+		[[installedPluginsItem submenu] addItem:[NSMenuItem separatorItem]];
+        
+        // show install item
+        NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
+        [installItem setTarget:self];
+        [[installedPluginsItem submenu] addItem:installItem];
     }
 }
 
@@ -136,25 +143,35 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
     NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
     NSString *pluginName = [sender parentItem].title;
     
+    // construct alert
     NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:JDLocalize(@"keyUninstallAlertTitleFormat"), pluginName]
                                      defaultButton:JDLocalize(@"keyUninstall")
-                                   alternateButton:nil
-                                       otherButton:JDLocalize(@"keyCancel")
+                                   alternateButton:JDLocalize(@"keyCancel")
+                                       otherButton:nil
                          informativeTextWithFormat:JDLocalize(@"keyUninstallAlertMessageFormat"), pluginName, appName];
     alert.alertStyle = NSCriticalAlertStyle;
-    NSInteger result = [alert runModal];
     
-    if (result == 1) {
-        NSString *pluginPath = [[self URLForPluginNamed:pluginName] path];
-        BOOL deleted = [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
-                                                                    source:[pluginPath stringByDeletingLastPathComponent]
-                                                               destination:@""
-                                                                     files:[NSArray arrayWithObject:[pluginPath lastPathComponent]]
-                                                                       tag:nil];
-        if (deleted) {
-            [[sender.parentItem.parentItem submenu] removeItem:sender.parentItem];
-        }
+    // show alert
+    NSInteger selectedButtonIndex = [alert runModal];
+    if (selectedButtonIndex == 0) {
+        return;
     }
+    
+    // move plugin folder to trash
+    NSString *pluginPath = [[self URLForPluginNamed:pluginName] path];
+    BOOL deleted = [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
+                                                                source:[pluginPath stringByDeletingLastPathComponent]
+                                                           destination:@""
+                                                                 files:[NSArray arrayWithObject:[pluginPath lastPathComponent]]
+                                                                   tag:nil];
+    if (deleted) {
+        [[sender.parentItem.parentItem submenu] removeItem:sender.parentItem];
+    }
+}
+
+- (void)installPlugin:(NSMenuItem*)sender;
+{
+    [JDPluginInstaller installPlugin];
 }
 
 #pragma mark helper

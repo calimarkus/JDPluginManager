@@ -9,6 +9,7 @@
 #import "TAAppDelegate.h"
 
 #import "JDListInstalledPlugins.h"
+#import "JDPluginInstaller.h"
 
 @implementation TAAppDelegate
 
@@ -21,6 +22,9 @@
 {
     // extend menu
     [[[JDListInstalledPlugins alloc] init] extendXcodeMenu];
+    
+    // install a new plugin
+    [JDPluginInstaller installPlugin];
 }
 
 @end
