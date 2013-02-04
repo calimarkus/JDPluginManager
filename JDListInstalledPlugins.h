@@ -10,5 +10,5 @@
 #import <AppKit/AppKit.h>
 
 @interface JDListInstalledPlugins : NSObject
-- (NSURL*)pluginsDirectoryURL;
+- (void)extendXcodeMenu;
 @end
