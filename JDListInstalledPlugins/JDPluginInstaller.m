@@ -14,6 +14,8 @@
 + (BOOL)toolsAreAvailable;
 - (void)showInstallPrompt;
 - (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
+- (NSPanel*)showProgressPanel;
+- (void)emptyTempDirectory;
 @end
 
 
@@ -95,6 +97,49 @@ NSString *const gitPath        = @"/usr/bin/git";
 - (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
 {
     // show progress panel
+    NSPanel *panel = [self showProgressPanel];
+    
+    // move checked out project to trash
+    [self emptyTempDirectory];
+    
+    // prepare stdout
+//    NSPipe *outPipe = [NSPipe pipe];
+    
+    // checkout project
+    NSArray *gitArgs = @[@"clone", repositoryURL, tmpClonePath];
+    NSTask *gitTask = [[[NSTask alloc] init] autorelease];
+//    [gitTask setStandardInput:[NSPipe pipe]];
+//    [gitTask setStandardOutput:outPipe];
+    [gitTask setLaunchPath:gitPath];
+    [gitTask setArguments:gitArgs];
+    [gitTask launch];
+    [gitTask waitUntilExit];
+    
+    // run xcodebuild
+    NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
+//    [xcbTask setStandardInput:[NSPipe pipe]];
+//    [xcbTask setStandardOutput:outPipe];
+    [xcbTask setCurrentDirectoryPath:tmpClonePath];
+    [xcbTask setLaunchPath:xcodeBuildPath];
+    [xcbTask launch];
+    [xcbTask waitUntilExit];
+    
+    // move checked out project to trash
+    [self emptyTempDirectory];
+    
+//    // show results
+//    NSView *contentView = panel.contentView;
+//    NSTextView *textView = [contentView.subviews objectAtIndex:0];
+//    NSData *data = [[outPipe fileHandleForReading] readDataToEndOfFile];
+//    NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    [textView insertText:results];
+    
+    // make panel closable
+    [panel close];
+}
+
+- (NSPanel*)showProgressPanel;
+{
     NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 640, 320)
                                                 styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
                                                   backing:0 defer:NO];
@@ -116,40 +161,17 @@ NSString *const gitPath        = @"/usr/bin/git";
     // show window
     [panel makeKeyAndOrderFront:self];
     
-    // prepare stdout
-//    NSPipe *pipe = [NSPipe pipe];
-    
-    // checkout project
-    NSArray *gitArgs = @[@"clone", repositoryURL, tmpClonePath];
-    NSTask *gitTask = [[[NSTask alloc] init] autorelease];
-//    [gitTask setStandardOutput:pipe];
-    [gitTask setLaunchPath:gitPath];
-    [gitTask setArguments:gitArgs];
-    [gitTask launch];
-    [gitTask waitUntilExit];
-    
-    // run xcodebuild
-    NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
-//    [xcbTask setStandardOutput:pipe];
-    [xcbTask setCurrentDirectoryPath:tmpClonePath];
-    [xcbTask setLaunchPath:xcodeBuildPath];
-    [xcbTask launch];
-    [xcbTask waitUntilExit];
-    
-    // move checked out project to trash
+    return panel;
+}
+
+- (void)emptyTempDirectory;
+{
+    // move tmp dir to trash
     [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
                                                  source:[tmpClonePath stringByDeletingLastPathComponent]
                                             destination:@""
                                                   files:[NSArray arrayWithObject:[tmpClonePath lastPathComponent]]
                                                     tag:nil];
-    
-    // show results
-//    NSData *data = [[pipe fileHandleForReading] readDataToEndOfFile];
-//    NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    [textView setString:results];
-    
-    // make panel closable
-    [panel close];
 }
 
 
