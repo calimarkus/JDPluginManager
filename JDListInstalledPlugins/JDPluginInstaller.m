@@ -10,9 +10,10 @@
 #import "global.h"
 
 
-@interface JDPluginInstaller ()
+@interface JDPluginInstaller () <NSWindowDelegate>
 + (BOOL)toolsAreAvailable;
-+ (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
+- (void)showInstallPrompt;
+- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
 @end
 
 
@@ -61,6 +62,11 @@ NSString *const gitPath        = @"/usr/bin/git";
         return;
     }
     
+    [[[[self alloc] init] autorelease] showInstallPrompt];
+}
+
+- (void)showInstallPrompt;
+{
     // setup input alert
     NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallAlertTitleFormat")
                                      defaultButton:JDLocalize(@"keyInstall")
@@ -76,7 +82,7 @@ NSString *const gitPath        = @"/usr/bin/git";
     [input setBezelStyle:NSTextFieldRoundedBezel];
     [alert setAccessoryView:input];
     
-    // show alert
+    // show prompt
     NSInteger selectedButtonIndex = [alert runModal];
     if (selectedButtonIndex == 0) {
         return;
@@ -86,26 +92,29 @@ NSString *const gitPath        = @"/usr/bin/git";
     [self beginInstallWithRepositoryUrl:input.stringValue];
 }
 
-+ (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
+- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
 {
-    NSLog(@"will install %@", repositoryURL);
-    
     // show progress panel
-    NSPanel *panel = [[[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 300, 60)
+    NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 640, 320)
                                                 styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
-                                                  backing:0 defer:NO] autorelease];
+                                                  backing:0 defer:NO];
+    panel.styleMask = NSHUDWindowMask | NSUtilityWindowMask | NSTitledWindowMask;
     panel.title = JDLocalize(@"keyInstallProgressTitle");
-    panel.backgroundColor = [NSColor colorWithCalibratedWhite:0 alpha:0.5];
-    panel.opaque = NO;
+    panel.delegate = self;
     [panel center];
-    [panel makeKeyAndOrderFront:self];
     
     // add text panel
-    NSTextView *textView = [[[NSTextView alloc] initWithFrame:panel.frame] autorelease];
+    NSView *contentView = panel.contentView;
+    NSTextView *textView = [[[NSTextView alloc] initWithFrame:NSInsetRect(contentView.bounds, 10, 10)] autorelease];
     textView.backgroundColor = [NSColor clearColor];
     textView.textColor = [NSColor whiteColor];
+    textView.selectable = NO;
+    textView.editable = NO;
     textView.string = JDLocalize(@"keyInstallProgressMessage");
-    [panel.contentView addSubview:textView];
+    [contentView addSubview:textView];
+    
+    // show window
+    [panel makeKeyAndOrderFront:self];
     
     // prepare stdout
 //    NSPipe *pipe = [NSPipe pipe];

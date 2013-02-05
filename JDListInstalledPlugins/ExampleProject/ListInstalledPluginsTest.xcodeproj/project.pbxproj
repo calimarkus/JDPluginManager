@@ -7,22 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D2162C2316C06EA700B9742B /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2016C06EA700B9742B /* JDListInstalledPlugins.m */; };
-		D2162C2416C06EA700B9742B /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2216C06EA700B9742B /* JDPluginInstaller.m */; };
-		D2162C2616C06EB300B9742B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2162C2516C06EB300B9742B /* Localizable.strings */; };
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
 		D246419516C04B21005DB12C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D246419416C04B21005DB12C /* main.m */; };
 		D246419C16C04B21005DB12C /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D246419B16C04B21005DB12C /* TAAppDelegate.m */; };
 		D24641AB16C04D67005DB12C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24641AA16C04D67005DB12C /* MainMenu.xib */; };
+		D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */; };
+		D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */; };
+		D2813F6716C1114A00B2C4A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2813F6316C1114A00B2C4A4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D2162C1E16C06EA700B9742B /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../JDListInstalledPlugins/global.h; sourceTree = "<group>"; };
-		D2162C1F16C06EA700B9742B /* JDListInstalledPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDListInstalledPlugins.h; path = ../../JDListInstalledPlugins/JDListInstalledPlugins.h; sourceTree = "<group>"; };
-		D2162C2016C06EA700B9742B /* JDListInstalledPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDListInstalledPlugins.m; path = ../../JDListInstalledPlugins/JDListInstalledPlugins.m; sourceTree = "<group>"; };
-		D2162C2116C06EA700B9742B /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../JDListInstalledPlugins/JDPluginInstaller.h; sourceTree = "<group>"; };
-		D2162C2216C06EA700B9742B /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../JDListInstalledPlugins/JDPluginInstaller.m; sourceTree = "<group>"; };
-		D2162C2516C06EB300B9742B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../JDListInstalledPlugins/Localizable.strings; sourceTree = "<group>"; };
 		D246418516C04B21005DB12C /* ListInstalledPluginsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListInstalledPluginsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D246418816C04B21005DB12C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -34,6 +28,12 @@
 		D246419A16C04B21005DB12C /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		D246419B16C04B21005DB12C /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
 		D24641AA16C04D67005DB12C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D2813F5D16C1114A00B2C4A4 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../global.h; sourceTree = "<group>"; };
+		D2813F5E16C1114A00B2C4A4 /* JDListInstalledPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDListInstalledPlugins.h; path = ../../JDListInstalledPlugins.h; sourceTree = "<group>"; };
+		D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDListInstalledPlugins.m; path = ../../JDListInstalledPlugins.m; sourceTree = "<group>"; };
+		D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../JDPluginInstaller.h; sourceTree = "<group>"; };
+		D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../JDPluginInstaller.m; sourceTree = "<group>"; };
+		D2813F6316C1114A00B2C4A4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +51,12 @@
 		D2162C1916C06DD300B9742B /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
-				D2162C1E16C06EA700B9742B /* global.h */,
-				D2162C1F16C06EA700B9742B /* JDListInstalledPlugins.h */,
-				D2162C2016C06EA700B9742B /* JDListInstalledPlugins.m */,
-				D2162C2116C06EA700B9742B /* JDPluginInstaller.h */,
-				D2162C2216C06EA700B9742B /* JDPluginInstaller.m */,
-				D2162C2516C06EB300B9742B /* Localizable.strings */,
+				D2813F5D16C1114A00B2C4A4 /* global.h */,
+				D2813F5E16C1114A00B2C4A4 /* JDListInstalledPlugins.h */,
+				D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */,
+				D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */,
+				D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */,
+				D2813F6316C1114A00B2C4A4 /* Localizable.strings */,
 			);
 			name = Plugin;
 			sourceTree = "<group>";
@@ -172,7 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D24641AB16C04D67005DB12C /* MainMenu.xib in Resources */,
-				D2162C2616C06EB300B9742B /* Localizable.strings in Resources */,
+				D2813F6716C1114A00B2C4A4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,8 +185,8 @@
 			files = (
 				D246419516C04B21005DB12C /* main.m in Sources */,
 				D246419C16C04B21005DB12C /* TAAppDelegate.m in Sources */,
-				D2162C2316C06EA700B9742B /* JDListInstalledPlugins.m in Sources */,
-				D2162C2416C06EA700B9742B /* JDPluginInstaller.m in Sources */,
+				D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */,
+				D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
