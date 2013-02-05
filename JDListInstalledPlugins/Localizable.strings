@@ -16,6 +16,7 @@
 "keyEmptyMenuItemTitle"         = "- No installed Plugins -";
 "keyShowDirectoryMenuItemTitle" = "Reveal plugin directory";
 "keyInstallMenuItemTitle"       = "Install a new plugin…";
+"keyUpdateMenuItemTitle"        = "Update JDListInstalledPlugins";
 
 // uninstalling
 "keyUninstall" = "Uninstall";
@@ -28,7 +29,9 @@
 "keyInstallAlertMessage"     = "The URL must be a git repository. The project contents (master branch) must contain a buildable Xcode plugin project.";
 "keyInstallAlertExampleText" = "git@github.com:jaydee3/JDListInstalledPlugins.git";
 "keyInstallProgressTitle"    = "Installing plugin…";
-"keyInstallProgressMessage"  = "Will checkout and build project now…";
+"keyInstallProgressMessage"  = "\nWill clone and build project now…\nAfter the installation, the project will be moved to your trash. To use the new plugin, restart Xcode afterwards.\n\nThis could take a while…";
+"keyInstallErrorTitle"       = "Error during installation";
+"keyInstallErrorMessage"     = "Could not install plugin. If the clone was successful, the project is now in your trash folder.";
 
 // errors
 "keyErrorXcodeToolsMissingTitle"   = "xcodebuild/xcodeproj not found";
@@ -36,5 +39,4 @@
 
 "keyErrorGitMissingTitle"   = "git not found";
 "keyErrorGitMissingMessage" = "You need to have git installed (/usr/bin/git) in order to install plugins. Please install git.";
-
 

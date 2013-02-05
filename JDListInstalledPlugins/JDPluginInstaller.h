@@ -13,4 +13,6 @@
 
 + (void)installPlugin;
 
+- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
+
 @end

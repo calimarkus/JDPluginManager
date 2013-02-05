@@ -16,6 +16,7 @@
 - (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
 
 - (void)showPlugin:(NSMenuItem*)sender;
+- (void)updatePlugin:(NSMenuItem*)sender;
 - (void)deletePlugin:(NSMenuItem*)sender;
 @end
 
@@ -60,7 +61,7 @@
         [installedPluginsItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
 		[[editMenuItem submenu] addItem:installedPluginsItem];
         
-        // show directory item
+        // directory item
         NSMenuItem *showDirectoryItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowDirectoryMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
         [showDirectoryItem setTarget:self];
         [[installedPluginsItem submenu] addItem:showDirectoryItem];
@@ -68,16 +69,21 @@
         // separator
 		[[installedPluginsItem submenu] addItem:[NSMenuItem separatorItem]];
         
-        // add each plugin as subitem
+        // each plugin as subitem
         [self readAndAddPluginsToMenu:[installedPluginsItem submenu]];
 		
         // separator
 		[[installedPluginsItem submenu] addItem:[NSMenuItem separatorItem]];
         
-        // show install item
+        // install item
         NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
         [installItem setTarget:self];
         [[installedPluginsItem submenu] addItem:installItem];
+        
+        // update item
+        NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
+        [pluginItem setTarget:self];
+        [[installedPluginsItem submenu] addItem:pluginItem];
     }
 }
 
@@ -86,7 +92,7 @@
     NSString *pluginsPath = [[NSURL pluginsDirectoryURL] path];
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginsPath error:nil];
     if (!contents || contents.count == 0) {
-        // add empty item
+        // empty item
         NSMenuItem *emptyItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyEmptyMenuItemTitle") action:nil keyEquivalent:@""] autorelease];
         [emptyItem setEnabled:NO];
         [menu addItem:emptyItem];
@@ -96,7 +102,7 @@
                 // remove suffix
                 file = [file stringByReplacingOccurrencesOfString:xcodePluginSuffix withString:@""];
                 
-                // add menu item
+                // plugin item
                 [self addPluginNamed:file toMenu:menu];
             }
         }];
@@ -129,6 +135,11 @@
     
     // open finder
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
+}
+
+- (void)updatePlugin:(NSMenuItem*)sender;
+{
+    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryUrl:@"git@github.com:jaydee3/JDListInstalledPlugins.git"];
 }
 
 - (void)deletePlugin:(NSMenuItem*)sender;

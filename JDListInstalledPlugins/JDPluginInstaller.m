@@ -13,7 +13,6 @@
 @interface JDPluginInstaller () <NSWindowDelegate>
 + (BOOL)toolsAreAvailable;
 - (void)showInstallPrompt;
-- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
 - (NSPanel*)showProgressPanel;
 - (void)emptyTempDirectory;
 @end
@@ -96,43 +95,44 @@ NSString *const gitPath        = @"/usr/bin/git";
 
 - (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
 {
+    if (![JDPluginInstaller toolsAreAvailable]) {
+        return;
+    }
+    
     // show progress panel
     NSPanel *panel = [self showProgressPanel];
     
     // move checked out project to trash
     [self emptyTempDirectory];
     
-    // prepare stdout
-//    NSPipe *outPipe = [NSPipe pipe];
-    
-    // checkout project
-    NSArray *gitArgs = @[@"clone", repositoryURL, tmpClonePath];
-    NSTask *gitTask = [[[NSTask alloc] init] autorelease];
-//    [gitTask setStandardInput:[NSPipe pipe]];
-//    [gitTask setStandardOutput:outPipe];
-    [gitTask setLaunchPath:gitPath];
-    [gitTask setArguments:gitArgs];
-    [gitTask launch];
-    [gitTask waitUntilExit];
-    
-    // run xcodebuild
-    NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
-//    [xcbTask setStandardInput:[NSPipe pipe]];
-//    [xcbTask setStandardOutput:outPipe];
-    [xcbTask setCurrentDirectoryPath:tmpClonePath];
-    [xcbTask setLaunchPath:xcodeBuildPath];
-    [xcbTask launch];
-    [xcbTask waitUntilExit];
+    @try {
+        // checkout project
+        NSArray *gitArgs = @[@"clone", repositoryURL, tmpClonePath];
+        NSTask *gitTask = [[[NSTask alloc] init] autorelease];
+        [gitTask setLaunchPath:gitPath];
+        [gitTask setArguments:gitArgs];
+        [gitTask launch];
+        [gitTask waitUntilExit];
+
+        // run xcodebuild
+        NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
+        [xcbTask setCurrentDirectoryPath:tmpClonePath];
+        [xcbTask setLaunchPath:xcodeBuildPath];
+        [xcbTask launch];
+        [xcbTask waitUntilExit];
+    }
+    @catch (NSException *exception) {
+        NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallErrorTitle")
+                                         defaultButton:JDLocalize(@"keyOK")
+                                       alternateButton:nil
+                                           otherButton:nil
+                             informativeTextWithFormat:JDLocalize(@"keyInstallErrorMessage")];
+        alert.alertStyle = NSCriticalAlertStyle;
+        [alert runModal];
+    }
     
     // move checked out project to trash
     [self emptyTempDirectory];
-    
-//    // show results
-//    NSView *contentView = panel.contentView;
-//    NSTextView *textView = [contentView.subviews objectAtIndex:0];
-//    NSData *data = [[outPipe fileHandleForReading] readDataToEndOfFile];
-//    NSString *results = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    [textView insertText:results];
     
     // make panel closable
     [panel close];
@@ -140,7 +140,7 @@ NSString *const gitPath        = @"/usr/bin/git";
 
 - (NSPanel*)showProgressPanel;
 {
-    NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 640, 320)
+    NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 300, 160)
                                                 styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
                                                   backing:0 defer:NO];
     panel.styleMask = NSHUDWindowMask | NSUtilityWindowMask | NSTitledWindowMask;
@@ -155,6 +155,8 @@ NSString *const gitPath        = @"/usr/bin/git";
     textView.textColor = [NSColor whiteColor];
     textView.selectable = NO;
     textView.editable = NO;
+    textView.font = [NSFont systemFontOfSize:13];
+    textView.alignment = NSCenterTextAlignment;
     textView.string = JDLocalize(@"keyInstallProgressMessage");
     [contentView addSubview:textView];
     
