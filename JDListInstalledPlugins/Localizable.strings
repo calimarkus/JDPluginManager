@@ -12,7 +12,7 @@
 "keyCancel" = "Cancel";
 
 // menu items
-"keyPluginsMenuItemTitle"       = "Installed Plugins";
+"keyManagePluginsMenuItemTitle" = "Manage Plugins";
 "keyEmptyMenuItemTitle"         = "- No installed Plugins -";
 "keyShowDirectoryMenuItemTitle" = "Reveal plugin directory";
 "keyInstallMenuItemTitle"       = "Install a new plugin…";

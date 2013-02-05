@@ -56,9 +56,8 @@
 		[[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
 		
         // installed plugins item
-		NSMenuItem *installedPluginsItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyPluginsMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
+		NSMenuItem *installedPluginsItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle") action:nil keyEquivalent:@""] autorelease];
         [installedPluginsItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
-		[installedPluginsItem setTarget:self];
 		[[editMenuItem submenu] addItem:installedPluginsItem];
         
         // show directory item
