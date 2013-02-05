@@ -4,7 +4,7 @@
 
 Are you using a lot of XCode Plugins?
 
-This plugin will give you an overview of all installed Plugins. With it you can easily open their directories, or delete them right out of Xcode.  
+This plugin will give you an overview of all installed Plugins. With it you can easily open their directories, uninstall plugins or even install new ones from a github repository - everything happens directly out of Xcode.  
 *This is tested only on OS X 10.8 with Xcode 4.6.*
 
 It adds a new MenuItem "Manage Plugins" in the Edit Menu of Xcode:
