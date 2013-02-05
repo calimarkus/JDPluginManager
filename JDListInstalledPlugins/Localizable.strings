@@ -20,12 +20,12 @@
 // uninstalling
 "keyUninstall" = "Uninstall";
 "keyUninstallAlertTitleFormat"   = "Uninstall Plugin '%@'?";
-"keyUninstallAlertMessageFormat" = "This will move the plugin '%@' to your trash. \n\nIt won't be loaded after the next start of %@.";
+"keyUninstallAlertMessageFormat" = "This will move the plugin '%@' to your trash. \n\nIt won't be loaded after the next start of Xcode.";
 
 // installing
 "keyInstall" = "Install";
 "keyInstallAlertTitleFormat" = "Enter plugin repository URL";
-"keyInstallAlertMessage"     = "The URL must be a git repository. The project contents must be a buildable xcode project.";
+"keyInstallAlertMessage"     = "The URL must be a git repository. The project contents (master branch) must contain a buildable Xcode plugin project.";
 "keyInstallAlertExampleText" = "git@github.com:jaydee3/JDListInstalledPlugins.git";
 "keyInstallProgressTitle"    = "Installing plugin…";
 "keyInstallProgressMessage"  = "Will checkout and build project now…";

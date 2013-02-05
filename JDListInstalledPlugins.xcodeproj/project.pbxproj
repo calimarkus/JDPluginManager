@@ -11,6 +11,7 @@
 		D2162C2E16C06ED100B9742B /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2A16C06ED100B9742B /* JDListInstalledPlugins.m */; };
 		D2162C2F16C06ED100B9742B /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */; };
 		D23AC6F516C0780000ABB3E2 /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2162C2D16C06ED100B9742B /* Localizable.strings */; };
+		D2813F6A16C1193B00B2C4A4 /* NSURL+JDListPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6916C1193B00B2C4A4 /* NSURL+JDListPlugins.m */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		D2162C2B16C06ED100B9742B /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = JDListInstalledPlugins/JDPluginInstaller.h; sourceTree = SOURCE_ROOT; };
 		D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = JDListInstalledPlugins/JDPluginInstaller.m; sourceTree = SOURCE_ROOT; };
 		D2162C2D16C06ED100B9742B /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDListInstalledPlugins/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		D2813F6816C1193B00B2C4A4 /* NSURL+JDListPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JDListPlugins.h"; sourceTree = "<group>"; };
+		D2813F6916C1193B00B2C4A4 /* NSURL+JDListPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JDListPlugins.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				7F411B0C15FABAC6002F77B6 /* Classes */,
+				D2813F6B16C11A4B00B2C4A4 /* Utils */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
@@ -93,13 +97,24 @@
 		7F411B0C15FABAC6002F77B6 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D2162C2716C06ED100B9742B /* global.h */,
 				D2162C2916C06ED100B9742B /* JDListInstalledPlugins.h */,
 				D2162C2A16C06ED100B9742B /* JDListInstalledPlugins.m */,
 				D2162C2B16C06ED100B9742B /* JDPluginInstaller.h */,
 				D2162C2C16C06ED100B9742B /* JDPluginInstaller.m */,
 			);
-			path = Classes;
+			name = Classes;
+			path = JDListInstalledPlugins;
+			sourceTree = "<group>";
+		};
+		D2813F6B16C11A4B00B2C4A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D2162C2716C06ED100B9742B /* global.h */,
+				D2813F6816C1193B00B2C4A4 /* NSURL+JDListPlugins.h */,
+				D2813F6916C1193B00B2C4A4 /* NSURL+JDListPlugins.m */,
+			);
+			name = Utils;
+			path = JDListInstalledPlugins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +172,7 @@
 			files = (
 				D2162C2E16C06ED100B9742B /* JDListInstalledPlugins.m in Sources */,
 				D2162C2F16C06ED100B9742B /* JDPluginInstaller.m in Sources */,
+				D2813F6A16C1193B00B2C4A4 /* NSURL+JDListPlugins.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

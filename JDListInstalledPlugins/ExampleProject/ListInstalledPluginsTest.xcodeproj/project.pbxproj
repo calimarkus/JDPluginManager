@@ -14,6 +14,7 @@
 		D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */; };
 		D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */; };
 		D2813F6716C1114A00B2C4A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2813F6316C1114A00B2C4A4 /* Localizable.strings */; };
+		D2813F6E16C11A9600B2C4A4 /* NSURL+JDListPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../JDPluginInstaller.h; sourceTree = "<group>"; };
 		D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../JDPluginInstaller.m; sourceTree = "<group>"; };
 		D2813F6316C1114A00B2C4A4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../Localizable.strings; sourceTree = "<group>"; };
+		D2813F6C16C11A9600B2C4A4 /* NSURL+JDListPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+JDListPlugins.h"; path = "../../NSURL+JDListPlugins.h"; sourceTree = "<group>"; };
+		D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+JDListPlugins.m"; path = "../../NSURL+JDListPlugins.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,8 @@
 				D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */,
 				D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */,
 				D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */,
+				D2813F6C16C11A9600B2C4A4 /* NSURL+JDListPlugins.h */,
+				D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */,
 				D2813F6316C1114A00B2C4A4 /* Localizable.strings */,
 			);
 			name = Plugin;
@@ -187,6 +192,7 @@
 				D246419C16C04B21005DB12C /* TAAppDelegate.m in Sources */,
 				D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */,
 				D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */,
+				D2813F6E16C11A9600B2C4A4 /* NSURL+JDListPlugins.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

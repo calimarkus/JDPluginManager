@@ -8,11 +8,8 @@
 
 #import "JDListInstalledPlugins.h"
 #import "JDPluginInstaller.h"
+#import "NSURL+JDListPlugins.h"
 #import "global.h"
-
-
-NSString *const xcodePluginSuffix = @".xcplugin";
-NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
 
 @interface JDListInstalledPlugins () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
@@ -20,9 +17,6 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
 
 - (void)showPlugin:(NSMenuItem*)sender;
 - (void)deletePlugin:(NSMenuItem*)sender;
-
-- (NSURL*)URLForPluginNamed:(NSString*)pluginName;
-- (NSURL*)pluginsDirectoryURL;
 @end
 
 
@@ -90,7 +84,7 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
 
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 {
-    NSString *pluginsPath = [[self pluginsDirectoryURL] path];
+    NSString *pluginsPath = [[NSURL pluginsDirectoryURL] path];
     NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginsPath error:nil];
     if (!contents || contents.count == 0) {
         // add empty item
@@ -129,9 +123,9 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
 
 - (void)showPlugin:(NSMenuItem*)sender;
 {
-    NSURL *url = [self pluginsDirectoryURL];
+    NSURL *url = [NSURL pluginsDirectoryURL];
     if (sender.tag == 99) {
-        url = [self URLForPluginNamed:sender.title];
+        url = [NSURL pluginURLForPluginNamed:sender.title];
     }
     
     // open finder
@@ -140,7 +134,6 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
 
 - (void)deletePlugin:(NSMenuItem*)sender;
 {
-    NSString *appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
     NSString *pluginName = [sender parentItem].title;
     
     // construct alert
@@ -148,7 +141,7 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
                                      defaultButton:JDLocalize(@"keyUninstall")
                                    alternateButton:JDLocalize(@"keyCancel")
                                        otherButton:nil
-                         informativeTextWithFormat:JDLocalize(@"keyUninstallAlertMessageFormat"), pluginName, appName];
+                         informativeTextWithFormat:JDLocalize(@"keyUninstallAlertMessageFormat"), pluginName];
     alert.alertStyle = NSCriticalAlertStyle;
     
     // show alert
@@ -158,7 +151,7 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
     }
     
     // move plugin folder to trash
-    NSString *pluginPath = [[self URLForPluginNamed:pluginName] path];
+    NSString *pluginPath = [[NSURL pluginURLForPluginNamed:pluginName] path];
     BOOL deleted = [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
                                                                 source:[pluginPath stringByDeletingLastPathComponent]
                                                            destination:@""
@@ -172,20 +165,6 @@ NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer
 - (void)installPlugin:(NSMenuItem*)sender;
 {
     [JDPluginInstaller installPlugin];
-}
-
-#pragma mark helper
-
-- (NSURL*)URLForPluginNamed:(NSString*)pluginName;
-{
-    NSString *folderName = [NSString stringWithFormat: @"%@%@/", pluginName, xcodePluginSuffix];
-    NSString *pluginPath = [[[self pluginsDirectoryURL] path] stringByAppendingPathComponent:folderName];
-    return [NSURL fileURLWithPath:pluginPath];
-}
-
-- (NSURL*)pluginsDirectoryURL;
-{
-    return [NSURL fileURLWithPath:[pluginsDirectoryPath stringByExpandingTildeInPath]];
 }
 
 @end
