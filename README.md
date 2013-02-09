@@ -23,7 +23,7 @@ Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDLi
 
 Simply build this Xcode project once and restart Xcode. You can delete the project afterwards. (The plugin will be copied to your system automatically after the build.)
 
-If you get a "Permission Denied" error while building, please see [this issue](https://github.com/omz/ColorSense-for-Xcode/issues/1) from the great [ColorSense plugin](https://github.com/omz/ColorSense-for-Xcode/).
+If you get a "Permission Denied" error while building, please see [this issue](https://github.com/omz/ColorSense-for-Xcode/issues/1) of the great [ColorSense plugin](https://github.com/omz/ColorSense-for-Xcode/).
 
 
 ## Uninstall
