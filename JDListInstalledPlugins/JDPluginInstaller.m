@@ -77,11 +77,22 @@ NSString *const gitPath        = @"/usr/bin/git";
     alert.alertStyle = NSInformationalAlertStyle;
     
     // add text field
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 400, 24)];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)];
     [input setStringValue:JDLocalize(@"keyInstallAlertExampleText")];
     [input setBezeled:YES];
     [input setBezelStyle:NSTextFieldRoundedBezel];
-    [alert setAccessoryView:input];
+    
+    // add checkbox
+    NSButton *checkbox = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
+    [checkbox setButtonType:NSSwitchButton];
+    [checkbox setTitle:JDLocalize(@"keyInstallAlertCheckboxText")];
+    [checkbox sizeToFit];
+    
+    // build accessory view
+    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)];
+    [view addSubview:input];
+    [view addSubview:checkbox];
+    [alert setAccessoryView:view];
     
     // show prompt
     NSInteger selectedButtonIndex = [alert runModal];
@@ -90,10 +101,11 @@ NSString *const gitPath        = @"/usr/bin/git";
     }
     
     // install
-    [self beginInstallWithRepositoryUrl:input.stringValue];
+    BOOL searchSubdirectories = (checkbox.state == NSOnState);
+    [self beginInstallWithRepositoryUrl:input.stringValue searchInSubdirectories:searchSubdirectories];
 }
 
-- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL;
+- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL searchInSubdirectories:(BOOL)searchSubdirectories;
 {
     if (![JDPluginInstaller toolsAreAvailable]) {
         return;
@@ -107,19 +119,44 @@ NSString *const gitPath        = @"/usr/bin/git";
     
     @try {
         // checkout project
-        NSArray *gitArgs = @[@"clone", repositoryURL, tmpClonePath];
+        NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
+        NSArray *gitArgs = @[@"clone", repositoryURL, clonePath];
         NSTask *gitTask = [[[NSTask alloc] init] autorelease];
         [gitTask setLaunchPath:gitPath];
         [gitTask setArguments:gitArgs];
         [gitTask launch];
         [gitTask waitUntilExit];
 
-        // run xcodebuild
-        NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
-        [xcbTask setCurrentDirectoryPath:tmpClonePath];
-        [xcbTask setLaunchPath:xcodeBuildPath];
-        [xcbTask launch];
-        [xcbTask waitUntilExit];
+        // use top level folder for install
+        NSArray *pathsToCheck = @[clonePath];
+        
+        // use subdirectories, if enabled
+        if (searchSubdirectories) {
+            NSMutableArray *array = [NSMutableArray array];
+            
+            // search for actual directories
+            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:clonePath error:nil];
+            [contents enumerateObjectsUsingBlock:^(NSString *contentPath, NSUInteger idx, BOOL *stop) {
+                BOOL isDirectory = NO;
+                [[NSFileManager defaultManager] fileExistsAtPath:[clonePath stringByAppendingPathComponent:contentPath] isDirectory:&isDirectory];
+                if (isDirectory && ![contentPath hasPrefix:@"."] && ![contentPath hasSuffix:@".xcworkspace"]) {
+                    [array addObject:[clonePath stringByAppendingPathComponent:contentPath]];
+                }
+            }];
+            // use subdirectories, if found
+            if (array.count > 0) {
+                pathsToCheck = array;
+            }
+        }
+        
+        // run xcodebuild for each path given
+        for (NSString *path in pathsToCheck) {
+            NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
+            [xcbTask setCurrentDirectoryPath:path];
+            [xcbTask setLaunchPath:xcodeBuildPath];
+            [xcbTask launch];
+            [xcbTask waitUntilExit];
+        }
     }
     @catch (NSException *exception) {
         NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallErrorTitle")
