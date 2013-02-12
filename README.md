@@ -7,10 +7,11 @@ Are you using a lot of XCode Plugins?
 This plugin will give you an overview of all installed Plugins. With it you can easily open their directories, uninstall plugins or even install new ones from a github repository - everything happens directly out of Xcode.  
 *This is tested only on OS X 10.8 with Xcode 4.6.*
 
-It adds a new MenuItem "Manage Plugins" in the Edit Menu of Xcode:
+It adds a new MenuItem "Plugins" in the Menu Bar of Xcode:
 
-![Screenshot](assets/screenshot1.png "Screenshot")
-![Screenshot](assets/screenshot2.png "Screenshot")
+![Screenshot](assets/screenshot1.png "Menu Screenshot")
+![Screenshot](assets/screenshot2.png "Uninstall Screenshot")
+![Screenshot](assets/screenshot3.png "Installation Screenshot")
 
 ### Twitter
 
@@ -28,5 +29,5 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 
 ## Uninstall
 
-In Xcode, go to *Edit > Manage Plugins > JDListInstalledPlugins > Uninstall*.
+In Xcode, go to *Plugins > JDListInstalledPlugins > Uninstall* and restart Xcode afterwards.
 
