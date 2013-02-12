@@ -8,7 +8,7 @@
 
 #import "NSURL+JDListPlugins.h"
 
-NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins";
+NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/";
 NSString *const xcodePluginSuffix = @".xcplugin";
 
 @implementation NSURL (JDListPlugins)
@@ -22,7 +22,7 @@ NSString *const xcodePluginSuffix = @".xcplugin";
 
 + (NSURL*)pluginsDirectoryURL;
 {
-    return [NSURL fileURLWithPath:[pluginsDirectoryPath stringByExpandingTildeInPath]];
+    return [NSURL fileURLWithPath:[pluginsDirectoryPath stringByExpandingTildeInPath] isDirectory:YES];
 }
 
 @end

@@ -51,39 +51,42 @@
 
 - (void)extendXcodeMenu
 {
-    NSMenuItem *editMenuItem = [[NSApp mainMenu] itemWithTitle:@"Edit"];
-	if (editMenuItem) {
-        // separator
-		[[editMenuItem submenu] addItem:[NSMenuItem separatorItem]];
-		
-        // installed plugins item
-		NSMenuItem *installedPluginsItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle") action:nil keyEquivalent:@""] autorelease];
-        [installedPluginsItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
-		[[editMenuItem submenu] addItem:installedPluginsItem];
-        
+    // find window menu item
+	NSInteger menuIndex=[[NSApp mainMenu] indexOfItemWithTitle:@"Window"];
+	if(menuIndex<0) {
+		menuIndex=[[NSApp mainMenu] numberOfItems];
+    }
+	
+    // insert plugins item
+	NSMenuItem *pluginsMenuItem=[[NSApp mainMenu] insertItemWithTitle:@"" action:nil keyEquivalent:@"" atIndex:menuIndex];
+    NSMenu *subMenu = [[[NSMenu alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle")] autorelease];
+	[pluginsMenuItem setSubmenu:subMenu];
+    
+    // add menu entries
+	if (pluginsMenuItem) {
         // directory item
         NSMenuItem *showDirectoryItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowDirectoryMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
         [showDirectoryItem setTarget:self];
-        [[installedPluginsItem submenu] addItem:showDirectoryItem];
+        [[pluginsMenuItem submenu] addItem:showDirectoryItem];
 		
         // separator
-		[[installedPluginsItem submenu] addItem:[NSMenuItem separatorItem]];
+		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
         
         // each plugin as subitem
-        [self readAndAddPluginsToMenu:[installedPluginsItem submenu]];
+        [self readAndAddPluginsToMenu:[pluginsMenuItem submenu]];
 		
         // separator
-		[[installedPluginsItem submenu] addItem:[NSMenuItem separatorItem]];
+		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
         
         // install item
         NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
         [installItem setTarget:self];
-        [[installedPluginsItem submenu] addItem:installItem];
+        [[pluginsMenuItem submenu] addItem:installItem];
         
         // update item
         NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
         [pluginItem setTarget:self];
-        [[installedPluginsItem submenu] addItem:pluginItem];
+        [[pluginsMenuItem submenu] addItem:pluginItem];
     }
 }
 
