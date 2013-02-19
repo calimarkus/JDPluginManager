@@ -1,6 +1,6 @@
 //
 //  JDPluginInstaller.h
-//  JDListInstalledPlugins
+//  JDPluginManager
 //
 //  Created by Markus Emrich on 04.02.13.
 //

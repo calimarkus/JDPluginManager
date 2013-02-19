@@ -1,17 +1,17 @@
 //
-//  NSURL+JDListPlugins.m
-//  JDListInstalledPlugins
+//  NSURL+JDPluginManager.m
+//  JDPluginManager
 //
 //  Created by Markus Emrich on 05.02.13.
 //
 //
 
-#import "NSURL+JDListPlugins.h"
+#import "NSURL+JDPluginManager.h"
 
 NSString *const pluginsDirectoryPath = @"~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/";
 NSString *const xcodePluginSuffix = @".xcplugin";
 
-@implementation NSURL (JDListPlugins)
+@implementation NSURL (JDPluginManager)
 
 + (NSURL*)pluginURLForPluginNamed:(NSString*)pluginName;
 {

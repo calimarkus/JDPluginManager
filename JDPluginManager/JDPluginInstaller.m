@@ -1,6 +1,6 @@
 //
 //  JDPluginInstaller.m
-//  JDListInstalledPlugins
+//  JDPluginManager
 //
 //  Created by Markus Emrich on 04.02.13.
 //
@@ -18,7 +18,7 @@
 @end
 
 
-NSString *const tmpClonePath   = @"/tmp/JDListInstalledPlugins/";
+NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild";
 NSString *const gitPath        = @"/usr/bin/git";
 

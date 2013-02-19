@@ -1,4 +1,4 @@
-# JDListInstalledPlugins
+# JDPluginManager
 
 ## Overview
 
@@ -16,9 +16,9 @@ It adds a new MenuItem "Plugins" in the Menu Bar of Xcode:
 ### Twitter
 
 I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
-Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDListInstalledPlugins&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDListInstalledPlugins&via=jaydee3), if you like this plugin.  
+Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3), if you like this plugin.  
 
-[![TweetButton](assets/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDListInstalledPlugins&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDListInstalledPlugins&via=jaydee3)
+[![TweetButton](assets/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3)
 
 ## Installation
 
@@ -29,5 +29,5 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 
 ## Uninstall
 
-In Xcode, go to *Plugins > JDListInstalledPlugins > Uninstall* and restart Xcode afterwards.
+In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterwards.
 

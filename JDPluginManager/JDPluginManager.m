@@ -1,17 +1,17 @@
 //
-//  JDListInstalledPlugins.m
-//  JDListInstalledPlugins
+//  JDPluginManager.m
+//  JDPluginManager
 //
 //  Created by Markus Emrich on 03.02.2013.
 //
 //
 
-#import "JDListInstalledPlugins.h"
+#import "JDPluginManager.h"
 #import "JDPluginInstaller.h"
-#import "NSURL+JDListPlugins.h"
+#import "NSURL+JDPluginManager.h"
 #import "global.h"
 
-@interface JDListInstalledPlugins () <NSAlertDelegate>
+@interface JDPluginManager () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 - (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
 
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation JDListInstalledPlugins
+@implementation JDPluginManager
 
 + (void)pluginDidLoad:(NSBundle*)plugin
 {
@@ -142,7 +142,7 @@
 
 - (void)updatePlugin:(NSMenuItem*)sender;
 {
-    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryUrl:@"git@github.com:jaydee3/JDListInstalledPlugins.git" searchInSubdirectories:NO];
+    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryUrl:@"git@github.com:jaydee3/JDPluginManager.git" searchInSubdirectories:NO];
 }
 
 - (void)deletePlugin:(NSMenuItem*)sender;

@@ -8,35 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
-		D246419516C04B21005DB12C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D246419416C04B21005DB12C /* main.m */; };
-		D246419C16C04B21005DB12C /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D246419B16C04B21005DB12C /* TAAppDelegate.m */; };
-		D24641AB16C04D67005DB12C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24641AA16C04D67005DB12C /* MainMenu.xib */; };
-		D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */; };
-		D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */; };
-		D2813F6716C1114A00B2C4A4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2813F6316C1114A00B2C4A4 /* Localizable.strings */; };
-		D2813F6E16C11A9600B2C4A4 /* NSURL+JDListPlugins.m in Sources */ = {isa = PBXBuildFile; fileRef = D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */; };
+		D2E2D32616D4304B00447430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32116D4304B00447430 /* main.m */; };
+		D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E2D32216D4304B00447430 /* MainMenu.xib */; };
+		D2E2D32816D4304B00447430 /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32416D4304B00447430 /* TAAppDelegate.m */; };
+		D2E2D33216D4306F00447430 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32C16D4306F00447430 /* JDPluginInstaller.m */; };
+		D2E2D33316D4306F00447430 /* JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32E16D4306F00447430 /* JDPluginManager.m */; };
+		D2E2D33416D4306F00447430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2E2D32F16D4306F00447430 /* Localizable.strings */; };
+		D2E2D33516D4306F00447430 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D33116D4306F00447430 /* NSURL+JDPluginManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D246418516C04B21005DB12C /* ListInstalledPluginsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListInstalledPluginsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D246418516C04B21005DB12C /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D246418816C04B21005DB12C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D246418C16C04B21005DB12C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D246418D16C04B21005DB12C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D246419016C04B21005DB12C /* ListInstalledPluginsTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ListInstalledPluginsTest-Info.plist"; sourceTree = "<group>"; };
-		D246419416C04B21005DB12C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D246419616C04B21005DB12C /* ListInstalledPluginsTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ListInstalledPluginsTest-Prefix.pch"; sourceTree = "<group>"; };
-		D246419A16C04B21005DB12C /* TAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
-		D246419B16C04B21005DB12C /* TAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
-		D24641AA16C04D67005DB12C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		D2813F5D16C1114A00B2C4A4 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../global.h; sourceTree = "<group>"; };
-		D2813F5E16C1114A00B2C4A4 /* JDListInstalledPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDListInstalledPlugins.h; path = ../../JDListInstalledPlugins.h; sourceTree = "<group>"; };
-		D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDListInstalledPlugins.m; path = ../../JDListInstalledPlugins.m; sourceTree = "<group>"; };
-		D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../JDPluginInstaller.h; sourceTree = "<group>"; };
-		D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../JDPluginInstaller.m; sourceTree = "<group>"; };
-		D2813F6316C1114A00B2C4A4 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../Localizable.strings; sourceTree = "<group>"; };
-		D2813F6C16C11A9600B2C4A4 /* NSURL+JDListPlugins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+JDListPlugins.h"; path = "../../NSURL+JDListPlugins.h"; sourceTree = "<group>"; };
-		D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+JDListPlugins.m"; path = "../../NSURL+JDListPlugins.m"; sourceTree = "<group>"; };
+		D2E2D31F16D4304B00447430 /* ExampleProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ExampleProject-Info.plist"; sourceTree = "<group>"; };
+		D2E2D32016D4304B00447430 /* ExampleProject-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExampleProject-Prefix.pch"; sourceTree = "<group>"; };
+		D2E2D32116D4304B00447430 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2E2D32216D4304B00447430 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		D2E2D32316D4304B00447430 /* TAAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
+		D2E2D32416D4304B00447430 /* TAAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
+		D2E2D32A16D4306F00447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../global.h; sourceTree = "<group>"; };
+		D2E2D32B16D4306F00447430 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../JDPluginInstaller.h; sourceTree = "<group>"; };
+		D2E2D32C16D4306F00447430 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../JDPluginInstaller.m; sourceTree = "<group>"; };
+		D2E2D32D16D4306F00447430 /* JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginManager.h; path = ../../JDPluginManager.h; sourceTree = "<group>"; };
+		D2E2D32E16D4306F00447430 /* JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginManager.m; path = ../../JDPluginManager.m; sourceTree = "<group>"; };
+		D2E2D32F16D4306F00447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../Localizable.strings; sourceTree = "<group>"; };
+		D2E2D33016D4306F00447430 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+JDPluginManager.h"; path = "../../NSURL+JDPluginManager.h"; sourceTree = "<group>"; };
+		D2E2D33116D4306F00447430 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+JDPluginManager.m"; path = "../../NSURL+JDPluginManager.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,25 +51,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D2162C1916C06DD300B9742B /* Plugin */ = {
-			isa = PBXGroup;
-			children = (
-				D2813F5D16C1114A00B2C4A4 /* global.h */,
-				D2813F5E16C1114A00B2C4A4 /* JDListInstalledPlugins.h */,
-				D2813F5F16C1114A00B2C4A4 /* JDListInstalledPlugins.m */,
-				D2813F6016C1114A00B2C4A4 /* JDPluginInstaller.h */,
-				D2813F6116C1114A00B2C4A4 /* JDPluginInstaller.m */,
-				D2813F6C16C11A9600B2C4A4 /* NSURL+JDListPlugins.h */,
-				D2813F6D16C11A9600B2C4A4 /* NSURL+JDListPlugins.m */,
-				D2813F6316C1114A00B2C4A4 /* Localizable.strings */,
-			);
-			name = Plugin;
-			sourceTree = "<group>";
-		};
 		D246417C16C04B21005DB12C = {
 			isa = PBXGroup;
 			children = (
-				D246418E16C04B21005DB12C /* ListInstalledPluginsTest */,
+				D2E2D31E16D4304B00447430 /* ExampleProject */,
 				D246418716C04B21005DB12C /* Frameworks */,
 				D246418616C04B21005DB12C /* Products */,
 			);
@@ -78,7 +63,7 @@
 		D246418616C04B21005DB12C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D246418516C04B21005DB12C /* ListInstalledPluginsTest.app */,
+				D246418516C04B21005DB12C /* ExampleProject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,34 +87,49 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		D246418E16C04B21005DB12C /* ListInstalledPluginsTest */ = {
+		D2E2D31E16D4304B00447430 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
-				D246419416C04B21005DB12C /* main.m */,
-				D246419616C04B21005DB12C /* ListInstalledPluginsTest-Prefix.pch */,
-				D246419A16C04B21005DB12C /* TAAppDelegate.h */,
-				D246419B16C04B21005DB12C /* TAAppDelegate.m */,
-				D2162C1916C06DD300B9742B /* Plugin */,
-				D2D989A316C058D8002EC5D0 /* Ressources */,
+				D2E2D32116D4304B00447430 /* main.m */,
+				D2E2D32316D4304B00447430 /* TAAppDelegate.h */,
+				D2E2D32416D4304B00447430 /* TAAppDelegate.m */,
+				D2E2D33616D4307200447430 /* Plugin */,
+				D2E2D32916D4305500447430 /* Resources */,
 			);
-			path = ListInstalledPluginsTest;
+			path = ExampleProject;
 			sourceTree = "<group>";
 		};
-		D2D989A316C058D8002EC5D0 /* Ressources */ = {
+		D2E2D32916D4305500447430 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D24641AA16C04D67005DB12C /* MainMenu.xib */,
-				D246419016C04B21005DB12C /* ListInstalledPluginsTest-Info.plist */,
+				D2E2D31F16D4304B00447430 /* ExampleProject-Info.plist */,
+				D2E2D32016D4304B00447430 /* ExampleProject-Prefix.pch */,
+				D2E2D32216D4304B00447430 /* MainMenu.xib */,
 			);
-			name = Ressources;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D2E2D33616D4307200447430 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				D2E2D32A16D4306F00447430 /* global.h */,
+				D2E2D32B16D4306F00447430 /* JDPluginInstaller.h */,
+				D2E2D32C16D4306F00447430 /* JDPluginInstaller.m */,
+				D2E2D32D16D4306F00447430 /* JDPluginManager.h */,
+				D2E2D32E16D4306F00447430 /* JDPluginManager.m */,
+				D2E2D32F16D4306F00447430 /* Localizable.strings */,
+				D2E2D33016D4306F00447430 /* NSURL+JDPluginManager.h */,
+				D2E2D33116D4306F00447430 /* NSURL+JDPluginManager.m */,
+			);
+			name = Plugin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D246418416C04B21005DB12C /* ListInstalledPluginsTest */ = {
+		D246418416C04B21005DB12C /* ExampleProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D24641A216C04B21005DB12C /* Build configuration list for PBXNativeTarget "ListInstalledPluginsTest" */;
+			buildConfigurationList = D24641A216C04B21005DB12C /* Build configuration list for PBXNativeTarget "ExampleProject" */;
 			buildPhases = (
 				D246418116C04B21005DB12C /* Sources */,
 				D246418216C04B21005DB12C /* Frameworks */,
@@ -139,9 +139,9 @@
 			);
 			dependencies = (
 			);
-			name = ListInstalledPluginsTest;
+			name = ExampleProject;
 			productName = ListInstalledPluginsTest;
-			productReference = D246418516C04B21005DB12C /* ListInstalledPluginsTest.app */;
+			productReference = D246418516C04B21005DB12C /* ExampleProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -154,7 +154,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = nxtbgthng;
 			};
-			buildConfigurationList = D246418016C04B21005DB12C /* Build configuration list for PBXProject "ListInstalledPluginsTest" */;
+			buildConfigurationList = D246418016C04B21005DB12C /* Build configuration list for PBXProject "ExampleProject" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -166,7 +166,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D246418416C04B21005DB12C /* ListInstalledPluginsTest */,
+				D246418416C04B21005DB12C /* ExampleProject */,
 			);
 		};
 /* End PBXProject section */
@@ -176,8 +176,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D24641AB16C04D67005DB12C /* MainMenu.xib in Resources */,
-				D2813F6716C1114A00B2C4A4 /* Localizable.strings in Resources */,
+				D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */,
+				D2E2D33416D4306F00447430 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,11 +188,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D246419516C04B21005DB12C /* main.m in Sources */,
-				D246419C16C04B21005DB12C /* TAAppDelegate.m in Sources */,
-				D2813F6416C1114A00B2C4A4 /* JDListInstalledPlugins.m in Sources */,
-				D2813F6516C1114A00B2C4A4 /* JDPluginInstaller.m in Sources */,
-				D2813F6E16C11A9600B2C4A4 /* NSURL+JDListPlugins.m in Sources */,
+				D2E2D32616D4304B00447430 /* main.m in Sources */,
+				D2E2D32816D4304B00447430 /* TAAppDelegate.m in Sources */,
+				D2E2D33216D4306F00447430 /* JDPluginInstaller.m in Sources */,
+				D2E2D33316D4306F00447430 /* JDPluginManager.m in Sources */,
+				D2E2D33516D4306F00447430 /* NSURL+JDPluginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,14 +261,14 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ListInstalledPluginsTest/ListInstalledPluginsTest-Prefix.pch";
+				GCC_PREFIX_HEADER = "ExampleProject/ExampleProject-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"JDListInstalledPluginsTest=1",
+					"JDPluginManagerTest=1",
 				);
-				INFOPLIST_FILE = "ListInstalledPluginsTest/ListInstalledPluginsTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "ExampleProject/ExampleProject-Info.plist";
+				PRODUCT_NAME = ExampleProject;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -278,9 +278,9 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ListInstalledPluginsTest/ListInstalledPluginsTest-Prefix.pch";
-				INFOPLIST_FILE = "ListInstalledPluginsTest/ListInstalledPluginsTest-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "ExampleProject/ExampleProject-Prefix.pch";
+				INFOPLIST_FILE = "ExampleProject/ExampleProject-Info.plist";
+				PRODUCT_NAME = ExampleProject;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -288,7 +288,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D246418016C04B21005DB12C /* Build configuration list for PBXProject "ListInstalledPluginsTest" */ = {
+		D246418016C04B21005DB12C /* Build configuration list for PBXProject "ExampleProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D24641A016C04B21005DB12C /* Debug */,
@@ -297,7 +297,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D24641A216C04B21005DB12C /* Build configuration list for PBXNativeTarget "ListInstalledPluginsTest" */ = {
+		D24641A216C04B21005DB12C /* Build configuration list for PBXNativeTarget "ExampleProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D24641A316C04B21005DB12C /* Debug */,
