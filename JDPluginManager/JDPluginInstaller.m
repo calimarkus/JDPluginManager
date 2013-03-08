@@ -6,14 +6,21 @@
 //
 //
 
-#import "JDPluginInstaller.h"
 #import "global.h"
+#import "NSTask+CompletionWithOutput.h"
+
+#import "JDPluginInstaller.h"
 
 
 @interface JDPluginInstaller () <NSWindowDelegate>
+@property (nonatomic, strong) NSTask *activeTask;
+@property (nonatomic, strong) NSMutableArray *pathsToBuild;
+@property (nonatomic, strong) NSPanel *progressPanel;
+@property (nonatomic, readonly) NSTextView *panelTextView;
 + (BOOL)toolsAreAvailable;
 - (void)showInstallPrompt;
-- (NSPanel*)showProgressPanel;
+- (void)showProgressPanel;
+- (void)startXcodeBuild;
 - (void)emptyTempDirectory;
 @end
 
@@ -112,7 +119,7 @@ NSString *const gitPath        = @"/usr/bin/git";
     }
     
     // show progress panel
-    NSPanel *panel = [self showProgressPanel];
+    [self showProgressPanel];
     
     // move checked out project to trash
     [self emptyTempDirectory];
@@ -121,42 +128,38 @@ NSString *const gitPath        = @"/usr/bin/git";
         // checkout project
         NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
         NSArray *gitArgs = @[@"clone", repositoryURL, clonePath];
-        NSTask *gitTask = [[[NSTask alloc] init] autorelease];
-        [gitTask setLaunchPath:gitPath];
-        [gitTask setArguments:gitArgs];
-        [gitTask launch];
-        [gitTask waitUntilExit];
-
-        // use top level folder for install
-        NSArray *pathsToCheck = @[clonePath];
-        
-        // use subdirectories, if enabled
-        if (searchSubdirectories) {
-            NSMutableArray *array = [NSMutableArray array];
+        self.activeTask = [NSTask launchedTaskWithLaunchPath:gitPath arguments:gitArgs completion:^(NSTask *task, NSString *output) {
             
-            // search for actual directories
-            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:clonePath error:nil];
-            [contents enumerateObjectsUsingBlock:^(NSString *contentPath, NSUInteger idx, BOOL *stop) {
-                BOOL isDirectory = NO;
-                [[NSFileManager defaultManager] fileExistsAtPath:[clonePath stringByAppendingPathComponent:contentPath] isDirectory:&isDirectory];
-                if (isDirectory && ![contentPath hasPrefix:@"."] && ![contentPath hasSuffix:@".xcworkspace"]) {
-                    [array addObject:[clonePath stringByAppendingPathComponent:contentPath]];
+            self.panelTextView.string = [NSString stringWithFormat: @"%@\n\n===git clone===\n\n%@", self.panelTextView.string, output];
+            [self.panelTextView setNeedsDisplay:YES];
+            
+            // use top level folder for install
+            NSArray *pathsToCheck = @[clonePath];
+            
+            // use subdirectories, if enabled
+            if (searchSubdirectories) {
+                NSMutableArray *array = [NSMutableArray array];
+                
+                // search for actual directories
+                NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:clonePath error:nil];
+                [contents enumerateObjectsUsingBlock:^(NSString *contentPath, NSUInteger idx, BOOL *stop) {
+                    BOOL isDirectory = NO;
+                    [[NSFileManager defaultManager] fileExistsAtPath:[clonePath stringByAppendingPathComponent:contentPath] isDirectory:&isDirectory];
+                    if (isDirectory && ![contentPath hasPrefix:@"."] && ![contentPath hasSuffix:@".xcworkspace"]) {
+                        [array addObject:[clonePath stringByAppendingPathComponent:contentPath]];
+                    }
+                }];
+                // use subdirectories, if found
+                if (array.count > 0) {
+                    pathsToCheck = array;
                 }
-            }];
-            // use subdirectories, if found
-            if (array.count > 0) {
-                pathsToCheck = array;
             }
-        }
-        
-        // run xcodebuild for each path given
-        for (NSString *path in pathsToCheck) {
-            NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
-            [xcbTask setCurrentDirectoryPath:path];
-            [xcbTask setLaunchPath:xcodeBuildPath];
-            [xcbTask launch];
-            [xcbTask waitUntilExit];
-        }
+            
+            // save pathes
+            self.pathsToBuild = [pathsToCheck mutableCopy];
+            
+            [self startXcodeBuild];
+        }];
     }
     @catch (NSException *exception) {
         NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallErrorTitle")
@@ -167,15 +170,35 @@ NSString *const gitPath        = @"/usr/bin/git";
         alert.alertStyle = NSCriticalAlertStyle;
         [alert runModal];
     }
-    
-    // move checked out project to trash
-    [self emptyTempDirectory];
-    
-    // make panel closable
-    [panel close];
 }
 
-- (NSPanel*)showProgressPanel;
+- (void)startXcodeBuild;
+{
+    // run xcodebuild for each path given
+    if (self.pathsToBuild.count > 0) {
+        NSString *path = self.pathsToBuild.lastObject;
+        [self.pathsToBuild removeObject:path];
+        
+        self.activeTask = [NSTask launchedTaskWithLaunchPath:xcodeBuildPath arguments:nil currentDirectoryPath:path completion:^(NSTask *task, NSString *output) {
+            self.panelTextView.string = [NSString stringWithFormat: @"%@\n\n===xcodebuild===\n\n%@", self.panelTextView.string, output];
+            [self.panelTextView setNeedsDisplay:YES];
+            
+            // build next path, or finish
+            [self startXcodeBuild];
+        }];
+    }
+    
+    // completion
+    else {
+        // move checked out project to trash
+        [self emptyTempDirectory];
+        
+        // make panel closable
+        [self.progressPanel close];
+    }
+}
+
+- (void)showProgressPanel;
 {
     NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 300, 160)
                                                 styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
@@ -200,7 +223,12 @@ NSString *const gitPath        = @"/usr/bin/git";
     // show window
     [panel makeKeyAndOrderFront:self];
     
-    return panel;
+    self.progressPanel = panel;
+}
+
+- (NSTextView *)panelTextView;
+{
+    return (NSTextView*)[self.progressPanel.contentView subviews].lastObject;
 }
 
 - (void)emptyTempDirectory;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2117D6D16EA3D5A0030BEF9 /* NSTask+CompletionWithOutput.m in Sources */ = {isa = PBXBuildFile; fileRef = D2117D6C16EA3D590030BEF9 /* NSTask+CompletionWithOutput.m */; };
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
 		D2E2D32616D4304B00447430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32116D4304B00447430 /* main.m */; };
 		D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E2D32216D4304B00447430 /* MainMenu.xib */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D2117D6B16EA3D590030BEF9 /* NSTask+CompletionWithOutput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTask+CompletionWithOutput.h"; path = "../../NSTask+CompletionWithOutput.h"; sourceTree = "<group>"; };
+		D2117D6C16EA3D590030BEF9 /* NSTask+CompletionWithOutput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTask+CompletionWithOutput.m"; path = "../../NSTask+CompletionWithOutput.m"; sourceTree = "<group>"; };
 		D246418516C04B21005DB12C /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D246418816C04B21005DB12C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +121,8 @@
 				D2E2D32D16D4306F00447430 /* JDPluginManager.h */,
 				D2E2D32E16D4306F00447430 /* JDPluginManager.m */,
 				D2E2D32F16D4306F00447430 /* Localizable.strings */,
+				D2117D6B16EA3D590030BEF9 /* NSTask+CompletionWithOutput.h */,
+				D2117D6C16EA3D590030BEF9 /* NSTask+CompletionWithOutput.m */,
 				D2E2D33016D4306F00447430 /* NSURL+JDPluginManager.h */,
 				D2E2D33116D4306F00447430 /* NSURL+JDPluginManager.m */,
 			);
@@ -193,6 +198,7 @@
 				D2E2D33216D4306F00447430 /* JDPluginInstaller.m in Sources */,
 				D2E2D33316D4306F00447430 /* JDPluginManager.m in Sources */,
 				D2E2D33516D4306F00447430 /* NSURL+JDPluginManager.m in Sources */,
+				D2117D6D16EA3D5A0030BEF9 /* NSTask+CompletionWithOutput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
