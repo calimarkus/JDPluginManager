@@ -10,7 +10,9 @@
 
 typedef void(^NSTaskWithOutputProgressBlock)(NSTask* task, NSString* output);
 
-@interface NSTaskWithProgress : NSTask
+@interface NSTaskWithProgress : NSObject
+
+@property (nonatomic, readonly) NSTask *task;
 
 + (NSTaskWithProgress*)launchedTaskWithLaunchPath:(NSString*)launchPath
                                         arguments:(NSArray*)arguments
@@ -22,5 +24,12 @@ typedef void(^NSTaskWithOutputProgressBlock)(NSTask* task, NSString* output);
                              currentDirectoryPath:(NSString*)currentDirectoryPath
                                          progress:(NSTaskWithOutputProgressBlock)progressBlock
                                        completion:(NSTaskWithOutputProgressBlock)completionBlock;
+
+
+- (id)initWithLaunchPath:(NSString*)launchPath
+               arguments:(NSArray*)arguments
+    currentDirectoryPath:(NSString*)currentDirectoryPath
+                progress:(NSTaskWithOutputProgressBlock)progressBlock
+              completion:(NSTaskWithOutputProgressBlock)completionBlock;
 
 @end

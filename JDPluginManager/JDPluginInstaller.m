@@ -14,7 +14,7 @@
 
 
 @interface JDPluginInstaller () <NSWindowDelegate>
-@property (nonatomic, strong) NSTask *activeTask;
+@property (nonatomic, strong) NSTaskWithProgress *activeTask;
 @property (nonatomic, strong) NSMutableArray *pathsToBuild;
 @property (nonatomic, strong) JDInstallProgressWindow *progressWindow;
 + (BOOL)toolsAreAvailable;
@@ -129,7 +129,7 @@ NSString *const gitPath        = @"/usr/bin/git";
         [self.progressWindow appendLine:[NSString stringWithFormat:JDLocalize(@"keyInstallCloneMessageFormat"), repositoryURL]];
         
         NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
-        NSArray *gitArgs = @[@"clone", repositoryURL, clonePath];
+        NSArray *gitArgs = @[@"clone", repositoryURL, clonePath, @"--progress", @"--verbose"];
         self.activeTask = [NSTaskWithProgress launchedTaskWithLaunchPath:gitPath arguments:gitArgs progress:^(NSTask *task, NSString *output) {
             [self.progressWindow appendLine:output];
         } completion:^(NSTask *task, NSString *output) {

@@ -16,10 +16,10 @@
 
 @implementation NSTaskWithProgress
 
-+ (NSTaskWithProgress*)launchedTaskWithLaunchPath:(NSString*)launchPath
-                            arguments:(NSArray*)arguments
-                             progress:(NSTaskWithOutputProgressBlock)progressBlock
-                           completion:(NSTaskWithOutputProgressBlock)completionBlock;
++ (instancetype)launchedTaskWithLaunchPath:(NSString*)launchPath
+                                 arguments:(NSArray*)arguments
+                                  progress:(NSTaskWithOutputProgressBlock)progressBlock
+                                completion:(NSTaskWithOutputProgressBlock)completionBlock;
 {
     return [self launchedTaskWithLaunchPath:launchPath
                                   arguments:arguments
@@ -28,26 +28,30 @@
                                  completion:completionBlock];
 }
 
-+ (NSTaskWithProgress*)launchedTaskWithLaunchPath:(NSString*)launchPath
-                            arguments:(NSArray*)arguments
-                 currentDirectoryPath:(NSString*)currentDirectoryPath
-                             progress:(NSTaskWithOutputProgressBlock)progressBlock
-                           completion:(NSTaskWithOutputProgressBlock)completionBlock;
++ (instancetype)launchedTaskWithLaunchPath:(NSString*)launchPath
+                                 arguments:(NSArray*)arguments
+                      currentDirectoryPath:(NSString*)currentDirectoryPath
+                                  progress:(NSTaskWithOutputProgressBlock)progressBlock
+                                completion:(NSTaskWithOutputProgressBlock)completionBlock;
 {
-    return [[NSTaskWithProgress alloc] initWithLaunchPath:launchPath
-                                                arguments:arguments
-                                     currentDirectoryPath:currentDirectoryPath
-                                                 progress:progressBlock
-                                               completion:completionBlock];
+    NSTaskWithProgress* task =  [[self alloc] initWithLaunchPath:launchPath
+                                                       arguments:arguments
+                                            currentDirectoryPath:currentDirectoryPath
+                                                        progress:progressBlock
+                                                      completion:completionBlock];
+    // launch task
+    [task.task launch];
+    
+    return task;
 }
 
 #pragma mark NSTaskWithProgress
 
 - (id)initWithLaunchPath:(NSString*)launchPath
-    arguments:(NSArray*)arguments
+               arguments:(NSArray*)arguments
     currentDirectoryPath:(NSString*)currentDirectoryPath
-    progress:(NSTaskWithOutputProgressBlock)progressBlock
-    completion:(NSTaskWithOutputProgressBlock)completionBlock;
+                progress:(NSTaskWithOutputProgressBlock)progressBlock
+              completion:(NSTaskWithOutputProgressBlock)completionBlock;
 {
     self = [super init];
     if (self) {
@@ -56,7 +60,7 @@
         // setup task
         NSTask *task = [[NSTask alloc] init];
         [task setStandardOutput:[NSPipe pipe]];
-        [task setStandardError:[NSPipe pipe]];
+        [task setStandardError:task.standardOutput];
         [task setLaunchPath:launchPath];
         self.task = task;
         [task release];
@@ -88,21 +92,10 @@
                                                              name:NSFileHandleReadCompletionNotification
                                                            object:fileHandle];
              
-             NSString* outputString = nil;
-             
-             // catch standard output
-             if ([task terminationStatus] == 0) {
-                 NSPipe* outPipe = task.standardOutput;
-                 NSData* output = [[outPipe fileHandleForReading] readDataToEndOfFile];
-                 outputString = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
-             }
-             
-             // catch errors
-             else {
-                 NSPipe* errorPipe = task.standardError;
-                 NSData* error = [[errorPipe fileHandleForReading] readDataToEndOfFile];
-                 outputString = [[NSString alloc] initWithData:error encoding:NSUTF8StringEncoding];
-             }
+             // catch output
+             NSPipe* outPipe = task.standardOutput;
+             NSData* output = [[outPipe fileHandleForReading] readDataToEndOfFile];
+             NSString* outputString = [[[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding] autorelease];
              
              // call completion block
              if (completionBlock) {
@@ -111,9 +104,6 @@
                  });
              }
          }];
-        
-        // launch task
-        [task launch];
     }
     return self;
 }
@@ -132,7 +122,7 @@
         NSData *data = [notification.userInfo objectForKey:NSFileHandleNotificationDataItem];
         NSString *readData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.progressBlock(self,readData);
+            self.progressBlock(self.task,readData);
         });
     }
     
