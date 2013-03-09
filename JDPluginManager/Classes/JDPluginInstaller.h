@@ -14,6 +14,7 @@
 
 @interface JDPluginInstaller : NSObject {
     NSTaskWithProgress* _activeTask;
+    NSString* _repositoryURL;
     NSMutableArray* _pathsToBuild;
     JDInstallProgressWindow* _progressWindow;
 }

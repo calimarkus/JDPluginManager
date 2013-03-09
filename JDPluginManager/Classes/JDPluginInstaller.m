@@ -10,24 +10,28 @@
 #import "JDGitCloneTask.h"
 #import "JDXcodeBuildTask.h"
 #import "JDInstallProgressWindow.h"
+#import "NSFileManager+JDPluginManager.h"
+#import "NSURL+JDPluginManager.h"
 
 #import "JDPluginInstaller.h"
 
 
 @interface JDPluginInstaller () <NSWindowDelegate>
 @property (nonatomic, strong) NSTaskWithProgress *activeTask;
+@property (nonatomic, strong) NSString *repositoryURL;
 @property (nonatomic, strong) NSMutableArray *pathsToBuild;
 @property (nonatomic, strong) JDInstallProgressWindow *progressWindow;
 + (BOOL)toolsAreAvailable;
 - (void)showInstallPrompt;
 - (void)showProgressPanel;
-- (void)startXcodeBuild;
+- (void)startXcodeBuildWithCompletion:(void(^)(void))completion;
 - (void)emptyTempDirectory;
 @end
 
 @implementation JDPluginInstaller
 
 @synthesize activeTask = _activeTask;
+@synthesize repositoryURL = _repositoryURL;
 @synthesize pathsToBuild = _pathsToBuild;
 @synthesize progressWindow = _progressWindow;
 
@@ -118,6 +122,9 @@
         return;
     }
     
+    // save repo URL
+    self.repositoryURL = repositoryURL;
+    
     // show progress panel
     [self showProgressPanel];
     
@@ -128,7 +135,8 @@
         // clone project
         self.activeTask = [JDGitCloneTask launchedTaskWithRepositoryURL:repositoryURL
                                                          progressWindow:self.progressWindow
-                                                             completion:^(NSString *clonePath){
+                                                             completion:^(NSString *clonePath)
+        {
             // use top level folder for install
             NSArray *pathsToCheck = @[clonePath];
             
@@ -153,9 +161,18 @@
             
             // save paths
             self.pathsToBuild = [[pathsToCheck mutableCopy] autorelease];
-            
+                                                                 
             // start xcode build
-            [self startXcodeBuild];
+            [self startXcodeBuildWithCompletion:^{
+                // move checked out project to trash
+                [self emptyTempDirectory];
+                
+                // release task
+                self.activeTask = nil;
+                
+                // close panel
+                self.progressWindow.styleMask = self.progressWindow.styleMask | NSClosableWindowMask;
+            }];
         }];        
     }
     @catch (NSException *exception) {
@@ -169,33 +186,62 @@
     }
 }
 
-- (void)startXcodeBuild;
+- (void)startXcodeBuildWithCompletion:(void(^)(void))completion;
 {
     // run xcodebuild for each path given
     if (self.pathsToBuild.count > 0) {
         NSString *path = self.pathsToBuild.lastObject;
         [self.pathsToBuild removeObject:path];
         
+        // directoryContentsBefore
+        NSArray *directoryContentsBefore = [NSFileManager allPluginsWithModifiedDate:YES];
+        
         self.activeTask = [JDXcodeBuildTask launchedTaskWithCurrentDirectoryPath:path
                                                                   progressWindow:self.progressWindow
-                                                                      completion:^{
+                                                                      completion:^
+        {
+            // directory contents after
+            NSArray *directoryContentsAfter = [NSFileManager allPluginsWithModifiedDate:YES];
+            [self checkSuccessAndUpdateMetaDataWithContentsBefore:directoryContentsBefore
+                                                         andAfter:directoryContentsAfter
+                                                    withBuildPath:path];
+            
             // build next path, or finish
-            [self startXcodeBuild];
+            [self startXcodeBuildWithCompletion:completion];
         }];
     }
     
     // completion
-    else {
-        [self.progressWindow appendTitle:JDLocalize(@"keyInstallRestartXCodeMessage")];
+    else if(completion) {
+        completion();
+    }
+}
+
+- (void)checkSuccessAndUpdateMetaDataWithContentsBefore:(NSArray*)directoryContentsBefore
+                                               andAfter:(NSArray*)directoryContentsAfter
+                                          withBuildPath:(NSString*)buildPath;
+{
+    __block NSString *changedPlugin = nil;
+    
+    [directoryContentsBefore enumerateObjectsUsingBlock:^(NSDictionary *before, NSUInteger idx, BOOL *stop) {
+        NSDictionary *after = [directoryContentsAfter objectAtIndex:idx];
+        NSString *beforeString = [NSString stringWithFormat: @"%@-%@", [before objectForKey:JDPluginNameKey], [before objectForKey:JDPluginModifiedDate]];
+        NSString *afterString = [NSString stringWithFormat: @"%@-%@", [after objectForKey:JDPluginNameKey], [after objectForKey:JDPluginModifiedDate]];
+        if (![beforeString isEqualToString:afterString]) {
+            *stop = YES;
+            changedPlugin = [after objectForKey:JDPluginNameKey];
+        }
+    }];
+    
+    if (changedPlugin == nil) {
+        [self.progressWindow appendTitle:JDLocalize(@"keyInstallFailureMessage")];
+    } else {
+//        NSString *pluginPath = [[NSURL pluginURLForPluginNamed:changedPlugin] path];
+//        buildPath
+//        @TODO: save meta data & copy readme
         
-        // move checked out project to trash
-        [self emptyTempDirectory];
-        
-        // release task
-        self.activeTask = nil;
-        
-        // close panel
-        self.progressWindow.styleMask = self.progressWindow.styleMask | NSClosableWindowMask;
+        [self.progressWindow appendTitle:[NSString stringWithFormat:JDLocalize(@"keyInstallSuccessMessageFormat"), changedPlugin]];
+        [self.progressWindow appendLine:JDLocalize(@"keyInstallRestartXCodeMessage")];
     }
 }
 
@@ -210,12 +256,16 @@
 
 - (void)emptyTempDirectory;
 {
-    // move tmp dir to trash
+    [self.progressWindow appendLine:JDLocalize(@"keyInstallTrashingTmpDirectory")];
+    
+    // read contents of tmp dir
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tmpClonePath error:nil];
+    
+    // move tmp dirs to trash
     [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
-                                                 source:[tmpClonePath stringByDeletingLastPathComponent]
-                                            destination:@""
-                                                  files:[NSArray arrayWithObject:[tmpClonePath lastPathComponent]]
-                                                    tag:nil];
+                                                 source:tmpClonePath destination:@""
+                                                  files:files tag:nil];
+
 }
 
 

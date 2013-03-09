@@ -33,10 +33,14 @@
 "keyInstallCloneMessage"        = "Cloning repository now…";
 "keyInstallBuildMessage"        = "Building the plugin now…";
 "keyInstallRestartXCodeMessage" = "To use the new/updated plugin(s), you need to restart Xcode.";
+"keyInstallFailureMessage"       = "ERROR: No new/updated plugin installed.";
+"keyInstallSuccessMessageFormat" = "SUCCESS: Installed/updated plugin successfully (%@)";
+"keyInstallTrashingTmpDirectory" = "Moving cloned repository into trash now…";
+
+// errors
 "keyInstallErrorTitle"          = "Error during installation";
 "keyInstallErrorMessage"        = "Could not install plugin. If the clone was successful, the project is now in your trash folder.";
 
-// errors
 "keyErrorXcodeToolsMissingTitle"   = "xcodebuild/xcodeproj not found";
 "keyErrorXcodeToolsMissingMessage" = "Xcode must be in installed in /Applications. Also install the Command Line Tools from the Xcode Settings, if you haven't already.";
 

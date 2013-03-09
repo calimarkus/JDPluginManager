@@ -9,6 +9,7 @@
 #import "JDPluginManager.h"
 #import "JDPluginInstaller.h"
 #import "NSURL+JDPluginManager.h"
+#import "NSFileManager+JDPluginManager.h"
 #import "global.h"
 
 @interface JDPluginManager () <NSAlertDelegate>
@@ -92,8 +93,7 @@
 
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 {
-    NSString *pluginsPath = [[NSURL pluginsDirectoryURL] path];
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginsPath error:nil];
+    NSArray *contents = [NSFileManager allPluginsWithModifiedDate:NO];
     if (!contents || contents.count == 0) {
         // empty item
         NSMenuItem *emptyItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyEmptyMenuItemTitle") action:nil keyEquivalent:@""] autorelease];

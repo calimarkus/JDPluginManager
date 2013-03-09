@@ -7,48 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D237990216EBB54A006F9412 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D23798FF16EBB54A006F9412 /* JDPluginInstaller.m */; };
-		D237990316EBB54A006F9412 /* JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237990116EBB54A006F9412 /* JDPluginManager.m */; };
-		D237990616EBB551006F9412 /* JDInstallProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D237990516EBB551006F9412 /* JDInstallProgressWindow.m */; };
-		D237990D16EBB55E006F9412 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237990816EBB55E006F9412 /* JDGitCloneTask.m */; };
-		D237990E16EBB55E006F9412 /* JDXcodeBuildTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237990A16EBB55E006F9412 /* JDXcodeBuildTask.m */; };
-		D237990F16EBB55E006F9412 /* NSTaskWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D237990C16EBB55E006F9412 /* NSTaskWithProgress.m */; };
-		D237991216EBB569006F9412 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237991116EBB569006F9412 /* NSURL+JDPluginManager.m */; };
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
+		D2765EE416EBDA360095A9C9 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED516EBDA360095A9C9 /* JDGitCloneTask.m */; };
+		D2765EE516EBDA360095A9C9 /* JDInstallProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED716EBDA360095A9C9 /* JDInstallProgressWindow.m */; };
+		D2765EE616EBDA360095A9C9 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED916EBDA360095A9C9 /* JDPluginInstaller.m */; };
+		D2765EE716EBDA360095A9C9 /* JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EDB16EBDA360095A9C9 /* JDPluginManager.m */; };
+		D2765EE816EBDA360095A9C9 /* JDPluginMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EDD16EBDA360095A9C9 /* JDPluginMetaData.m */; };
+		D2765EE916EBDA360095A9C9 /* JDXcodeBuildTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EDF16EBDA360095A9C9 /* JDXcodeBuildTask.m */; };
+		D2765EEA16EBDA360095A9C9 /* NSTaskWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EE116EBDA360095A9C9 /* NSTaskWithProgress.m */; };
+		D2765EEB16EBDA360095A9C9 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EE316EBDA360095A9C9 /* NSURL+JDPluginManager.m */; };
+		D2765EEE16EBDA470095A9C9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2765EED16EBDA470095A9C9 /* Localizable.strings */; };
+		D2765EF616EBED830095A9C9 /* NSFileManager+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765EF516EBED830095A9C9 /* NSFileManager+JDPluginManager.m */; };
 		D2E2D32616D4304B00447430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32116D4304B00447430 /* main.m */; };
 		D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2E2D32216D4304B00447430 /* MainMenu.xib */; };
 		D2E2D32816D4304B00447430 /* TAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32416D4304B00447430 /* TAAppDelegate.m */; };
-		D2E2D33416D4306F00447430 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2E2D32F16D4306F00447430 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D23798FE16EBB54A006F9412 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = ../../Classes/JDPluginInstaller.h; sourceTree = "<group>"; };
-		D23798FF16EBB54A006F9412 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = ../../Classes/JDPluginInstaller.m; sourceTree = "<group>"; };
-		D237990016EBB54A006F9412 /* JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginManager.h; path = ../../Classes/JDPluginManager.h; sourceTree = "<group>"; };
-		D237990116EBB54A006F9412 /* JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginManager.m; path = ../../Classes/JDPluginManager.m; sourceTree = "<group>"; };
-		D237990416EBB551006F9412 /* JDInstallProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDInstallProgressWindow.h; path = ../../Classes/JDInstallProgressWindow.h; sourceTree = "<group>"; };
-		D237990516EBB551006F9412 /* JDInstallProgressWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDInstallProgressWindow.m; path = ../../Classes/JDInstallProgressWindow.m; sourceTree = "<group>"; };
-		D237990716EBB55E006F9412 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDGitCloneTask.h; path = ../../Classes/JDGitCloneTask.h; sourceTree = "<group>"; };
-		D237990816EBB55E006F9412 /* JDGitCloneTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDGitCloneTask.m; path = ../../Classes/JDGitCloneTask.m; sourceTree = "<group>"; };
-		D237990916EBB55E006F9412 /* JDXcodeBuildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDXcodeBuildTask.h; path = ../../Classes/JDXcodeBuildTask.h; sourceTree = "<group>"; };
-		D237990A16EBB55E006F9412 /* JDXcodeBuildTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDXcodeBuildTask.m; path = ../../Classes/JDXcodeBuildTask.m; sourceTree = "<group>"; };
-		D237990B16EBB55E006F9412 /* NSTaskWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTaskWithProgress.h; path = ../../Classes/NSTaskWithProgress.h; sourceTree = "<group>"; };
-		D237990C16EBB55E006F9412 /* NSTaskWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTaskWithProgress.m; path = ../../Classes/NSTaskWithProgress.m; sourceTree = "<group>"; };
-		D237991016EBB569006F9412 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+JDPluginManager.h"; path = "../../Classes/NSURL+JDPluginManager.h"; sourceTree = "<group>"; };
-		D237991116EBB569006F9412 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+JDPluginManager.m"; path = "../../Classes/NSURL+JDPluginManager.m"; sourceTree = "<group>"; };
 		D246418516C04B21005DB12C /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D246418816C04B21005DB12C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D246418C16C04B21005DB12C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D246418D16C04B21005DB12C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2765ED416EBDA360095A9C9 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGitCloneTask.h; sourceTree = "<group>"; };
+		D2765ED516EBDA360095A9C9 /* JDGitCloneTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGitCloneTask.m; sourceTree = "<group>"; };
+		D2765ED616EBDA360095A9C9 /* JDInstallProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDInstallProgressWindow.h; sourceTree = "<group>"; };
+		D2765ED716EBDA360095A9C9 /* JDInstallProgressWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDInstallProgressWindow.m; sourceTree = "<group>"; };
+		D2765ED816EBDA360095A9C9 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginInstaller.h; sourceTree = "<group>"; };
+		D2765ED916EBDA360095A9C9 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginInstaller.m; sourceTree = "<group>"; };
+		D2765EDA16EBDA360095A9C9 /* JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginManager.h; sourceTree = "<group>"; };
+		D2765EDB16EBDA360095A9C9 /* JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginManager.m; sourceTree = "<group>"; };
+		D2765EDC16EBDA360095A9C9 /* JDPluginMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginMetaData.h; sourceTree = "<group>"; };
+		D2765EDD16EBDA360095A9C9 /* JDPluginMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginMetaData.m; sourceTree = "<group>"; };
+		D2765EDE16EBDA360095A9C9 /* JDXcodeBuildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDXcodeBuildTask.h; sourceTree = "<group>"; };
+		D2765EDF16EBDA360095A9C9 /* JDXcodeBuildTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDXcodeBuildTask.m; sourceTree = "<group>"; };
+		D2765EE016EBDA360095A9C9 /* NSTaskWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTaskWithProgress.h; sourceTree = "<group>"; };
+		D2765EE116EBDA360095A9C9 /* NSTaskWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTaskWithProgress.m; sourceTree = "<group>"; };
+		D2765EE216EBDA360095A9C9 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JDPluginManager.h"; sourceTree = "<group>"; };
+		D2765EE316EBDA360095A9C9 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JDPluginManager.m"; sourceTree = "<group>"; };
+		D2765EEC16EBDA470095A9C9 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../global.h; sourceTree = "<group>"; };
+		D2765EED16EBDA470095A9C9 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../Localizable.strings; sourceTree = "<group>"; };
+		D2765EF416EBED830095A9C9 /* NSFileManager+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+JDPluginManager.h"; sourceTree = "<group>"; };
+		D2765EF516EBED830095A9C9 /* NSFileManager+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+JDPluginManager.m"; sourceTree = "<group>"; };
 		D2E2D31F16D4304B00447430 /* ExampleProject-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ExampleProject-Info.plist"; sourceTree = "<group>"; };
 		D2E2D32016D4304B00447430 /* ExampleProject-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ExampleProject-Prefix.pch"; sourceTree = "<group>"; };
 		D2E2D32116D4304B00447430 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D2E2D32216D4304B00447430 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		D2E2D32316D4304B00447430 /* TAAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAppDelegate.h; sourceTree = "<group>"; };
 		D2E2D32416D4304B00447430 /* TAAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAppDelegate.m; sourceTree = "<group>"; };
-		D2E2D32A16D4306F00447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = ../../global.h; sourceTree = "<group>"; };
-		D2E2D32F16D4306F00447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../../Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,57 +69,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D216E79616EB8DB400380A33 /* Tasks */ = {
-			isa = PBXGroup;
-			children = (
-				D237990B16EBB55E006F9412 /* NSTaskWithProgress.h */,
-				D237990C16EBB55E006F9412 /* NSTaskWithProgress.m */,
-				D237990716EBB55E006F9412 /* JDGitCloneTask.h */,
-				D237990816EBB55E006F9412 /* JDGitCloneTask.m */,
-				D237990916EBB55E006F9412 /* JDXcodeBuildTask.h */,
-				D237990A16EBB55E006F9412 /* JDXcodeBuildTask.m */,
-			);
-			name = Tasks;
-			sourceTree = "<group>";
-		};
-		D216E79716EB8DBF00380A33 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				D237991016EBB569006F9412 /* NSURL+JDPluginManager.h */,
-				D237991116EBB569006F9412 /* NSURL+JDPluginManager.m */,
-			);
-			name = Helper;
-			sourceTree = "<group>";
-		};
-		D216E79B16EBA5A700380A33 /* Localization */ = {
-			isa = PBXGroup;
-			children = (
-				D2E2D32A16D4306F00447430 /* global.h */,
-				D2E2D32F16D4306F00447430 /* Localizable.strings */,
-			);
-			name = Localization;
-			sourceTree = "<group>";
-		};
-		D216E79C16EBA5AF00380A33 /* Actual Plugin */ = {
-			isa = PBXGroup;
-			children = (
-				D23798FE16EBB54A006F9412 /* JDPluginInstaller.h */,
-				D23798FF16EBB54A006F9412 /* JDPluginInstaller.m */,
-				D237990016EBB54A006F9412 /* JDPluginManager.h */,
-				D237990116EBB54A006F9412 /* JDPluginManager.m */,
-			);
-			name = "Actual Plugin";
-			sourceTree = "<group>";
-		};
-		D216E79D16EBA5B800380A33 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				D237990416EBB551006F9412 /* JDInstallProgressWindow.h */,
-				D237990516EBB551006F9412 /* JDInstallProgressWindow.m */,
-			);
-			name = UI;
-			sourceTree = "<group>";
-		};
 		D246417C16C04B21005DB12C = {
 			isa = PBXGroup;
 			children = (
@@ -150,13 +105,81 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		D2765ED316EBDA360095A9C9 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				D2765EEF16EBDA4B0095A9C9 /* Localization */,
+				D2765EF016EBDA570095A9C9 /* Actual Plugin */,
+				D2765EF116EBDA6B0095A9C9 /* UI */,
+				D2765EF216EBDA820095A9C9 /* Tasks */,
+				D2765EF316EBDA8C0095A9C9 /* Helper */,
+			);
+			name = Plugin;
+			path = ../../Classes;
+			sourceTree = "<group>";
+		};
+		D2765EEF16EBDA4B0095A9C9 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				D2765EEC16EBDA470095A9C9 /* global.h */,
+				D2765EED16EBDA470095A9C9 /* Localizable.strings */,
+			);
+			name = Localization;
+			sourceTree = "<group>";
+		};
+		D2765EF016EBDA570095A9C9 /* Actual Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				D2765ED816EBDA360095A9C9 /* JDPluginInstaller.h */,
+				D2765ED916EBDA360095A9C9 /* JDPluginInstaller.m */,
+				D2765EDA16EBDA360095A9C9 /* JDPluginManager.h */,
+				D2765EDB16EBDA360095A9C9 /* JDPluginManager.m */,
+				D2765EDC16EBDA360095A9C9 /* JDPluginMetaData.h */,
+				D2765EDD16EBDA360095A9C9 /* JDPluginMetaData.m */,
+			);
+			name = "Actual Plugin";
+			sourceTree = "<group>";
+		};
+		D2765EF116EBDA6B0095A9C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D2765ED616EBDA360095A9C9 /* JDInstallProgressWindow.h */,
+				D2765ED716EBDA360095A9C9 /* JDInstallProgressWindow.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D2765EF216EBDA820095A9C9 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				D2765EE016EBDA360095A9C9 /* NSTaskWithProgress.h */,
+				D2765EE116EBDA360095A9C9 /* NSTaskWithProgress.m */,
+				D2765ED416EBDA360095A9C9 /* JDGitCloneTask.h */,
+				D2765ED516EBDA360095A9C9 /* JDGitCloneTask.m */,
+				D2765EDE16EBDA360095A9C9 /* JDXcodeBuildTask.h */,
+				D2765EDF16EBDA360095A9C9 /* JDXcodeBuildTask.m */,
+			);
+			name = Tasks;
+			sourceTree = "<group>";
+		};
+		D2765EF316EBDA8C0095A9C9 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D2765EE216EBDA360095A9C9 /* NSURL+JDPluginManager.h */,
+				D2765EE316EBDA360095A9C9 /* NSURL+JDPluginManager.m */,
+				D2765EF416EBED830095A9C9 /* NSFileManager+JDPluginManager.h */,
+				D2765EF516EBED830095A9C9 /* NSFileManager+JDPluginManager.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		D2E2D31E16D4304B00447430 /* ExampleProject */ = {
 			isa = PBXGroup;
 			children = (
 				D2E2D32116D4304B00447430 /* main.m */,
 				D2E2D32316D4304B00447430 /* TAAppDelegate.h */,
 				D2E2D32416D4304B00447430 /* TAAppDelegate.m */,
-				D2E2D33616D4307200447430 /* Plugin */,
+				D2765ED316EBDA360095A9C9 /* Plugin */,
 				D2E2D32916D4305500447430 /* Resources */,
 			);
 			path = ExampleProject;
@@ -170,18 +193,6 @@
 				D2E2D32216D4304B00447430 /* MainMenu.xib */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		D2E2D33616D4307200447430 /* Plugin */ = {
-			isa = PBXGroup;
-			children = (
-				D216E79B16EBA5A700380A33 /* Localization */,
-				D216E79C16EBA5AF00380A33 /* Actual Plugin */,
-				D216E79D16EBA5B800380A33 /* UI */,
-				D216E79616EB8DB400380A33 /* Tasks */,
-				D216E79716EB8DBF00380A33 /* Helper */,
-			);
-			name = Plugin;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,7 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */,
-				D2E2D33416D4306F00447430 /* Localizable.strings in Resources */,
+				D2765EEE16EBDA470095A9C9 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,13 +261,15 @@
 			files = (
 				D2E2D32616D4304B00447430 /* main.m in Sources */,
 				D2E2D32816D4304B00447430 /* TAAppDelegate.m in Sources */,
-				D237990216EBB54A006F9412 /* JDPluginInstaller.m in Sources */,
-				D237990316EBB54A006F9412 /* JDPluginManager.m in Sources */,
-				D237990616EBB551006F9412 /* JDInstallProgressWindow.m in Sources */,
-				D237990D16EBB55E006F9412 /* JDGitCloneTask.m in Sources */,
-				D237990E16EBB55E006F9412 /* JDXcodeBuildTask.m in Sources */,
-				D237990F16EBB55E006F9412 /* NSTaskWithProgress.m in Sources */,
-				D237991216EBB569006F9412 /* NSURL+JDPluginManager.m in Sources */,
+				D2765EE416EBDA360095A9C9 /* JDGitCloneTask.m in Sources */,
+				D2765EE516EBDA360095A9C9 /* JDInstallProgressWindow.m in Sources */,
+				D2765EE616EBDA360095A9C9 /* JDPluginInstaller.m in Sources */,
+				D2765EE716EBDA360095A9C9 /* JDPluginManager.m in Sources */,
+				D2765EE816EBDA360095A9C9 /* JDPluginMetaData.m in Sources */,
+				D2765EE916EBDA360095A9C9 /* JDXcodeBuildTask.m in Sources */,
+				D2765EEA16EBDA360095A9C9 /* NSTaskWithProgress.m in Sources */,
+				D2765EEB16EBDA360095A9C9 /* NSURL+JDPluginManager.m in Sources */,
+				D2765EF616EBED830095A9C9 /* NSFileManager+JDPluginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
