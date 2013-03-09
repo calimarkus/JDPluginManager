@@ -13,6 +13,7 @@
 
 + (void)installPlugin;
 
-- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL searchInSubdirectories:(BOOL)searchSubdirectories;
+- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL
+               searchInSubdirectories:(BOOL)searchSubdirectories;
 
 @end

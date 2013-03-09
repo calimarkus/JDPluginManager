@@ -25,14 +25,16 @@
 
 // installing
 "keyInstall" = "Install";
-"keyInstallAlertTitleFormat"  = "Enter plugin repository URL";
-"keyInstallAlertMessage"      = "The URL must be a git repository. The project contents (master branch) must contain a buildable Xcode plugin project.";
-"keyInstallAlertExampleText"  = "git@github.com:jaydee3/JDPluginManager.git";
-"keyInstallAlertCheckboxText" = "Search for plugins in subdirectories (Ignoring the top level project file.)";
-"keyInstallProgressTitle"     = "Installing plugin…";
-"keyInstallProgressMessage"   = "\nWill clone and build project now…\nAfter the installation, the project will be moved to your trash. To use the new plugin, restart Xcode afterwards.\n\nThis could take a while…";
-"keyInstallErrorTitle"        = "Error during installation";
-"keyInstallErrorMessage"      = "Could not install plugin. If the clone was successful, the project is now in your trash folder.";
+"keyInstallAlertTitleFormat"    = "Enter plugin repository URL";
+"keyInstallAlertMessage"        = "The URL must be a git repository. The project contents (master branch) must contain a buildable Xcode plugin project.";
+"keyInstallAlertExampleText"    = "git@github.com:jaydee3/JDPluginManager.git";
+"keyInstallAlertCheckboxText"   = "Search for plugins in subdirectories (Ignoring the top level project file.)";
+"keyInstallProgressTitle"       = "Installing plugin…";
+"keyInstallCloneMessageFormat"  = "Cloning '%@' now…";
+"keyInstallBuildMessage"        = "Building the plugin now…";
+"keyInstallRestartXCodeMessage" = "To use the new plugin, restart Xcode.";
+"keyInstallErrorTitle"          = "Error during installation";
+"keyInstallErrorMessage"        = "Could not install plugin. If the clone was successful, the project is now in your trash folder.";
 
 // errors
 "keyErrorXcodeToolsMissingTitle"   = "xcodebuild/xcodeproj not found";
