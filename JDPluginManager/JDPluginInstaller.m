@@ -7,7 +7,7 @@
 //
 
 #import "global.h"
-#import "NSTaskWithProgress.h"
+#import "JDGitCloneTask.h"
 #import "JDInstallProgressWindow.h"
 
 #import "JDPluginInstaller.h"
@@ -24,10 +24,7 @@
 - (void)emptyTempDirectory;
 @end
 
-
-NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild";
-NSString *const gitPath        = @"/usr/bin/git";
 
 @implementation JDPluginInstaller
 
@@ -126,16 +123,9 @@ NSString *const gitPath        = @"/usr/bin/git";
     
     @try {
         // clone project
-        [self.progressWindow appendLine:[NSString stringWithFormat:JDLocalize(@"keyInstallCloneMessageFormat"), repositoryURL]];
-        
-        NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
-        NSArray *gitArgs = @[@"clone", repositoryURL, clonePath, @"--progress", @"--verbose"];
-        self.activeTask = [NSTaskWithProgress launchedTaskWithLaunchPath:gitPath arguments:gitArgs progress:^(NSTask *task, NSString *output) {
-            [self.progressWindow appendLine:output];
-        } completion:^(NSTask *task, NSString *output) {
-            
-            [self.progressWindow appendLine:output];
-            
+        self.activeTask = [JDGitCloneTask launchedTaskWithRepositoryURL:repositoryURL
+                                                         progressWindow:self.progressWindow
+                                                             completion:^(NSString *clonePath){
             // use top level folder for install
             NSArray *pathsToCheck = @[clonePath];
             

@@ -44,7 +44,7 @@
         textView.selectable = NO;
         textView.editable = NO;
         textView.backgroundColor = [NSColor clearColor];
-        textView.alignment = NSCenterTextAlignment;
+        textView.alignment = NSLeftTextAlignment;
         textView.textColor = [NSColor whiteColor];
         textView.font = [NSFont systemFontOfSize:13];
         textView.textContainer.containerSize = NSMakeSize(contentSize.width, FLT_MAX);
@@ -64,9 +64,13 @@
 {
     if (line && line.length > 0) {
         self.textView.string = [NSString stringWithFormat: @"%@\n%@", self.textView.string, line];
-        [self.textView scrollRangeToVisible:NSMakeRange([self.textView.string length]-1,1)];
-        [self.textView sizeToFit];
+        [self scrollToBottom];
     }
+}
+
+- (void)scrollToBottom;
+{
+    [self.textView scrollRangeToVisible:NSMakeRange([self.textView.string length]-1,1)];
 }
 
 @end
