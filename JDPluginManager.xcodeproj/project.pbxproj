@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
 		D22B0BB316D4310D0035D03B /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2E2D2E216D42CE900447430 /* Localizable.strings */; };
-		D2E2D2E616D42CF800447430 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D2E516D42CF800447430 /* NSURL+JDPluginManager.m */; };
-		D2E2D2EB16D42D0C00447430 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D2E816D42D0C00447430 /* JDPluginInstaller.m */; };
-		D2E2D2EC16D42D0C00447430 /* JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D2EA16D42D0C00447430 /* JDPluginManager.m */; };
+		D237994016EBB62C006F9412 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993116EBB62C006F9412 /* JDGitCloneTask.m */; };
+		D237994116EBB62C006F9412 /* JDInstallProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993316EBB62C006F9412 /* JDInstallProgressWindow.m */; };
+		D237994216EBB62C006F9412 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993516EBB62C006F9412 /* JDPluginInstaller.m */; };
+		D237994316EBB62C006F9412 /* JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993716EBB62C006F9412 /* JDPluginManager.m */; };
+		D237994416EBB62C006F9412 /* JDXcodeBuildTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993916EBB62C006F9412 /* JDXcodeBuildTask.m */; };
+		D237994616EBB62C006F9412 /* NSTaskWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993D16EBB62C006F9412 /* NSTaskWithProgress.m */; };
+		D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,15 +36,23 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		7F2EB899145057EA00E97A87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8D5B49B6048680CD000E48DA /* JDPluginManager.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDPluginManager.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		D237993016EBB62C006F9412 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGitCloneTask.h; sourceTree = "<group>"; };
+		D237993116EBB62C006F9412 /* JDGitCloneTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGitCloneTask.m; sourceTree = "<group>"; };
+		D237993216EBB62C006F9412 /* JDInstallProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDInstallProgressWindow.h; sourceTree = "<group>"; };
+		D237993316EBB62C006F9412 /* JDInstallProgressWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDInstallProgressWindow.m; sourceTree = "<group>"; };
+		D237993416EBB62C006F9412 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginInstaller.h; sourceTree = "<group>"; };
+		D237993516EBB62C006F9412 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginInstaller.m; sourceTree = "<group>"; };
+		D237993616EBB62C006F9412 /* JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginManager.h; sourceTree = "<group>"; };
+		D237993716EBB62C006F9412 /* JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginManager.m; sourceTree = "<group>"; };
+		D237993816EBB62C006F9412 /* JDXcodeBuildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDXcodeBuildTask.h; sourceTree = "<group>"; };
+		D237993916EBB62C006F9412 /* JDXcodeBuildTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDXcodeBuildTask.m; sourceTree = "<group>"; };
+		D237993C16EBB62C006F9412 /* NSTaskWithProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTaskWithProgress.h; sourceTree = "<group>"; };
+		D237993D16EBB62C006F9412 /* NSTaskWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTaskWithProgress.m; sourceTree = "<group>"; };
+		D237993E16EBB62C006F9412 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JDPluginManager.h"; sourceTree = "<group>"; };
+		D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JDPluginManager.m"; sourceTree = "<group>"; };
 		D2E2D2E016D42CCC00447430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = JDPluginManager/Info.plist; sourceTree = "<group>"; };
 		D2E2D2E216D42CE900447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDPluginManager/Localizable.strings; sourceTree = "<group>"; };
 		D2E2D2E316D42CF800447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = JDPluginManager/global.h; sourceTree = SOURCE_ROOT; };
-		D2E2D2E416D42CF800447430 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+JDPluginManager.h"; path = "JDPluginManager/NSURL+JDPluginManager.h"; sourceTree = SOURCE_ROOT; };
-		D2E2D2E516D42CF800447430 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+JDPluginManager.m"; path = "JDPluginManager/NSURL+JDPluginManager.m"; sourceTree = SOURCE_ROOT; };
-		D2E2D2E716D42D0C00447430 /* JDPluginInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginInstaller.h; path = JDPluginManager/JDPluginInstaller.h; sourceTree = SOURCE_ROOT; };
-		D2E2D2E816D42D0C00447430 /* JDPluginInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginInstaller.m; path = JDPluginManager/JDPluginInstaller.m; sourceTree = SOURCE_ROOT; };
-		D2E2D2E916D42D0C00447430 /* JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JDPluginManager.h; path = JDPluginManager/JDPluginManager.h; sourceTree = SOURCE_ROOT; };
-		D2E2D2EA16D42D0C00447430 /* JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JDPluginManager.m; path = JDPluginManager/JDPluginManager.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,9 +71,8 @@
 		089C166AFE841209C02AAC07 /* QuietXcode */ = {
 			isa = PBXGroup;
 			children = (
-				7F411B0C15FABAC6002F77B6 /* Classes */,
-				D2813F6B16C11A4B00B2C4A4 /* Utils */,
-				089C167CFE841241C02AAC07 /* Resources */,
+				D2E2D2E016D42CCC00447430 /* Info.plist */,
+				D237992F16EBB62C006F9412 /* Classes */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
 			);
@@ -77,13 +88,14 @@
 			name = "Frameworks and Libraries";
 			sourceTree = "<group>";
 		};
-		089C167CFE841241C02AAC07 /* Resources */ = {
+		089C167CFE841241C02AAC07 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				D2E2D2E016D42CCC00447430 /* Info.plist */,
+				D2E2D2E316D42CF800447430 /* global.h */,
 				D2E2D2E216D42CE900447430 /* Localizable.strings */,
 			);
-			name = Resources;
+			name = Localization;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
@@ -94,27 +106,59 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7F411B0C15FABAC6002F77B6 /* Classes */ = {
+		D237992F16EBB62C006F9412 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				D2E2D2E716D42D0C00447430 /* JDPluginInstaller.h */,
-				D2E2D2E816D42D0C00447430 /* JDPluginInstaller.m */,
-				D2E2D2E916D42D0C00447430 /* JDPluginManager.h */,
-				D2E2D2EA16D42D0C00447430 /* JDPluginManager.m */,
+				089C167CFE841241C02AAC07 /* Localization */,
+				D237994B16EBB6BE006F9412 /* Plugin Logic */,
+				D237994916EBB676006F9412 /* UI */,
+				D237994A16EBB69E006F9412 /* Extensions */,
+				D237994816EBB665006F9412 /* Tasks */,
 			);
 			name = Classes;
-			path = JDListInstalledPlugins;
+			path = JDPluginManager/Classes;
 			sourceTree = "<group>";
 		};
-		D2813F6B16C11A4B00B2C4A4 /* Utils */ = {
+		D237994816EBB665006F9412 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				D2E2D2E316D42CF800447430 /* global.h */,
-				D2E2D2E416D42CF800447430 /* NSURL+JDPluginManager.h */,
-				D2E2D2E516D42CF800447430 /* NSURL+JDPluginManager.m */,
+				D237993016EBB62C006F9412 /* JDGitCloneTask.h */,
+				D237993116EBB62C006F9412 /* JDGitCloneTask.m */,
+				D237993816EBB62C006F9412 /* JDXcodeBuildTask.h */,
+				D237993916EBB62C006F9412 /* JDXcodeBuildTask.m */,
+				D237993C16EBB62C006F9412 /* NSTaskWithProgress.h */,
+				D237993D16EBB62C006F9412 /* NSTaskWithProgress.m */,
 			);
-			name = Utils;
-			path = JDListInstalledPlugins;
+			name = Tasks;
+			sourceTree = "<group>";
+		};
+		D237994916EBB676006F9412 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				D237993216EBB62C006F9412 /* JDInstallProgressWindow.h */,
+				D237993316EBB62C006F9412 /* JDInstallProgressWindow.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		D237994A16EBB69E006F9412 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D237993E16EBB62C006F9412 /* NSURL+JDPluginManager.h */,
+				D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		D237994B16EBB6BE006F9412 /* Plugin Logic */ = {
+			isa = PBXGroup;
+			children = (
+				D237993416EBB62C006F9412 /* JDPluginInstaller.h */,
+				D237993516EBB62C006F9412 /* JDPluginInstaller.m */,
+				D237993616EBB62C006F9412 /* JDPluginManager.h */,
+				D237993716EBB62C006F9412 /* JDPluginManager.m */,
+			);
+			name = "Plugin Logic";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,9 +214,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2E2D2E616D42CF800447430 /* NSURL+JDPluginManager.m in Sources */,
-				D2E2D2EB16D42D0C00447430 /* JDPluginInstaller.m in Sources */,
-				D2E2D2EC16D42D0C00447430 /* JDPluginManager.m in Sources */,
+				D237994016EBB62C006F9412 /* JDGitCloneTask.m in Sources */,
+				D237994116EBB62C006F9412 /* JDInstallProgressWindow.m in Sources */,
+				D237994216EBB62C006F9412 /* JDPluginInstaller.m in Sources */,
+				D237994316EBB62C006F9412 /* JDPluginManager.m in Sources */,
+				D237994416EBB62C006F9412 /* JDXcodeBuildTask.m in Sources */,
+				D237994616EBB62C006F9412 /* NSTaskWithProgress.m in Sources */,
+				D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class JDPluginManager;
+
 @interface TAAppDelegate : NSObject <NSApplicationDelegate>
+
+@property (nonatomic, strong) JDPluginManager *manager;
 
 @end
