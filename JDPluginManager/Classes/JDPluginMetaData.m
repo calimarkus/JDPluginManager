@@ -9,12 +9,13 @@
 #import "JDPluginMetaData.h"
 
 NSString *const JDPluginManagerMetaDataFileName = @".JDPluginManager.meta";
+NSString *const JDPluginManagerMetaDataReadmeName = @".jdpm-README.md";
 
 NSString *const JDPluginManagerMetaDataRepositoryKey = @"JDPluginManagerMetaDataRepositoryKey";
 NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaDataReadmePathKey";
 
 @interface JDPluginMetaData ()
-@property (nonatomic, strong) NSString *pluginPath;
+@property (nonatomic, copy) NSString *pluginPath;
 @end
 
 @implementation JDPluginMetaData
@@ -27,7 +28,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     NSString *path = [pluginPath stringByAppendingPathExtension:JDPluginManagerMetaDataFileName];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSDictionary *dictionary = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSMutableDictionary *dictionary = [[[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy] autorelease];
         
         if (dictionary) {
             JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
@@ -43,24 +44,52 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 {
     self = [super init];
     if (self) {
-        _pluginPath = pluginPath;
+        _pluginPath = [pluginPath copy];
+        _dictionary = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
 
-- (void)copyAndSetReadmeFromPath:(NSString*)readmePath;
+- (void)dealloc
 {
-    NSString *path = [self.pluginPath stringByAppendingPathExtension:@".jdpm-README"];
-    if([[NSFileManager defaultManager] copyItemAtPath:readmePath toPath:path error:nil]) {
-        [self.dictionary setValue:path forKey:JDPluginManagerMetaDataReadmePathKey];
+    self.dictionary = nil;
+    self.pluginPath = nil;
+    [super dealloc];
+}
+
+- (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath;
+{
+    NSString *sourcePath = [buildPath stringByAppendingPathComponent:@"README.md"];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:sourcePath]) {
+        sourcePath = [buildPath stringByAppendingPathComponent:@"README"];
+        if (![[NSFileManager defaultManager] fileExistsAtPath:sourcePath]) {
+            sourcePath = [buildPath stringByAppendingPathComponent:@"readme"];
+            if (![[NSFileManager defaultManager] fileExistsAtPath:sourcePath]) {
+                return;
+            }
+        }
+    }
+    
+    NSString *targetPath = [self.pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataReadmeName];
+    [[NSFileManager defaultManager] removeItemAtPath:targetPath error:nil];
+    if([[NSFileManager defaultManager] copyItemAtPath:sourcePath toPath:targetPath error:nil]) {
+        [self.dictionary setObject:targetPath forKey:JDPluginManagerMetaDataReadmePathKey];
         [self save];
+    } else {
+        NSLog(@"ERROR copying readme");
     }
 }
 
 - (BOOL)save;
 {
-    NSString *path = [self.pluginPath stringByAppendingPathExtension:JDPluginManagerMetaDataFileName];
-    return [self.dictionary writeToFile:path atomically:YES];
+    NSString *path = [self.pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
+    BOOL succes = [self.dictionary writeToFile:path atomically:YES];
+    
+    if (!succes) {
+        NSLog(@"error saving metadata");
+    }
+    
+    return succes;
 }
 
 @end

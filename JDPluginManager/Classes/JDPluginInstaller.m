@@ -12,13 +12,14 @@
 #import "JDInstallProgressWindow.h"
 #import "NSFileManager+JDPluginManager.h"
 #import "NSURL+JDPluginManager.h"
+#import "JDPluginMetaData.h"
 
 #import "JDPluginInstaller.h"
 
 
 @interface JDPluginInstaller () <NSWindowDelegate>
 @property (nonatomic, strong) NSTaskWithProgress *activeTask;
-@property (nonatomic, strong) NSString *repositoryURL;
+@property (nonatomic, copy) NSString *repositoryPath;
 @property (nonatomic, strong) NSMutableArray *pathsToBuild;
 @property (nonatomic, strong) JDInstallProgressWindow *progressWindow;
 + (BOOL)toolsAreAvailable;
@@ -31,7 +32,7 @@
 @implementation JDPluginInstaller
 
 @synthesize activeTask = _activeTask;
-@synthesize repositoryURL = _repositoryURL;
+@synthesize repositoryPath = _repositoryPath;
 @synthesize pathsToBuild = _pathsToBuild;
 @synthesize progressWindow = _progressWindow;
 
@@ -113,17 +114,17 @@
     
     // install
     BOOL searchSubdirectories = (checkbox.state == NSOnState);
-    [self beginInstallWithRepositoryUrl:input.stringValue searchInSubdirectories:searchSubdirectories];
+    [self beginInstallWithRepositoryPath:input.stringValue searchInSubdirectories:searchSubdirectories];
 }
 
-- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL searchInSubdirectories:(BOOL)searchSubdirectories;
+- (void)beginInstallWithRepositoryPath:(NSString*)repositoryPath searchInSubdirectories:(BOOL)searchSubdirectories;
 {
     if (![JDPluginInstaller toolsAreAvailable]) {
         return;
     }
     
     // save repo URL
-    self.repositoryURL = repositoryURL;
+    self.repositoryPath = repositoryPath;
     
     // show progress panel
     [self showProgressPanel];
@@ -133,7 +134,7 @@
     
     @try {
         // clone project
-        self.activeTask = [JDGitCloneTask launchedTaskWithRepositoryURL:repositoryURL
+        self.activeTask = [JDGitCloneTask launchedTaskWithRepositoryPath:repositoryPath
                                                          progressWindow:self.progressWindow
                                                              completion:^(NSString *clonePath)
         {
@@ -164,7 +165,8 @@
                                                                  
             // start xcode build
             [self startXcodeBuildWithCompletion:^{
-                // move checked out project to trash
+                // move checked out project(s) to trash
+                [self.progressWindow appendLine:JDLocalize(@"keyInstallTrashingTmpDirectory")];
                 [self emptyTempDirectory];
                 
                 // release task
@@ -234,12 +236,18 @@
     }];
     
     if (changedPlugin == nil) {
+        // inform user
         [self.progressWindow appendTitle:JDLocalize(@"keyInstallFailureMessage")];
     } else {
-//        NSString *pluginPath = [[NSURL pluginURLForPluginNamed:changedPlugin] path];
-//        buildPath
-//        @TODO: save meta data & copy readme
+        // save meta data
+        NSString *pluginPath = [[NSURL pluginURLForPluginNamed:changedPlugin] path];
+        JDPluginMetaData *metaData = [[JDPluginMetaData alloc] initWithPluginPath:pluginPath];
+        [metaData findAndSetReadmeAtBuildPath:buildPath];
+        [metaData.dictionary setObject:self.repositoryPath forKey:JDPluginManagerMetaDataRepositoryKey];
+        [metaData save];
+        [metaData release];
         
+        // inform user
         [self.progressWindow appendTitle:[NSString stringWithFormat:JDLocalize(@"keyInstallSuccessMessageFormat"), changedPlugin]];
         [self.progressWindow appendLine:JDLocalize(@"keyInstallRestartXCodeMessage")];
     }
@@ -256,8 +264,6 @@
 
 - (void)emptyTempDirectory;
 {
-    [self.progressWindow appendLine:JDLocalize(@"keyInstallTrashingTmpDirectory")];
-    
     // read contents of tmp dir
     NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tmpClonePath error:nil];
     

@@ -142,7 +142,7 @@
 
 - (void)updatePlugin:(NSMenuItem*)sender;
 {
-    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryUrl:@"git@github.com:jaydee3/JDPluginManager.git" searchInSubdirectories:NO];
+    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:@"git@github.com:jaydee3/JDPluginManager.git" searchInSubdirectories:NO];
 }
 
 - (void)deletePlugin:(NSMenuItem*)sender;

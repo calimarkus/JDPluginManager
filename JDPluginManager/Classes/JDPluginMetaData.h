@@ -12,17 +12,17 @@ extern NSString *const JDPluginManagerMetaDataRepositoryKey;
 extern NSString *const JDPluginManagerMetaDataReadmePathKey;
 
 @interface JDPluginMetaData : NSObject {
-    NSDictionary* _dictionary;
+    NSMutableDictionary* _dictionary;
     NSString* _pluginPath;
 }
 
-@property (nonatomic, strong) NSDictionary *dictionary;
+@property (nonatomic, strong) NSMutableDictionary *dictionary;
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 
 - (id)initWithPluginPath:(NSString*)pluginPath;
 
-- (void)copyAndSetReadmeFromPath:(NSString*)readmePath;
+- (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath;
 - (BOOL)save;
 
 @end

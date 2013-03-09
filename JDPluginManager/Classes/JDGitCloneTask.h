@@ -18,7 +18,7 @@ extern NSString *const tmpClonePath;
     NSString* _previousProgressText;
 }
 
-+ (instancetype)launchedTaskWithRepositoryURL:(NSString*)repositoryURL
++ (instancetype)launchedTaskWithRepositoryPath:(NSString*)repositoryPath
                                progressWindow:(JDInstallProgressWindow*)progressWindow
                                    completion:(void(^)(NSString *clonePath))completion;
 

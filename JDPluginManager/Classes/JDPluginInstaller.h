@@ -14,14 +14,14 @@
 
 @interface JDPluginInstaller : NSObject {
     NSTaskWithProgress* _activeTask;
-    NSString* _repositoryURL;
+    NSString* _repositoryPath;
     NSMutableArray* _pathsToBuild;
     JDInstallProgressWindow* _progressWindow;
 }
 
 + (void)installPlugin;
 
-- (void)beginInstallWithRepositoryUrl:(NSString*)repositoryURL
+- (void)beginInstallWithRepositoryPath:(NSString*)repositoryPath
                searchInSubdirectories:(BOOL)searchSubdirectories;
 
 @end
