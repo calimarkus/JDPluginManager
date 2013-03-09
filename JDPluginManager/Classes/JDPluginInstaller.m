@@ -6,23 +6,30 @@
 //
 //
 
-#import "JDPluginInstaller.h"
 #import "global.h"
+#import "JDGitCloneTask.h"
+#import "JDXcodeBuildTask.h"
+#import "JDInstallProgressWindow.h"
+
+#import "JDPluginInstaller.h"
 
 
 @interface JDPluginInstaller () <NSWindowDelegate>
+@property (nonatomic, strong) NSTaskWithProgress *activeTask;
+@property (nonatomic, strong) NSMutableArray *pathsToBuild;
+@property (nonatomic, strong) JDInstallProgressWindow *progressWindow;
 + (BOOL)toolsAreAvailable;
 - (void)showInstallPrompt;
-- (NSPanel*)showProgressPanel;
+- (void)showProgressPanel;
+- (void)startXcodeBuild;
 - (void)emptyTempDirectory;
 @end
 
-
-NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
-NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild";
-NSString *const gitPath        = @"/usr/bin/git";
-
 @implementation JDPluginInstaller
+
+@synthesize activeTask = _activeTask;
+@synthesize pathsToBuild = _pathsToBuild;
+@synthesize progressWindow = _progressWindow;
 
 + (BOOL)toolsAreAvailable;
 {
@@ -77,19 +84,19 @@ NSString *const gitPath        = @"/usr/bin/git";
     alert.alertStyle = NSInformationalAlertStyle;
     
     // add text field
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)];
+    NSTextField *input = [[[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)] autorelease];
     [input setStringValue:JDLocalize(@"keyInstallAlertExampleText")];
     [input setBezeled:YES];
     [input setBezelStyle:NSTextFieldRoundedBezel];
     
     // add checkbox
-    NSButton *checkbox = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
+    NSButton *checkbox = [[[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)] autorelease];
     [checkbox setButtonType:NSSwitchButton];
     [checkbox setTitle:JDLocalize(@"keyInstallAlertCheckboxText")];
     [checkbox sizeToFit];
     
     // build accessory view
-    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)];
+    NSView *view = [[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)] autorelease];
     [view addSubview:input];
     [view addSubview:checkbox];
     [alert setAccessoryView:view];
@@ -112,51 +119,44 @@ NSString *const gitPath        = @"/usr/bin/git";
     }
     
     // show progress panel
-    NSPanel *panel = [self showProgressPanel];
+    [self showProgressPanel];
     
     // move checked out project to trash
     [self emptyTempDirectory];
     
     @try {
-        // checkout project
-        NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
-        NSArray *gitArgs = @[@"clone", repositoryURL, clonePath];
-        NSTask *gitTask = [[[NSTask alloc] init] autorelease];
-        [gitTask setLaunchPath:gitPath];
-        [gitTask setArguments:gitArgs];
-        [gitTask launch];
-        [gitTask waitUntilExit];
-
-        // use top level folder for install
-        NSArray *pathsToCheck = @[clonePath];
-        
-        // use subdirectories, if enabled
-        if (searchSubdirectories) {
-            NSMutableArray *array = [NSMutableArray array];
+        // clone project
+        self.activeTask = [JDGitCloneTask launchedTaskWithRepositoryURL:repositoryURL
+                                                         progressWindow:self.progressWindow
+                                                             completion:^(NSString *clonePath){
+            // use top level folder for install
+            NSArray *pathsToCheck = @[clonePath];
             
-            // search for actual directories
-            NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:clonePath error:nil];
-            [contents enumerateObjectsUsingBlock:^(NSString *contentPath, NSUInteger idx, BOOL *stop) {
-                BOOL isDirectory = NO;
-                [[NSFileManager defaultManager] fileExistsAtPath:[clonePath stringByAppendingPathComponent:contentPath] isDirectory:&isDirectory];
-                if (isDirectory && ![contentPath hasPrefix:@"."] && ![contentPath hasSuffix:@".xcworkspace"]) {
-                    [array addObject:[clonePath stringByAppendingPathComponent:contentPath]];
+            // use subdirectories, if enabled
+            if (searchSubdirectories) {
+                NSMutableArray *array = [NSMutableArray array];
+                
+                // search for actual directories
+                NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:clonePath error:nil];
+                [contents enumerateObjectsUsingBlock:^(NSString *contentPath, NSUInteger idx, BOOL *stop) {
+                    BOOL isDirectory = NO;
+                    [[NSFileManager defaultManager] fileExistsAtPath:[clonePath stringByAppendingPathComponent:contentPath] isDirectory:&isDirectory];
+                    if (isDirectory && ![contentPath hasPrefix:@"."] && ![contentPath hasSuffix:@".xcworkspace"]) {
+                        [array addObject:[clonePath stringByAppendingPathComponent:contentPath]];
+                    }
+                }];
+                // use subdirectories, if found
+                if (array.count > 0) {
+                    pathsToCheck = array;
                 }
-            }];
-            // use subdirectories, if found
-            if (array.count > 0) {
-                pathsToCheck = array;
             }
-        }
-        
-        // run xcodebuild for each path given
-        for (NSString *path in pathsToCheck) {
-            NSTask *xcbTask = [[[NSTask alloc] init] autorelease];
-            [xcbTask setCurrentDirectoryPath:path];
-            [xcbTask setLaunchPath:xcodeBuildPath];
-            [xcbTask launch];
-            [xcbTask waitUntilExit];
-        }
+            
+            // save paths
+            self.pathsToBuild = [[pathsToCheck mutableCopy] autorelease];
+            
+            // start xcode build
+            [self startXcodeBuild];
+        }];        
     }
     @catch (NSException *exception) {
         NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallErrorTitle")
@@ -167,40 +167,45 @@ NSString *const gitPath        = @"/usr/bin/git";
         alert.alertStyle = NSCriticalAlertStyle;
         [alert runModal];
     }
-    
-    // move checked out project to trash
-    [self emptyTempDirectory];
-    
-    // make panel closable
-    [panel close];
 }
 
-- (NSPanel*)showProgressPanel;
+- (void)startXcodeBuild;
 {
-    NSPanel *panel = [[NSPanel alloc] initWithContentRect:NSMakeRect(0, 0, 300, 160)
-                                                styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
-                                                  backing:0 defer:NO];
-    panel.styleMask = NSHUDWindowMask | NSUtilityWindowMask | NSTitledWindowMask;
-    panel.title = JDLocalize(@"keyInstallProgressTitle");
-    panel.delegate = self;
-    [panel center];
+    // run xcodebuild for each path given
+    if (self.pathsToBuild.count > 0) {
+        NSString *path = self.pathsToBuild.lastObject;
+        [self.pathsToBuild removeObject:path];
+        
+        self.activeTask = [JDXcodeBuildTask launchedTaskWithCurrentDirectoryPath:path
+                                                                  progressWindow:self.progressWindow
+                                                                      completion:^{
+            // build next path, or finish
+            [self startXcodeBuild];
+        }];
+    }
     
-    // add text panel
-    NSView *contentView = panel.contentView;
-    NSTextView *textView = [[[NSTextView alloc] initWithFrame:NSInsetRect(contentView.bounds, 10, 10)] autorelease];
-    textView.backgroundColor = [NSColor clearColor];
-    textView.textColor = [NSColor whiteColor];
-    textView.selectable = NO;
-    textView.editable = NO;
-    textView.font = [NSFont systemFontOfSize:13];
-    textView.alignment = NSCenterTextAlignment;
-    textView.string = JDLocalize(@"keyInstallProgressMessage");
-    [contentView addSubview:textView];
+    // completion
+    else {
+        [self.progressWindow appendTitle:JDLocalize(@"keyInstallRestartXCodeMessage")];
+        
+        // move checked out project to trash
+        [self emptyTempDirectory];
+        
+        // release task
+        self.activeTask = nil;
+        
+        // close panel
+        self.progressWindow.styleMask = self.progressWindow.styleMask | NSClosableWindowMask;
+    }
+}
+
+- (void)showProgressPanel;
+{
+    self.progressWindow = [[[JDInstallProgressWindow alloc] initWithContentRect:NSMakeRect(0, 0, 568, 320)] autorelease];
     
     // show window
-    [panel makeKeyAndOrderFront:self];
-    
-    return panel;
+    [self.progressWindow makeKeyAndOrderFront:self];
+    [self.progressWindow center];
 }
 
 - (void)emptyTempDirectory;
