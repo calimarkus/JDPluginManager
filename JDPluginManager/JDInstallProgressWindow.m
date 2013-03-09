@@ -46,7 +46,7 @@
         textView.backgroundColor = [NSColor clearColor];
         textView.alignment = NSLeftTextAlignment;
         textView.textColor = [NSColor whiteColor];
-        textView.font = [NSFont systemFontOfSize:13];
+        textView.font = [NSFont fontWithName:@"Monaco" size:11];
         textView.textContainer.containerSize = NSMakeSize(contentSize.width, FLT_MAX);
         textView.textContainer.widthTracksTextView = YES;
         [scrollView addSubview:textView];
@@ -66,6 +66,16 @@
         self.textView.string = [NSString stringWithFormat: @"%@\n%@", self.textView.string, line];
         [self scrollToBottom];
     }
+}
+
+- (void)appendTitle:(NSString*)title;
+{
+    NSString *topSeparator    = @"----------------------------------------------------------- JDPluginManager -----";
+    NSString *bottomSeparator = @"---------------------------------------------------------------------------------";
+    
+    [self appendLine:topSeparator];
+    [self appendLine:title];
+    [self appendLine:bottomSeparator];
 }
 
 - (void)scrollToBottom;

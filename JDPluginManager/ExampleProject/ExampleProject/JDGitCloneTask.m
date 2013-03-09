@@ -38,7 +38,8 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
              progressWindow:(JDInstallProgressWindow*)progressWindow
                  completion:(void(^)(NSString *clonePath))completion;
 {
-    [progressWindow appendLine:[NSString stringWithFormat:JDLocalize(@"keyInstallCloneMessageFormat"), repositoryURL]];
+    [progressWindow appendTitle:JDLocalize(@"keyInstallCloneMessage")];
+    [progressWindow appendLine:[NSString stringWithFormat: @"Repository: %@", repositoryURL]];
     
     NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
     NSArray *gitArgs = @[@"clone", repositoryURL, clonePath, @"--progress", @"--verbose"];
@@ -74,7 +75,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 {
     [self.allGitOutput appendString:output];
 
-    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@",
+    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@\n",
                                       self.previousProgressText,
                                       [self minimizedGitOutput]];
     [progressWindow scrollToBottom];
@@ -95,7 +96,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
         }
         previousLine = line;
     }
-    return minimizedOutput;
+    return [minimizedOutput stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 @end

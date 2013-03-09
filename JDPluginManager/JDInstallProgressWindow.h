@@ -15,6 +15,8 @@
 - (id)initWithContentRect:(NSRect)contentRect;
 
 - (void)appendLine:(NSString*)line;
+- (void)appendTitle:(NSString*)title;
+
 - (void)scrollToBottom;
 
 @end

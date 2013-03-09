@@ -8,6 +8,7 @@
 
 #import "global.h"
 #import "JDGitCloneTask.h"
+#import "JDXcodeBuildTask.h"
 #import "JDInstallProgressWindow.h"
 
 #import "JDPluginInstaller.h"
@@ -23,8 +24,6 @@
 - (void)startXcodeBuild;
 - (void)emptyTempDirectory;
 @end
-
-NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild";
 
 @implementation JDPluginInstaller
 
@@ -152,7 +151,6 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
             self.pathsToBuild = [pathsToCheck mutableCopy];
             
             // start xcode build
-            [self.progressWindow appendLine:JDLocalize(@"keyInstallBuildMessage")];
             [self startXcodeBuild];
         }];        
     }
@@ -174,11 +172,9 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
         NSString *path = self.pathsToBuild.lastObject;
         [self.pathsToBuild removeObject:path];
         
-        self.activeTask = [NSTaskWithProgress launchedTaskWithLaunchPath:xcodeBuildPath arguments:nil currentDirectoryPath:path progress:^(NSTask *task, NSString *output) {
-            [self.progressWindow appendLine:output];
-        }  completion:^(NSTask *task, NSString *output) {
-            [self.progressWindow appendLine:output];
-            
+        self.activeTask = [JDXcodeBuildTask launchedTaskWithCurrentDirectoryPath:path
+                                                                  progressWindow:self.progressWindow
+                                                                      completion:^{
             // build next path, or finish
             [self startXcodeBuild];
         }];
@@ -186,7 +182,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
     
     // completion
     else {
-        [self.progressWindow appendLine:JDLocalize(@"keyInstallRestartXCodeMessage")];
+        [self.progressWindow appendTitle:JDLocalize(@"keyInstallRestartXCodeMessage")];
         
         // move checked out project to trash
         [self emptyTempDirectory];

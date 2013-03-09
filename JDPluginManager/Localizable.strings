@@ -30,7 +30,7 @@
 "keyInstallAlertExampleText"    = "git@github.com:jaydee3/JDPluginManager.git";
 "keyInstallAlertCheckboxText"   = "Search for plugins in subdirectories (Ignoring the top level project file.)";
 "keyInstallProgressTitle"       = "Installing plugin…";
-"keyInstallCloneMessageFormat"  = "Cloning '%@' now…";
+"keyInstallCloneMessage"        = "Cloning repository now…";
 "keyInstallBuildMessage"        = "Building the plugin now…";
 "keyInstallRestartXCodeMessage" = "To use the new plugin, restart Xcode.";
 "keyInstallErrorTitle"          = "Error during installation";

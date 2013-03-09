@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D2117D6D16EA3D5A0030BEF9 /* NSTaskWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D2117D6C16EA3D590030BEF9 /* NSTaskWithProgress.m */; };
 		D216E79A16EB8DF600380A33 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D216E79916EB8DF600380A33 /* JDGitCloneTask.m */; };
+		D216E7A016EBA86400380A33 /* JDXcodeBuildTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D216E79F16EBA86400380A33 /* JDXcodeBuildTask.m */; };
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
 		D278FD3316EAA8B400B3F4C4 /* JDInstallProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D278FD3216EAA8B400B3F4C4 /* JDInstallProgressWindow.m */; };
 		D2E2D32616D4304B00447430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E2D32116D4304B00447430 /* main.m */; };
@@ -25,6 +26,8 @@
 		D2117D6C16EA3D590030BEF9 /* NSTaskWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTaskWithProgress.m; path = ../../NSTaskWithProgress.m; sourceTree = "<group>"; };
 		D216E79816EB8DF600380A33 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGitCloneTask.h; sourceTree = "<group>"; };
 		D216E79916EB8DF600380A33 /* JDGitCloneTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGitCloneTask.m; sourceTree = "<group>"; };
+		D216E79E16EBA86400380A33 /* JDXcodeBuildTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDXcodeBuildTask.h; sourceTree = "<group>"; };
+		D216E79F16EBA86400380A33 /* JDXcodeBuildTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDXcodeBuildTask.m; sourceTree = "<group>"; };
 		D246418516C04B21005DB12C /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D246418816C04B21005DB12C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -67,6 +70,8 @@
 				D2117D6C16EA3D590030BEF9 /* NSTaskWithProgress.m */,
 				D216E79816EB8DF600380A33 /* JDGitCloneTask.h */,
 				D216E79916EB8DF600380A33 /* JDGitCloneTask.m */,
+				D216E79E16EBA86400380A33 /* JDXcodeBuildTask.h */,
+				D216E79F16EBA86400380A33 /* JDXcodeBuildTask.m */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				D2117D6D16EA3D5A0030BEF9 /* NSTaskWithProgress.m in Sources */,
 				D278FD3316EAA8B400B3F4C4 /* JDInstallProgressWindow.m in Sources */,
 				D216E79A16EB8DF600380A33 /* JDGitCloneTask.m in Sources */,
+				D216E7A016EBA86400380A33 /* JDXcodeBuildTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
