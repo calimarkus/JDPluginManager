@@ -73,29 +73,29 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
        inProgressWindow:(JDInstallProgressWindow*)progressWindow;
 {
     [self.allGitOutput appendString:output];
-    [self updateProgressWindowWithCurrentOutput:progressWindow];
+
+    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@",
+                                      self.previousProgressText,
+                                      [self minimizedGitOutput]];
+    [progressWindow scrollToBottom];
 }
 
-- (void)updateProgressWindowWithCurrentOutput:(JDInstallProgressWindow*)progressWindow;
+- (NSString*)minimizedGitOutput;
 {
-    NSMutableString *text = [NSMutableString stringWithString:self.previousProgressText];
-    [text appendString:@"\n\n"];
-    
+    NSMutableString *minimizedOutput = [NSMutableString string];
     NSString *previousLine = nil;
     for (NSString *line in [self.allGitOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
         line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         static NSInteger refLength = 15;
         if (previousLine && previousLine.length > refLength && line.length > refLength &&
             [[previousLine substringToIndex:refLength] isEqualToString:[line substringToIndex:refLength]]) {
-            [text replaceOccurrencesOfString:previousLine withString:line options:NSBackwardsSearch range:NSMakeRange(0, text.length)];
+            [minimizedOutput replaceOccurrencesOfString:previousLine withString:line options:NSBackwardsSearch range:NSMakeRange(0, minimizedOutput.length)];
         } else {
-            [text appendFormat:@"%@\n", line];
+            [minimizedOutput appendFormat:@"%@\n", line];
         }
         previousLine = line;
     }
-
-    progressWindow.textView.string = text;
-    [progressWindow scrollToBottom];
+    return minimizedOutput;
 }
 
 @end
