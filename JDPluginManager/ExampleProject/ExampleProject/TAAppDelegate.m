@@ -15,8 +15,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    self.manager = [[[JDPluginManager alloc] init] autorelease];
+    
     // extend menu
-    [[[JDPluginManager alloc] init] extendXcodeMenu];
+    [self.manager extendXcodeMenu];
     
     // install a new plugin
     [JDPluginInstaller installPlugin];

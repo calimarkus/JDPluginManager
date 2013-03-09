@@ -80,19 +80,19 @@
     alert.alertStyle = NSInformationalAlertStyle;
     
     // add text field
-    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)];
+    NSTextField *input = [[[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)] autorelease];
     [input setStringValue:JDLocalize(@"keyInstallAlertExampleText")];
     [input setBezeled:YES];
     [input setBezelStyle:NSTextFieldRoundedBezel];
     
     // add checkbox
-    NSButton *checkbox = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
+    NSButton *checkbox = [[[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)] autorelease];
     [checkbox setButtonType:NSSwitchButton];
     [checkbox setTitle:JDLocalize(@"keyInstallAlertCheckboxText")];
     [checkbox sizeToFit];
     
     // build accessory view
-    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)];
+    NSView *view = [[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)] autorelease];
     [view addSubview:input];
     [view addSubview:checkbox];
     [alert setAccessoryView:view];
@@ -148,7 +148,7 @@
             }
             
             // save paths
-            self.pathsToBuild = [pathsToCheck mutableCopy];
+            self.pathsToBuild = [[pathsToCheck mutableCopy] autorelease];
             
             // start xcode build
             [self startXcodeBuild];
