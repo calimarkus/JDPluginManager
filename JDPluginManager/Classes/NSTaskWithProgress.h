@@ -10,7 +10,10 @@
 
 typedef void(^NSTaskWithOutputProgressBlock)(NSTask* task, NSString* output);
 
-@interface NSTaskWithProgress : NSObject
+@interface NSTaskWithProgress : NSObject {
+    NSTask* _task;
+    NSTaskWithOutputProgressBlock _progressBlock;
+}
 
 @property (nonatomic, readonly) NSTask *task;
 

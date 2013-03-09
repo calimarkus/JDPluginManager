@@ -27,6 +27,10 @@
 
 @implementation JDPluginInstaller
 
+@synthesize activeTask = _activeTask;
+@synthesize pathsToBuild = _pathsToBuild;
+@synthesize progressWindow = _progressWindow;
+
 + (BOOL)toolsAreAvailable;
 {
     NSString *errorTitle = nil, *errorMessage = nil;

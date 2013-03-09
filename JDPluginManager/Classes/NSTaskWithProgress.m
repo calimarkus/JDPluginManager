@@ -16,6 +16,9 @@
 
 @implementation NSTaskWithProgress
 
+@synthesize task = _task;
+@synthesize progressBlock = _progressBlock;
+
 + (instancetype)launchedTaskWithLaunchPath:(NSString*)launchPath
                                  arguments:(NSArray*)arguments
                                   progress:(NSTaskWithOutputProgressBlock)progressBlock

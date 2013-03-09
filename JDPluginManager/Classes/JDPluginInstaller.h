@@ -9,7 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-@interface JDPluginInstaller : NSObject
+@class JDInstallProgressWindow;
+@class NSTaskWithProgress;
+
+@interface JDPluginInstaller : NSObject {
+    NSTaskWithProgress* _activeTask;
+    NSMutableArray* _pathsToBuild;
+    JDInstallProgressWindow* _progressWindow;
+}
 
 + (void)installPlugin;
 

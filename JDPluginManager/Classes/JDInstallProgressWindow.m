@@ -12,6 +12,8 @@
 
 @implementation JDInstallProgressWindow
 
+@synthesize textView = _textView;
+
 - (id)initWithContentRect:(NSRect)contentRect;
 {
     self = [super initWithContentRect:contentRect styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
@@ -33,8 +35,8 @@
         [self.contentView addSubview:scrollView];
         
         // setup textView
-        CGSize contentSize = scrollView.contentSize;
-        CGRect contentSizeRect = NSMakeRect(0, 0,contentSize.width, contentSize.height);
+        NSSize contentSize = scrollView.contentSize;
+        NSRect contentSizeRect = NSMakeRect(0, 0,contentSize.width, contentSize.height);
         NSTextView *textView = [[[NSTextView alloc] initWithFrame:contentSizeRect] autorelease];
         textView.autoresizingMask = NSViewWidthSizable;
         textView.minSize = contentSize;

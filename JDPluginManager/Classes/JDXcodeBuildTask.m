@@ -22,6 +22,9 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 
 @implementation JDXcodeBuildTask
 
+@synthesize allXcodeBuildOutput = _allXcodeBuildOutput;
+@synthesize previousProgressText = _previousProgressText;
+
 + (instancetype)launchedTaskWithCurrentDirectoryPath:(NSString*)currentDirectory
                                       progressWindow:(JDInstallProgressWindow*)progressWindow
                                           completion:(void(^)())completion;

@@ -22,6 +22,9 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 
 @implementation JDGitCloneTask
 
+@synthesize allGitOutput = _allGitOutput;
+@synthesize previousProgressText = _previousProgressText;
+
 + (instancetype)launchedTaskWithRepositoryURL:(NSString*)repositoryURL
                                progressWindow:(JDInstallProgressWindow*)progressWindow
                                    completion:(void(^)(NSString *clonePath))completion;

@@ -13,7 +13,10 @@ extern NSString *const xcodeBuildPath;
 
 @class JDInstallProgressWindow;
 
-@interface JDXcodeBuildTask : NSTaskWithProgress
+@interface JDXcodeBuildTask : NSTaskWithProgress {
+    NSMutableString* _allXcodeBuildOutput;
+    NSString* _previousProgressText;
+}
 
 + (instancetype)launchedTaskWithCurrentDirectoryPath:(NSString*)currentDirectory
                                       progressWindow:(JDInstallProgressWindow*)progressWindow

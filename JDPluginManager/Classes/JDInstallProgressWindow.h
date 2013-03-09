@@ -8,7 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface JDInstallProgressWindow : NSWindow
+@interface JDInstallProgressWindow : NSWindow {
+    NSTextView* _textView;
+}
 
 @property (nonatomic, readonly) NSTextView *textView;
 

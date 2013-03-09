@@ -13,7 +13,10 @@ extern NSString *const tmpClonePath;
 
 @class JDInstallProgressWindow;
 
-@interface JDGitCloneTask : NSTaskWithProgress
+@interface JDGitCloneTask : NSTaskWithProgress {
+    NSMutableString* _allGitOutput;
+    NSString* _previousProgressText;
+}
 
 + (instancetype)launchedTaskWithRepositoryURL:(NSString*)repositoryURL
                                progressWindow:(JDInstallProgressWindow*)progressWindow
