@@ -22,8 +22,6 @@
 "keyRevealInFinderMenuItemTitle" = "Reveal in Finder";
 "keyShowOnGithubMenuItemTitle"   = "Show on Github.com";
 
-"keyUpdatePluginManagerMenuItemTitle" = "Update JDPluginManager";
-
 // uninstalling
 "keyUninstall" = "Uninstall";
 "keyUninstallAlertTitleFormat"   = "Uninstall Plugin '%@'?";

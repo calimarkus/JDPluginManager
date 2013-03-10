@@ -23,7 +23,6 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 - (void)showPlugin:(NSMenuItem*)sender;
 - (void)updatePlugin:(NSMenuItem*)sender;
-- (void)updatePluginManager:(NSMenuItem*)sender;
 - (void)showReadme:(NSMenuItem*)sender;
 - (void)showOnGithub:(NSMenuItem*)sender;
 - (void)deletePlugin:(NSMenuItem*)sender;
@@ -91,11 +90,6 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
         NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
         [installItem setTarget:self];
         [[pluginsMenuItem submenu] addItem:installItem];
-        
-        // update item
-        NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdatePluginManagerMenuItemTitle") action:@selector(updatePluginManager:) keyEquivalent:@""] autorelease];
-        [pluginItem setTarget:self];
-        [[pluginsMenuItem submenu] addItem:pluginItem];
     }
 }
 
@@ -194,11 +188,6 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     
     NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
     [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitURL searchInSubdirectories:NO];
-}
-
-- (void)updatePluginManager:(NSMenuItem*)sender;
-{
-    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:@"git@github.com:jaydee3/JDPluginManager.git" searchInSubdirectories:NO];
 }
 
 - (void)showReadme:(NSMenuItem*)sender;
