@@ -27,6 +27,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 {
     JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
 
+    // read saved meta data
     NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSMutableDictionary *dictionary = [[[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy] autorelease];
@@ -34,6 +35,12 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
             metaData.dictionary = dictionary;
         }
     };
+    
+    // set repo path for JDPluginManager
+    if([metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey] == nil &&
+       [pluginPath rangeOfString:@"JDPluginManager"].length > 0) {
+        [metaData.dictionary setObject:@"git@github.com:jaydee3/JDPluginManager.git" forKey:JDPluginManagerMetaDataRepositoryKey];
+    }
     
     return metaData;
 }
