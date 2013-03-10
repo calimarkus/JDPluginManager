@@ -2,9 +2,16 @@
 
 ## Overview
 
-Are you using a lot of XCode Plugins?
+Are you using a lot of XCode Plugins?  
+This plugin makes it easy to install, update and remove them.
 
-This plugin will give you an overview of all installed Plugins. With it you can easily open their directories, uninstall plugins or even install new ones from a github repository - everything happens directly out of Xcode.  
+**Key Features:**
+
+- Install plugins easily by just entering a git repository url
+- One-click updates (for plugins installed with JDPluginManager)
+- Uninstall plugins
+
+
 *This is tested only on OS X 10.8 with Xcode 4.6.*
 
 It adds a new MenuItem "Plugins" in the Menu Bar of Xcode:
