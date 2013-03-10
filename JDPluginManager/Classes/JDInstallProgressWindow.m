@@ -65,11 +65,7 @@
 - (void)appendLine:(NSString*)line;
 {
     if (line) {
-        // add newline before, if textView already contains text
-        if (self.textView.string.length > 0) {
-            line = [NSString stringWithFormat: @"\n%@", line];
-        }
-        self.textView.string = [NSString stringWithFormat: @"%@%@", self.textView.string, line];
+        self.textView.string = [NSString stringWithFormat: @"%@%@\n", self.textView.string, line];
         [self scrollToBottom];
     }
 }

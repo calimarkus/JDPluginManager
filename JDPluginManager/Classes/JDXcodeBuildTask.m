@@ -74,7 +74,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 {
     [self.allXcodeBuildOutput appendString:output];
     
-    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n%@",
+    progressWindow.textView.string = [NSString stringWithFormat: @"%@%@\n",
                                       self.previousProgressText,
                                       [self minimizedXcodeBuildOutput]];
     [progressWindow scrollToBottom];
