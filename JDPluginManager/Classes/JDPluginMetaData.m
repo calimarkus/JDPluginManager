@@ -25,19 +25,17 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 {
-    NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
+    JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
 
+    NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSMutableDictionary *dictionary = [[[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy] autorelease];
-        
         if (dictionary) {
-            JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
             metaData.dictionary = dictionary;
-            return metaData;
         }
     };
     
-    return nil;
+    return metaData;
 }
 
 - (id)initWithPluginPath:(NSString*)pluginPath;

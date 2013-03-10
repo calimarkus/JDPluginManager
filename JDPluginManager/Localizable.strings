@@ -17,9 +17,10 @@
 "keyShowDirectoryMenuItemTitle" = "Reveal plugin directory";
 "keyInstallMenuItemTitle"       = "Install a new plugin…";
 
-"keyUpdateMenuItemTitle"        = "Update…";
-"keyShowReadmeMenuItemTitle"    = "Open Readme";
-"keyShowOnGithubMenuItemTitle"  = "Show on Github.com";
+"keyUpdateMenuItemTitle"         = "Update…";
+"keyShowReadmeMenuItemTitle"     = "Open Readme";
+"keyRevealInFinderMenuItemTitle" = "Reveal in Finder";
+"keyShowOnGithubMenuItemTitle"   = "Show on Github.com";
 
 "keyUpdatePluginManagerMenuItemTitle" = "Update JDPluginManager";
 

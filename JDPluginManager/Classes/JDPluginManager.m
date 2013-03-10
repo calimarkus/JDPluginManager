@@ -13,6 +13,10 @@
 #import "JDPluginMetaData.h"
 #import "global.h"
 
+
+NSInteger const JDRevealPluginInFinderTag = 1337;
+
+
 @interface JDPluginManager () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 - (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
@@ -121,7 +125,7 @@
     // plugin item
     NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
     [pluginItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
-    pluginItem.tag = 99;
+    [pluginItem setTag:JDRevealPluginInFinderTag];
     [pluginItem setTarget:self];
     [menu addItem:pluginItem];
     
@@ -130,41 +134,39 @@
     [deleteItem setTarget:self];
     [[pluginItem submenu] addItem:deleteItem];
     
-    // add meta data items
+    // read meta data
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:name] path]];
-    if (metaData) {
-        
-        // read meta data
-        NSString *readmePath = [metaData.dictionary objectForKey:JDPluginManagerMetaDataReadmePathKey];
-        NSString *repositoryPath = [metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey];
-        
-        // update item
-        if (repositoryPath) {
-            NSMenuItem *updateItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
-            [updateItem setTarget:self];
-            [[pluginItem submenu] addItem:updateItem];
-        }
-        
-        // show readme item
-        BOOL addedReadmeItem = NO;
-        if (readmePath && [[NSFileManager defaultManager] fileExistsAtPath:readmePath]) {
-            [[pluginItem submenu] addItem:[NSMenuItem separatorItem]];
-            
-            NSMenuItem *readmeItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowReadmeMenuItemTitle") action:@selector(showReadme:) keyEquivalent:@""] autorelease];
-            [readmeItem setTarget:self];
-            [[pluginItem submenu] addItem:readmeItem];
-            
-            addedReadmeItem = YES;
-        }
-        
-        // show on github item
-        if (repositoryPath && [repositoryPath rangeOfString:@"github.com"].length != 0) {
-            if (!addedReadmeItem) [[pluginItem submenu] addItem:[NSMenuItem separatorItem]];
-            
-            NSMenuItem *githubItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowOnGithubMenuItemTitle") action:@selector(showOnGithub:) keyEquivalent:@""] autorelease];
-            [githubItem setTarget:self];
-            [[pluginItem submenu] addItem:githubItem];
-        }
+    NSString *repositoryPath = [metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *readmePath     = [metaData.dictionary objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    
+    // update item
+    if (repositoryPath) {
+        NSMenuItem *updateItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
+        [updateItem setTarget:self];
+        [[pluginItem submenu] addItem:updateItem];
+    }
+    
+    // add separator
+    [[pluginItem submenu] addItem:[NSMenuItem separatorItem]];
+    
+    // show readme item
+    if (readmePath && [[NSFileManager defaultManager] fileExistsAtPath:readmePath]) {
+        NSMenuItem *readmeItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowReadmeMenuItemTitle") action:@selector(showReadme:) keyEquivalent:@""] autorelease];
+        [readmeItem setTarget:self];
+        [[pluginItem submenu] addItem:readmeItem];
+    }
+    
+    // reveal in finder item
+    NSMenuItem *revealInFinderItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyRevealInFinderMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
+    [revealInFinderItem setTag:JDRevealPluginInFinderTag];
+    [revealInFinderItem setTarget:self];
+    [[pluginItem submenu] addItem:revealInFinderItem];
+    
+    // show on github item
+    if (repositoryPath && [repositoryPath rangeOfString:@"github.com"].length != 0) {
+        NSMenuItem *githubItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowOnGithubMenuItemTitle") action:@selector(showOnGithub:) keyEquivalent:@""] autorelease];
+        [githubItem setTarget:self];
+        [[pluginItem submenu] addItem:githubItem];
     }
 }
 
@@ -173,8 +175,12 @@
 - (void)showPlugin:(NSMenuItem*)sender;
 {
     NSURL *url = [NSURL pluginsDirectoryURL];
-    if (sender.tag == 99) {
-        url = [NSURL pluginURLForPluginNamed:sender.title];
+    if (sender.tag == JDRevealPluginInFinderTag) {
+        if ([sender.title isEqualToString:JDLocalize(@"keyRevealInFinderMenuItemTitle")]) {
+            url = [NSURL pluginURLForPluginNamed:[sender parentItem].title];
+        } else {
+            url = [NSURL pluginURLForPluginNamed:sender.title];
+        }
     }
     
     // open finder
