@@ -9,7 +9,7 @@
 #import "JDPluginMetaData.h"
 
 NSString *const JDPluginManagerMetaDataFileName = @".JDPluginManager.meta";
-NSString *const JDPluginManagerMetaDataReadmeName = @".jdpm-README.md";
+NSString *const JDPluginManagerMetaDataReadmeName = @"README.md";
 
 NSString *const JDPluginManagerMetaDataRepositoryKey = @"JDPluginManagerMetaDataRepositoryKey";
 NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaDataReadmePathKey";
@@ -25,7 +25,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 {
-    NSString *path = [pluginPath stringByAppendingPathExtension:JDPluginManagerMetaDataFileName];
+    NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         NSMutableDictionary *dictionary = [[[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy] autorelease];

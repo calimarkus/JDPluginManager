@@ -16,7 +16,12 @@
 "keyEmptyMenuItemTitle"         = "- No installed Plugins -";
 "keyShowDirectoryMenuItemTitle" = "Reveal plugin directory";
 "keyInstallMenuItemTitle"       = "Install a new plugin…";
-"keyUpdateMenuItemTitle"        = "Update JDPluginManager";
+
+"keyUpdateMenuItemTitle"        = "Update…";
+"keyShowReadmeMenuItemTitle"    = "Open Readme";
+"keyShowOnGithubMenuItemTitle"  = "Show on Github.com";
+
+"keyUpdatePluginManagerMenuItemTitle" = "Update JDPluginManager";
 
 // uninstalling
 "keyUninstall" = "Uninstall";
