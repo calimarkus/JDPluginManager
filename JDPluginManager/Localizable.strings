@@ -38,9 +38,9 @@
 "keyInstallProgressTitle"       = "Installing plugin…";
 "keyInstallCloneMessage"        = "Cloning repository now…";
 "keyInstallBuildMessage"        = "Building the plugin now…";
-"keyInstallRestartXCodeMessage" = "To use the new/updated plugin(s), you need to restart Xcode.";
+
 "keyInstallFailureMessage"       = "ERROR: No new/updated plugin installed.";
-"keyInstallSuccessMessageFormat" = "SUCCESS: Installed/updated plugin successfully (%@)";
+"keyInstallSuccessMessageFormat" = "SUCCESS: Installed/updated %@ successfully.\n         Restart Xcode to use the plugin.";
 "keyInstallTrashingTmpDirectory" = "Moving cloned repository into trash now…";
 
 // errors

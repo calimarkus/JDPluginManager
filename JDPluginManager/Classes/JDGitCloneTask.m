@@ -78,7 +78,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 {
     [self.allGitOutput appendString:output];
 
-    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@\n",
+    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@",
                                       self.previousProgressText,
                                       [self minimizedGitOutput]];
     [progressWindow scrollToBottom];

@@ -249,7 +249,6 @@
         
         // inform user
         [self.progressWindow appendTitle:[NSString stringWithFormat:JDLocalize(@"keyInstallSuccessMessageFormat"), changedPlugin]];
-        [self.progressWindow appendLine:JDLocalize(@"keyInstallRestartXCodeMessage")];
     }
 }
 
