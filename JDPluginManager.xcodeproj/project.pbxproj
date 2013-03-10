@@ -16,6 +16,8 @@
 		D237994416EBB62C006F9412 /* JDXcodeBuildTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993916EBB62C006F9412 /* JDXcodeBuildTask.m */; };
 		D237994616EBB62C006F9412 /* NSTaskWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993D16EBB62C006F9412 /* NSTaskWithProgress.m */; };
 		D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */; };
+		D23E31C116EC0F90001B2086 /* NSFileManager+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23E31C016EC0F90001B2086 /* NSFileManager+JDPluginManager.m */; };
+		D23E31C416EC0FA3001B2086 /* JDPluginMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +52,10 @@
 		D237993D16EBB62C006F9412 /* NSTaskWithProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTaskWithProgress.m; sourceTree = "<group>"; };
 		D237993E16EBB62C006F9412 /* NSURL+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+JDPluginManager.h"; sourceTree = "<group>"; };
 		D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+JDPluginManager.m"; sourceTree = "<group>"; };
+		D23E31BF16EC0F90001B2086 /* NSFileManager+JDPluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+JDPluginManager.h"; sourceTree = "<group>"; };
+		D23E31C016EC0F90001B2086 /* NSFileManager+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+JDPluginManager.m"; sourceTree = "<group>"; };
+		D23E31C216EC0FA3001B2086 /* JDPluginMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginMetaData.h; sourceTree = "<group>"; };
+		D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginMetaData.m; sourceTree = "<group>"; };
 		D2E2D2E016D42CCC00447430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = JDPluginManager/Info.plist; sourceTree = "<group>"; };
 		D2E2D2E216D42CE900447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDPluginManager/Localizable.strings; sourceTree = "<group>"; };
 		D2E2D2E316D42CF800447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = JDPluginManager/global.h; sourceTree = SOURCE_ROOT; };
@@ -146,6 +152,8 @@
 			children = (
 				D237993E16EBB62C006F9412 /* NSURL+JDPluginManager.h */,
 				D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */,
+				D23E31BF16EC0F90001B2086 /* NSFileManager+JDPluginManager.h */,
+				D23E31C016EC0F90001B2086 /* NSFileManager+JDPluginManager.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -157,6 +165,8 @@
 				D237993516EBB62C006F9412 /* JDPluginInstaller.m */,
 				D237993616EBB62C006F9412 /* JDPluginManager.h */,
 				D237993716EBB62C006F9412 /* JDPluginManager.m */,
+				D23E31C216EC0FA3001B2086 /* JDPluginMetaData.h */,
+				D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */,
 			);
 			name = "Plugin Logic";
 			sourceTree = "<group>";
@@ -221,6 +231,8 @@
 				D237994416EBB62C006F9412 /* JDXcodeBuildTask.m in Sources */,
 				D237994616EBB62C006F9412 /* NSTaskWithProgress.m in Sources */,
 				D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */,
+				D23E31C116EC0F90001B2086 /* NSFileManager+JDPluginManager.m in Sources */,
+				D23E31C416EC0FA3001B2086 /* JDPluginMetaData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

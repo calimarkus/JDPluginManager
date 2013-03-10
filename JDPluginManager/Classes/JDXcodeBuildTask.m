@@ -17,7 +17,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 
 @interface JDXcodeBuildTask ()
 @property (atomic, strong) NSMutableString *allXcodeBuildOutput;
-@property (atomic, strong) NSString *previousProgressText;
+@property (atomic, copy) NSString *previousProgressText;
 @end
 
 @implementation JDXcodeBuildTask
