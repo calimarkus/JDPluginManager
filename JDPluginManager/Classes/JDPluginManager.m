@@ -9,7 +9,13 @@
 #import "JDPluginManager.h"
 #import "JDPluginInstaller.h"
 #import "NSURL+JDPluginManager.h"
+#import "NSFileManager+JDPluginManager.h"
+#import "JDPluginMetaData.h"
 #import "global.h"
+
+
+NSInteger const JDRevealPluginInFinderTag = 1337;
+
 
 @interface JDPluginManager () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
@@ -17,6 +23,8 @@
 
 - (void)showPlugin:(NSMenuItem*)sender;
 - (void)updatePlugin:(NSMenuItem*)sender;
+- (void)showReadme:(NSMenuItem*)sender;
+- (void)showOnGithub:(NSMenuItem*)sender;
 - (void)deletePlugin:(NSMenuItem*)sender;
 @end
 
@@ -82,18 +90,12 @@
         NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
         [installItem setTarget:self];
         [[pluginsMenuItem submenu] addItem:installItem];
-        
-        // update item
-        NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
-        [pluginItem setTarget:self];
-        [[pluginsMenuItem submenu] addItem:pluginItem];
     }
 }
 
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 {
-    NSString *pluginsPath = [[NSURL pluginsDirectoryURL] path];
-    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:pluginsPath error:nil];
+    NSArray *contents = [NSFileManager allPluginsWithModifiedDate:NO];
     if (!contents || contents.count == 0) {
         // empty item
         NSMenuItem *emptyItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyEmptyMenuItemTitle") action:nil keyEquivalent:@""] autorelease];
@@ -117,14 +119,49 @@
     // plugin item
     NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
     [pluginItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
-    pluginItem.tag = 99;
+    [pluginItem setTag:JDRevealPluginInFinderTag];
     [pluginItem setTarget:self];
     [menu addItem:pluginItem];
     
     // delete item
-    NSMenuItem *deleteItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUninstall") action:@selector(deletePlugin:) keyEquivalent:@""] autorelease];
+    NSMenuItem *deleteItem = [[[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat: @"%@…", JDLocalize(@"keyUninstall")] action:@selector(deletePlugin:) keyEquivalent:@""] autorelease];
     [deleteItem setTarget:self];
     [[pluginItem submenu] addItem:deleteItem];
+    
+    // read meta data
+    JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:name] path]];
+    NSString *repositoryPath = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *readmePath     = [metaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    
+    // update item
+    if (repositoryPath) {
+        NSMenuItem *updateItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyUpdateMenuItemTitle") action:@selector(updatePlugin:) keyEquivalent:@""] autorelease];
+        [updateItem setTarget:self];
+        [[pluginItem submenu] addItem:updateItem];
+    }
+    
+    // add separator
+    [[pluginItem submenu] addItem:[NSMenuItem separatorItem]];
+    
+    // show readme item
+    if (readmePath && [[NSFileManager defaultManager] fileExistsAtPath:readmePath]) {
+        NSMenuItem *readmeItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowReadmeMenuItemTitle") action:@selector(showReadme:) keyEquivalent:@""] autorelease];
+        [readmeItem setTarget:self];
+        [[pluginItem submenu] addItem:readmeItem];
+    }
+    
+    // reveal in finder item
+    NSMenuItem *revealInFinderItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyRevealInFinderMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
+    [revealInFinderItem setTag:JDRevealPluginInFinderTag];
+    [revealInFinderItem setTarget:self];
+    [[pluginItem submenu] addItem:revealInFinderItem];
+    
+    // show on github item
+    if (repositoryPath && [repositoryPath rangeOfString:@"github.com"].length != 0) {
+        NSMenuItem *githubItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowOnGithubMenuItemTitle") action:@selector(showOnGithub:) keyEquivalent:@""] autorelease];
+        [githubItem setTarget:self];
+        [[pluginItem submenu] addItem:githubItem];
+    }
 }
 
 #pragma mark actions
@@ -132,8 +169,12 @@
 - (void)showPlugin:(NSMenuItem*)sender;
 {
     NSURL *url = [NSURL pluginsDirectoryURL];
-    if (sender.tag == 99) {
-        url = [NSURL pluginURLForPluginNamed:sender.title];
+    if (sender.tag == JDRevealPluginInFinderTag) {
+        if ([sender.title isEqualToString:JDLocalize(@"keyRevealInFinderMenuItemTitle")]) {
+            url = [NSURL pluginURLForPluginNamed:[sender parentItem].title];
+        } else {
+            url = [NSURL pluginURLForPluginNamed:sender.title];
+        }
     }
     
     // open finder
@@ -142,7 +183,36 @@
 
 - (void)updatePlugin:(NSMenuItem*)sender;
 {
-    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryUrl:@"git@github.com:jaydee3/JDPluginManager.git" searchInSubdirectories:NO];
+    NSString *pluginName = [sender parentItem].title;
+    JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
+    
+    NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitURL searchInSubdirectories:NO];
+}
+
+- (void)showReadme:(NSMenuItem*)sender;
+{
+    NSString *pluginName = [sender parentItem].title;
+    JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
+    
+    NSString *readmePath = [metaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    [[NSWorkspace sharedWorkspace] openFile:readmePath];
+}
+
+- (void)showOnGithub:(NSMenuItem*)sender;
+{
+    NSString *pluginName = [sender parentItem].title;
+    JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
+
+    NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    gitURL = [gitURL stringByReplacingOccurrencesOfString:@"git@github.com:" withString:@"github.com/"];
+    if (![gitURL hasPrefix:@"HTTP"] || ![gitURL hasPrefix:@"http"]) {
+        gitURL = [NSString stringWithFormat: @"http://%@", gitURL];
+    }
+    NSURL *url = [NSURL URLWithString:gitURL];
+    if (url) {
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
 }
 
 - (void)deletePlugin:(NSMenuItem*)sender;

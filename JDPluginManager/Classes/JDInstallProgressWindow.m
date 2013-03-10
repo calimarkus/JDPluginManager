@@ -64,8 +64,8 @@
 
 - (void)appendLine:(NSString*)line;
 {
-    if (line && line.length > 0) {
-        self.textView.string = [NSString stringWithFormat: @"%@\n%@", self.textView.string, line];
+    if (line) {
+        self.textView.string = [NSString stringWithFormat: @"%@%@\n", self.textView.string, line];
         [self scrollToBottom];
     }
 }
@@ -74,6 +74,11 @@
 {
     NSString *topSeparator    = @"----------------------------------------------------------- JDPluginManager -----";
     NSString *bottomSeparator = @"---------------------------------------------------------------------------------";
+    
+    // add newline before, if textView already contains text
+    if (self.textView.string.length > 0) {
+        topSeparator = [NSString stringWithFormat: @"\n%@", topSeparator];
+    }
     
     [self appendLine:topSeparator];
     [self appendLine:title];
@@ -86,3 +91,5 @@
 }
 
 @end
+
+

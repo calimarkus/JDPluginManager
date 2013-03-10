@@ -17,7 +17,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 
 @interface JDGitCloneTask ()
 @property (atomic, strong) NSMutableString *allGitOutput;
-@property (atomic, strong) NSString *previousProgressText;
+@property (atomic, copy) NSString *previousProgressText;
 @end
 
 @implementation JDGitCloneTask
@@ -25,27 +25,27 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 @synthesize allGitOutput = _allGitOutput;
 @synthesize previousProgressText = _previousProgressText;
 
-+ (instancetype)launchedTaskWithRepositoryURL:(NSString*)repositoryURL
++ (instancetype)launchedTaskWithRepositoryPath:(NSString*)repositoryPath
                                progressWindow:(JDInstallProgressWindow*)progressWindow
                                    completion:(void(^)(NSString *clonePath))completion;
 {
 
-    JDGitCloneTask *task = [[JDGitCloneTask alloc] initWithRepositoryURL:repositoryURL
+    JDGitCloneTask *task = [[JDGitCloneTask alloc] initWithRepositoryPath:repositoryPath
                                                           progressWindow:progressWindow
                                                               completion:completion];
     [task.task launch];
     return task;
 }
 
-- (id)initWithRepositoryURL:(NSString*)repositoryURL
+- (id)initWithRepositoryPath:(NSString*)repositoryPath
              progressWindow:(JDInstallProgressWindow*)progressWindow
                  completion:(void(^)(NSString *clonePath))completion;
 {
     [progressWindow appendTitle:JDLocalize(@"keyInstallCloneMessage")];
-    [progressWindow appendLine:[NSString stringWithFormat: @"Repository: %@", repositoryURL]];
+    [progressWindow appendLine:[NSString stringWithFormat: @"Repository: %@\n", repositoryPath]];
     
-    NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryURL lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
-    NSArray *gitArgs = @[@"clone", repositoryURL, clonePath, @"--progress", @"--verbose"];
+    NSString *clonePath = [tmpClonePath stringByAppendingPathComponent:[[repositoryPath lastPathComponent] stringByReplacingOccurrencesOfString:@".git" withString:@""]];
+    NSArray *gitArgs = @[@"clone", repositoryPath, clonePath, @"--progress", @"--verbose"];
 
     self = [super initWithLaunchPath:gitPath arguments:gitArgs currentDirectoryPath:nil progress:^(NSTask *task, NSString *output) {
         [self handleGitOutput:output inProgressWindow:progressWindow];
@@ -78,7 +78,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 {
     [self.allGitOutput appendString:output];
 
-    progressWindow.textView.string = [NSString stringWithFormat: @"%@\n\n%@\n",
+    progressWindow.textView.string = [NSString stringWithFormat: @"%@%@\n",
                                       self.previousProgressText,
                                       [self minimizedGitOutput]];
     [progressWindow scrollToBottom];
