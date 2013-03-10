@@ -136,8 +136,8 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     
     // read meta data
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:name] path]];
-    NSString *repositoryPath = [metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey];
-    NSString *readmePath     = [metaData.dictionary objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    NSString *repositoryPath = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *readmePath     = [metaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
     
     // update item
     if (repositoryPath) {
@@ -192,7 +192,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
     
-    NSString *gitURL = [metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
     [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitURL searchInSubdirectories:NO];
 }
 
@@ -206,7 +206,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
     
-    NSString *readmePath = [metaData.dictionary objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    NSString *readmePath = [metaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
     [[NSWorkspace sharedWorkspace] openFile:readmePath];
 }
 
@@ -215,7 +215,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
 
-    NSString *gitURL = [metaData.dictionary objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
     gitURL = [gitURL stringByReplacingOccurrencesOfString:@"git@github.com:" withString:@"github.com/"];
     if (![gitURL hasPrefix:@"HTTP"] || ![gitURL hasPrefix:@"http"]) {
         gitURL = [NSString stringWithFormat: @"http://%@", gitURL];

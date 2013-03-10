@@ -15,6 +15,7 @@ NSString *const JDPluginManagerMetaDataRepositoryKey = @"JDPluginManagerMetaData
 NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaDataReadmePathKey";
 
 @interface JDPluginMetaData ()
+@property (nonatomic, strong) NSMutableDictionary *dictionary;
 @property (nonatomic, copy) NSString *pluginPath;
 @end
 
@@ -60,6 +61,16 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     self.dictionary = nil;
     self.pluginPath = nil;
     [super dealloc];
+}
+
+#pragma mark data
+
+- (id)objectForKey:(id)aKey; {
+    return [self.dictionary objectForKey:aKey];
+}
+
+- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey; {
+    [self.dictionary setObject:anObject forKey:aKey];
 }
 
 - (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath;

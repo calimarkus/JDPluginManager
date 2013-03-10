@@ -243,7 +243,7 @@
         NSString *pluginPath = [[NSURL pluginURLForPluginNamed:changedPlugin] path];
         JDPluginMetaData *metaData = [[JDPluginMetaData alloc] initWithPluginPath:pluginPath];
         [metaData findAndSetReadmeAtBuildPath:buildPath];
-        [metaData.dictionary setObject:self.repositoryPath forKey:JDPluginManagerMetaDataRepositoryKey];
+        [metaData setObject:self.repositoryPath forKey:JDPluginManagerMetaDataRepositoryKey];
         [metaData save];
         [metaData release];
         

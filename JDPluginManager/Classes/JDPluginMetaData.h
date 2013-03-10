@@ -16,11 +16,12 @@ extern NSString *const JDPluginManagerMetaDataReadmePathKey;
     NSString* _pluginPath;
 }
 
-@property (nonatomic, strong) NSMutableDictionary *dictionary;
-
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 
 - (id)initWithPluginPath:(NSString*)pluginPath;
+
+- (id)objectForKey:(id)aKey;
+- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;
 
 - (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath;
 - (BOOL)save;
