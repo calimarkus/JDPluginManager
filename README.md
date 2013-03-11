@@ -3,7 +3,7 @@
 ## Overview
 
 Are you using a lot of XCode Plugins?  
-This plugin makes it easy to install, update and remove them.
+This plugin makes it easy to install, update and remove them. It adds a new MenuItem `Plugins` in the Menu Bar of Xcode, as you can see in the screenshots.
 
 **Key Features:**
 
@@ -12,20 +12,13 @@ This plugin makes it easy to install, update and remove them.
 - Uninstall plugins
 
 
-*This is tested only on OS X 10.8 with Xcode 4.6.*
+*This is tested on OS X 10.8 with Xcode 4.6 only, but probably runs also in older environments.*
 
-It adds a new MenuItem "Plugins" in the Menu Bar of Xcode:
+**Screenshots:**
 
 ![Screenshot](assets/screenshot1.png "Menu Screenshot")
 ![Screenshot](assets/screenshot2.png "Uninstall Screenshot")
 ![Screenshot](assets/screenshot3.png "Installation Screenshot")
-
-### Twitter
-
-I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
-Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3), if you like this plugin.  
-
-[![TweetButton](assets/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3)
 
 ## Installation
 
@@ -37,4 +30,11 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 ## Uninstall
 
 In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterwards.
+
+## Twitter
+
+I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
+Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3), if you like this plugin.  
+
+[![TweetButton](assets/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3)
 
