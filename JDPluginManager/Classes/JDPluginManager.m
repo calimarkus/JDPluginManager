@@ -206,6 +206,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
     NSString *gitURL = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
     gitURL = [gitURL stringByReplacingOccurrencesOfString:@"git@github.com:" withString:@"github.com/"];
+    gitURL = [gitURL stringByReplacingOccurrencesOfString:@".git" withString:@""];
     if (![gitURL hasPrefix:@"HTTP"] || ![gitURL hasPrefix:@"http"]) {
         gitURL = [NSString stringWithFormat: @"http://%@", gitURL];
     }
