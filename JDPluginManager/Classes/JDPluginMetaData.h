@@ -14,11 +14,17 @@ extern NSString *const JDPluginManagerMetaDataReadmePathKey;
 @interface JDPluginMetaData : NSObject {
     NSMutableDictionary* _dictionary;
     NSString* _pluginPath;
+    NSString* _name;
 }
 
+@property (nonatomic, copy, readonly) NSString *name;
+
+
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
++ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath andName:(NSString *)name;
 
 - (id)initWithPluginPath:(NSString*)pluginPath;
+- (id)initWithPluginPath:(NSString*)pluginPath andName:(NSString *)name;
 
 - (id)objectForKey:(id)aKey;
 - (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey;

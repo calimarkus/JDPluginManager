@@ -12,7 +12,7 @@
 #import "NSFileManager+JDPluginManager.h"
 #import "JDPluginMetaData.h"
 #import "global.h"
-
+#import "JDPluginsRepository.h"
 
 NSInteger const JDRevealPluginInFinderTag = 1337;
 
@@ -31,6 +31,8 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 @implementation JDPluginManager
 
+@synthesize jdpm = _jdpm;
+
 + (void)pluginDidLoad:(NSBundle*)plugin
 {
 	static id sharedPlugin = nil;
@@ -44,6 +46,8 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 {
     self = [super init];
     if (self) {
+        [JDPluginsRepository sharedInstance];
+        self.jdpm = [[JDPluginsWindowController alloc] init];
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:)
                                                      name:NSApplicationDidFinishLaunchingNotification object:nil];
     }
@@ -57,6 +61,11 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 #pragma mark build menu
 
+-(void)openPluginManager:(NSMenuItem*)sender
+{
+    [self.jdpm showWindow:[NSApp mainWindow]];
+}
+
 - (void)extendXcodeMenu
 {
     // find window menu item
@@ -64,7 +73,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 	if(menuIndex<0) {
 		menuIndex=[[NSApp mainMenu] numberOfItems];
     }
-	
+    
     // insert plugins item
 	NSMenuItem *pluginsMenuItem=[[NSApp mainMenu] insertItemWithTitle:@"" action:nil keyEquivalent:@"" atIndex:menuIndex];
     NSMenu *subMenu = [[[NSMenu alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle")] autorelease];
@@ -90,34 +99,33 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
         NSMenuItem *installItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyInstallMenuItemTitle") action:@selector(installPlugin:) keyEquivalent:@""] autorelease];
         [installItem setTarget:self];
         [[pluginsMenuItem submenu] addItem:installItem];
+        
+        //insert plugin manager item
+        NSMenuItem *pluginsManagerMenuItem = [[[NSMenuItem alloc] initWithTitle:@"Plugin Manager" action:@selector(openPluginManager:) keyEquivalent:@""] autorelease];
+        [pluginsManagerMenuItem setTarget:self];
+        [[pluginsMenuItem submenu] addItem:pluginsManagerMenuItem];
     }
 }
 
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 {
-    NSArray *contents = [NSFileManager allPluginsWithModifiedDate:NO];
-    if (!contents || contents.count == 0) {
-        // empty item
+    NSArray *plugins = [JDPluginsRepository sharedInstance].installedPlugins;
+    if (!plugins || plugins.count == 0)
+    {
         NSMenuItem *emptyItem = [[[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyEmptyMenuItemTitle") action:nil keyEquivalent:@""] autorelease];
         [emptyItem setEnabled:NO];
         [menu addItem:emptyItem];
-    } else {
-        [contents enumerateObjectsUsingBlock:^(NSString *file, NSUInteger idx, BOOL *stop) {
-            if ([file hasSuffix:xcodePluginSuffix]) {
-                // remove suffix
-                file = [file stringByReplacingOccurrencesOfString:xcodePluginSuffix withString:@""];
-                
-                // plugin item
-                [self addPluginNamed:file toMenu:menu];
-            }
-        }];
+        return;
+    }
+    
+    for (JDPluginMetaData *plugin in plugins) {
+        [self addPlugin:plugin toMenu:menu];
     }
 }
 
-- (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
+-(void)addPlugin:(JDPluginMetaData *)plugin toMenu:(NSMenu*)menu
 {
-    // plugin item
-    NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
+    NSMenuItem *pluginItem = [[[NSMenuItem alloc] initWithTitle:plugin.name action:@selector(showPlugin:) keyEquivalent:@""] autorelease];
     [pluginItem setSubmenu:[[[NSMenu alloc] init] autorelease]];
     [pluginItem setTag:JDRevealPluginInFinderTag];
     [pluginItem setTarget:self];
@@ -129,9 +137,8 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     [[pluginItem submenu] addItem:deleteItem];
     
     // read meta data
-    JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:name] path]];
-    NSString *repositoryPath = [metaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
-    NSString *readmePath     = [metaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    NSString *repositoryPath = [plugin objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    NSString *readmePath     = [plugin objectForKey:JDPluginManagerMetaDataReadmePathKey];
     
     // update item
     if (repositoryPath) {
@@ -162,6 +169,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
         [githubItem setTarget:self];
         [[pluginItem submenu] addItem:githubItem];
     }
+
 }
 
 #pragma mark actions
