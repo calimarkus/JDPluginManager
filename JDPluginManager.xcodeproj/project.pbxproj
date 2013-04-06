@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30073DBC171087C700D92117 /* JDPluginsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 30073DBB171087C700D92117 /* JDPluginsRepository.m */; };
+		301C3B0D1710863A007265D8 /* JDPluginsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */; };
+		30C131D8171066690074D903 /* JDPluginsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C131D6171066690074D903 /* JDPluginsWindowController.m */; };
 		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
 		D22B0BB316D4310D0035D03B /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2E2D2E216D42CE900447430 /* Localizable.strings */; };
 		D237994016EBB62C006F9412 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993116EBB62C006F9412 /* JDGitCloneTask.m */; };
@@ -36,6 +39,11 @@
 
 /* Begin PBXFileReference section */
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		30073DBA171087C700D92117 /* JDPluginsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsRepository.h; sourceTree = "<group>"; };
+		30073DBB171087C700D92117 /* JDPluginsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsRepository.m; sourceTree = "<group>"; };
+		301C3B0A171084BF007265D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JDPluginsWindowController.xib; sourceTree = "<group>"; };
+		30C131D5171066690074D903 /* JDPluginsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsWindowController.h; sourceTree = "<group>"; };
+		30C131D6171066690074D903 /* JDPluginsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsWindowController.m; sourceTree = "<group>"; };
 		7F2EB899145057EA00E97A87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8D5B49B6048680CD000E48DA /* JDPluginManager.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JDPluginManager.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		D237993016EBB62C006F9412 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGitCloneTask.h; sourceTree = "<group>"; };
@@ -143,6 +151,9 @@
 			children = (
 				D237993216EBB62C006F9412 /* JDInstallProgressWindow.h */,
 				D237993316EBB62C006F9412 /* JDInstallProgressWindow.m */,
+				30C131D5171066690074D903 /* JDPluginsWindowController.h */,
+				30C131D6171066690074D903 /* JDPluginsWindowController.m */,
+				301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -167,6 +178,8 @@
 				D237993716EBB62C006F9412 /* JDPluginManager.m */,
 				D23E31C216EC0FA3001B2086 /* JDPluginMetaData.h */,
 				D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */,
+				30073DBA171087C700D92117 /* JDPluginsRepository.h */,
+				30073DBB171087C700D92117 /* JDPluginsRepository.m */,
 			);
 			name = "Plugin Logic";
 			sourceTree = "<group>";
@@ -181,6 +194,7 @@
 				D277852A16C0589C001711DE /* CopyFiles */,
 				8D5B49B1048680CD000E48DA /* Sources */,
 				8D5B49B3048680CD000E48DA /* Frameworks */,
+				301C3B0C17108632007265D8 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -219,6 +233,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		301C3B0C17108632007265D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				301C3B0D1710863A007265D8 /* JDPluginsWindowController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D5B49B1048680CD000E48DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -233,10 +258,23 @@
 				D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */,
 				D23E31C116EC0F90001B2086 /* NSFileManager+JDPluginManager.m in Sources */,
 				D23E31C416EC0FA3001B2086 /* JDPluginMetaData.m in Sources */,
+				30C131D8171066690074D903 /* JDPluginsWindowController.m in Sources */,
+				30073DBC171087C700D92117 /* JDPluginsRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				301C3B0A171084BF007265D8 /* en */,
+			);
+			name = JDPluginsWindowController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB913B08733D840010E9CD /* Debug */ = {

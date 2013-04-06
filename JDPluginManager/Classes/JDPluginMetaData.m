@@ -23,10 +23,16 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 @synthesize dictionary = _dictionary;
 @synthesize pluginPath = _pluginPath;
+@synthesize name = _name;
 
-+ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
++ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath
 {
-    JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
+    return [self metaDataForPluginAtPath:pluginPath andName:nil];
+}
+
++ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath andName:(NSString *)name
+{
+    JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath andName:name] autorelease];
 
     // read saved meta data
     NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
@@ -48,10 +54,17 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 - (id)initWithPluginPath:(NSString*)pluginPath;
 {
+    self = [self initWithPluginPath:pluginPath andName:nil];
+    return self;
+}
+
+- (id)initWithPluginPath:(NSString*)pluginPath andName:(NSString *)name;
+{
     self = [super init];
     if (self) {
         _pluginPath = [pluginPath copy];
         _dictionary = [[NSMutableDictionary alloc] init];
+        _name = [name copy];
     }
     return self;
 }
