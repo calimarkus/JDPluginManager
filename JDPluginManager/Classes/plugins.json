@@ -1,14 +1,12 @@
- [
+[
   {
-  "git": "sadasd",
-  "title": "A Plugin",
-  "description": "asdasd",
-  "auther": "asdasd"
+    "title": "ColorSense-for-Xcode",
+    "git": "https://github.com/omz/ColorSense-for-Xcode.git",
+    "description": "Plugin for Xcode to make working with colors more visual"
   },
   {
-  "git": "sadasd",
-  "title": "A Plugin",
-  "description": "asdasd",
-  "auther": "asdasd"
+    "git": "sadasd",
+    "title": "A Plugin",
+    "description": "asdasd"
   }
-  ]
+]
