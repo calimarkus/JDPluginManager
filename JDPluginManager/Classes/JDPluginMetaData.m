@@ -121,4 +121,8 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     return succes;
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"plugin name: %@, path: %@", self.name, self.pluginPath ];
+}
 @end

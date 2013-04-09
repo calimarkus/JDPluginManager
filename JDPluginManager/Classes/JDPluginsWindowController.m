@@ -15,6 +15,13 @@
 @end
 
 @implementation JDPluginsWindowController
+@synthesize segmentControl = _segmentControl;
+@synthesize pluginsTableView = _pluginsTableView;
+
+-(BOOL *)segmentControlSetOnAvailablePlugins
+{
+   return self.segmentControl.selectedSegment == 0;
+}
 
 -(id)init
 {
@@ -40,18 +47,21 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
+-(IBAction)segmentedControllerChangedSelection:(id)sender
+{
+    [self.pluginsTableView reloadData];
+}
 
 #
 #pragma mark - Table management
 #
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    NSLog(@"About to return count: %li", (unsigned long)[JDPluginsRepository sharedInstance].installedPlugins.count);
-	return [JDPluginsRepository sharedInstance].installedPlugins.count;
+	return self.segmentControlSetOnAvailablePlugins ? [JDPluginsRepository sharedInstance].availablePlugins.count :[JDPluginsRepository sharedInstance].installedPlugins.count;
 }
 
 -(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	JDPluginMetaData *pluginMetaData = [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: row];
-    NSLog(@"Table column identifier: %@", tableColumn.identifier);
+	JDPluginMetaData *pluginMetaData =  self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: row] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: row];
+    
 	if ([tableColumn.identifier isEqualToString:@"Name"]) {
 		return pluginMetaData.name;
 	}

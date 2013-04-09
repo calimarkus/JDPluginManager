@@ -10,13 +10,17 @@
 #import "NSFileManager+JDPluginManager.h"
 #import "NSURL+JDPluginManager.h"
 #import "JDPluginMetaData.h"
+#import "JDAvialablePluginsLoader.h"
 
 @interface  JDPluginsRepository  ()
 
 @end
 
 @implementation JDPluginsRepository
+
 @synthesize installedPlugins = _installedPlugins;
+@synthesize availablePlugins = _availablePlugins;
+
 
 +(JDPluginsRepository *)sharedInstance
 {
@@ -45,6 +49,7 @@
         }
     }];
     
+    self.availablePlugins = [JDAvialablePluginsLoader getAvailabePlugins];
     return self;
 }
 

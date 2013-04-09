@@ -11,9 +11,11 @@
 @interface JDPluginsRepository : NSObject
 {
     NSMutableArray *_installedPlugins;
+    NSArray *_availablePlugins;
 }
 
 @property (nonatomic, strong) NSMutableArray *installedPlugins;
+@property (nonatomic, strong) NSArray *availablePlugins;
 
 +(JDPluginsRepository *)sharedInstance;
 
