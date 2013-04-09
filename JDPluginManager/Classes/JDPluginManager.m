@@ -19,7 +19,6 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 @interface JDPluginManager () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
-- (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
 
 - (void)showPlugin:(NSMenuItem*)sender;
 - (void)updatePlugin:(NSMenuItem*)sender;

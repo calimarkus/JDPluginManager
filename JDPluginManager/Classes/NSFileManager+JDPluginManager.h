@@ -15,5 +15,6 @@ extern NSString const* JDPluginModifiedDate;
 @interface NSFileManager (JDPluginManager)
 
 + (NSArray*)allPluginsWithModifiedDate:(BOOL)withModifiedDate;
++(NSArray *)readPluginsJSONFile;
 
 @end
