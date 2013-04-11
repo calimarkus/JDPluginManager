@@ -9,6 +9,10 @@
 #import "JDPluginsWindowController.h"
 #import "JDPluginsRepository.h"
 #import "JDPluginMetaData.h"
+#import "JDPluginInstaller.h"
+#import "JDPluginsCellView.h"
+#import "NSURL+JDPluginManager.h"
+#import "global.h"
 
 @interface JDPluginsWindowController ()
 
@@ -51,27 +55,76 @@
 {
     [self.pluginsTableView reloadData];
 }
+-(IBAction)didPressInstallOrUnInstallButton:(id)sender
+{
+    NSInteger selectedRow = [self.pluginsTableView rowForView:sender];
+    JDPluginMetaData *pluginMetaData = [self getPluginMetaDataAtIndex:selectedRow];
+    
+    if (self.segmentControlSetOnAvailablePlugins)
+    {
+        NSString *gitUrl = [pluginMetaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
+        [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitUrl searchInSubdirectories:NO];
+    }
+    else
+    {
+        [self removePlugin:pluginMetaData.name atIndexInTable:selectedRow];
+    }
+}
 
+-(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable
+{
+    // construct alert
+    NSAlert *alert = [NSAlert alertWithMessageText:[NSString stringWithFormat:JDLocalize(@"keyUninstallAlertTitleFormat"), name]
+                                     defaultButton:JDLocalize(@"keyUninstall")
+                                   alternateButton:JDLocalize(@"keyCancel")
+                                       otherButton:nil
+                         informativeTextWithFormat:JDLocalize(@"keyUninstallAlertMessageFormat"), name];
+    alert.alertStyle = NSCriticalAlertStyle;
+    
+    // show alert
+    NSInteger selectedButtonIndex = [alert runModal];
+    if (selectedButtonIndex == 0) {
+        return;
+    }
+    
+    // move plugin folder to trash
+    NSString *pluginPath = [[NSURL pluginURLForPluginNamed:name] path];
+    BOOL deleted = [[NSWorkspace sharedWorkspace] performFileOperation:NSWorkspaceRecycleOperation
+                                                                source:[pluginPath stringByDeletingLastPathComponent]
+                                                           destination:@""
+                                                                 files:[NSArray arrayWithObject:[pluginPath lastPathComponent]]
+                                                                   tag:nil];
+    if (deleted) {
+        [[JDPluginsRepository sharedInstance] removedUnInstalledPlugin:indexInTable];
+        [self.pluginsTableView removeRowsAtIndexes:[NSIndexSet indexSetWithIndex:indexInTable] withAnimation:NSTableViewAnimationEffectFade];
+    }
+}
 #
 #pragma mark - Table management
 #
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-	return self.segmentControlSetOnAvailablePlugins ? [JDPluginsRepository sharedInstance].availablePlugins.count :[JDPluginsRepository sharedInstance].installedPlugins.count;
+	NSInteger count =  self.segmentControlSetOnAvailablePlugins ? [JDPluginsRepository sharedInstance].availablePlugins.count :[JDPluginsRepository sharedInstance].installedPlugins.count;
+    NSLog(@"number of plugins: %li", (long)count);
+    return count;
 }
 
--(id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	JDPluginMetaData *pluginMetaData =  self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: row] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: row];
+- (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
+{
+	JDPluginMetaData *pluginMetaData = [self getPluginMetaDataAtIndex:row];
     
-	if ([tableColumn.identifier isEqualToString:@"Name"]) {
-		return pluginMetaData.name;
+	if ([tableColumn.identifier isEqualToString:@"MainCell"]) {
+        JDPluginsCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
+        NSLog(@"JDPluginsCellView loaded: %@", cellView);
+        [cellView setCellWithPluginMetaData:pluginMetaData canBeInstalled: self.segmentControlSetOnAvailablePlugins];
+        return cellView;
 	}
-	else if ([tableColumn.identifier isEqualToString:@"Description"]) {
-		return @"Plugin description";
-	}
-    else if ([tableColumn.identifier isEqualToString:@"Action"]) {
-		return @"Plugins actions";
-	}
-	return @"Yikes!";
+    return nil;
+    
+}
+
+-(JDPluginMetaData *)getPluginMetaDataAtIndex:(NSInteger)index
+{
+    return self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: index] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: index];
 }
 
 @end
