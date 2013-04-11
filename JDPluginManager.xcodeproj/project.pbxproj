@@ -10,6 +10,7 @@
 		30073DBC171087C700D92117 /* JDPluginsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 30073DBB171087C700D92117 /* JDPluginsRepository.m */; };
 		301C3B0D1710863A007265D8 /* JDPluginsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */; };
 		3023CCB3171340FF009B7C31 /* JDAvialablePluginsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023CCB2171340FF009B7C31 /* JDAvialablePluginsLoader.m */; };
+		3027340817173A310086C749 /* JDPluginsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3027340717173A310086C749 /* JDPluginsCellView.m */; };
 		30C131D8171066690074D903 /* JDPluginsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C131D6171066690074D903 /* JDPluginsWindowController.m */; };
 		30C29F1A1714831F007D0907 /* plugins.json in Resources */ = {isa = PBXBuildFile; fileRef = 30C29F191714831F007D0907 /* plugins.json */; };
 		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
@@ -46,6 +47,8 @@
 		301C3B0A171084BF007265D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JDPluginsWindowController.xib; sourceTree = "<group>"; };
 		3023CCB1171340FF009B7C31 /* JDAvialablePluginsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDAvialablePluginsLoader.h; sourceTree = "<group>"; };
 		3023CCB2171340FF009B7C31 /* JDAvialablePluginsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDAvialablePluginsLoader.m; sourceTree = "<group>"; };
+		3027340617173A310086C749 /* JDPluginsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsCellView.h; sourceTree = "<group>"; };
+		3027340717173A310086C749 /* JDPluginsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsCellView.m; sourceTree = "<group>"; };
 		30C131D5171066690074D903 /* JDPluginsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsWindowController.h; sourceTree = "<group>"; };
 		30C131D6171066690074D903 /* JDPluginsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsWindowController.m; sourceTree = "<group>"; };
 		30C29F191714831F007D0907 /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plugins.json; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				30C131D5171066690074D903 /* JDPluginsWindowController.h */,
 				30C131D6171066690074D903 /* JDPluginsWindowController.m */,
 				301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */,
+				3027340617173A310086C749 /* JDPluginsCellView.h */,
+				3027340717173A310086C749 /* JDPluginsCellView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 				30C131D8171066690074D903 /* JDPluginsWindowController.m in Sources */,
 				30073DBC171087C700D92117 /* JDPluginsRepository.m in Sources */,
 				3023CCB3171340FF009B7C31 /* JDAvialablePluginsLoader.m in Sources */,
+				3027340817173A310086C749 /* JDPluginsCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

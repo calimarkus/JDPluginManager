@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSArray *availablePlugins;
 
 +(JDPluginsRepository *)sharedInstance;
-
+-(void)removedUnInstalledPlugin:(NSInteger)index;
 @end

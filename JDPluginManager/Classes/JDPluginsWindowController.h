@@ -18,4 +18,5 @@
 @property (nonatomic, readonly) BOOL *segmentControlSetOnAvailablePlugins;
 
 -(IBAction)segmentedControllerChangedSelection:(id)sender;
+-(IBAction)didPressInstallOrUnInstallButton:(id)sender;
 @end

@@ -53,6 +53,9 @@
     return self;
 }
 
-
+-(void)removedUnInstalledPlugin:(NSInteger)index
+{
+    [self.installedPlugins removeObjectAtIndex:index];
+}
 
 @end

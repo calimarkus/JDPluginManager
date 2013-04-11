@@ -21,9 +21,11 @@
     for (NSDictionary *plugin in availablePluginsJSONArray)
     {
         NSString *repoPath = [plugin objectForKey:@"git"];
-        NSString *description = [plugin objectForKey:@"description"];
+//        NSString *description = [plugin objectForKey:@"description"];
         NSString *name = [plugin objectForKey:@"title"];
-        JDPluginMetaData *pluginMetaData = [[JDPluginMetaData alloc] initWithPluginPath:repoPath andName:name];
+        JDPluginMetaData *pluginMetaData = [[JDPluginMetaData alloc] initWithPluginPath:nil andName:name];
+        
+        [pluginMetaData setObject:repoPath forKey:JDPluginManagerMetaDataRepositoryKey];
         NSLog(@"plugin added: %@", pluginMetaData.description);
         [availablePlugins addObject:pluginMetaData];
     }
