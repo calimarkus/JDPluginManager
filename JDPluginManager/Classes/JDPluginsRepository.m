@@ -20,7 +20,8 @@
 
 @synthesize installedPlugins = _installedPlugins;
 @synthesize availablePlugins = _availablePlugins;
-
+@synthesize extraPluginsDataLoader = _extraPluginsDataLoader;
+@synthesize delegate = _delegate;
 
 +(JDPluginsRepository *)sharedInstance
 {
@@ -36,26 +37,59 @@
 {
     self = [super init];
     if (!self) return nil;
-    NSArray *pluginsNames = [NSFileManager allPluginsWithModifiedDate:NO];
-    self.installedPlugins = [NSMutableArray arrayWithCapacity:pluginsNames.count];
-    [pluginsNames enumerateObjectsUsingBlock:^(NSString *pluginFile, NSUInteger idx, BOOL *stop) {
+    NSArray *pluginsNamesAndInstallDates = [NSFileManager allPluginsWithModifiedDate:YES];
+    self.installedPlugins = [NSMutableArray arrayWithCapacity:pluginsNamesAndInstallDates.count];
+    [pluginsNamesAndInstallDates enumerateObjectsUsingBlock:^(NSDictionary *pluginNameAndDate, NSUInteger idx, BOOL *stop) {
+        NSString *pluginFile = [pluginNameAndDate objectForKey:JDPluginNameKey];
         if ([pluginFile hasSuffix:xcodePluginSuffix]) {
             // remove suffix
+            
             pluginFile = [pluginFile stringByReplacingOccurrencesOfString:xcodePluginSuffix withString:@""];
             
             // get plugin extra data
             JDPluginMetaData *pluginMetaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginFile] path] andName:pluginFile];
+            pluginMetaData.localPluginModifiedDate = [pluginNameAndDate objectForKey:JDPluginModifiedDate];
             [self.installedPlugins addObject:pluginMetaData];
         }
     }];
     
-    self.availablePlugins = [JDAvialablePluginsLoader getAvailabePlugins];
+    self.availablePlugins = [NSMutableArray arrayWithArray:[JDAvialablePluginsLoader getAvailabePlugins]];
+    [self removeInstalledPluginsFromAvailableList];
     return self;
+}
+
+-(void)getPluginsExtraData
+{
+    if (self.extraPluginsDataLoader != nil) return; //we already got them
+    self.extraPluginsDataLoader = [[JDExtraPluginsDataLoader alloc] init];
+    self.extraPluginsDataLoader.delegate = self;
+    [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.availablePlugins];
+    [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.installedPlugins];
 }
 
 -(void)removedUnInstalledPlugin:(NSInteger)index
 {
     [self.installedPlugins removeObjectAtIndex:index];
+}
+
+-(void)removeInstalledPluginsFromAvailableList
+{
+    for (JDPluginMetaData *installedPlugin in self.installedPlugins)
+    {
+        NSUInteger indexOfObject =  [self.availablePlugins indexOfObjectPassingTest:^ BOOL (JDPluginMetaData* obj, NSUInteger idx, BOOL *stop)
+                                     {
+                                         return [obj.name isEqualToString: installedPlugin.name];
+                                     }];
+        if (indexOfObject == NSNotFound)
+            continue;
+        [self.availablePlugins removeObjectAtIndex:indexOfObject];
+    }
+}
+
+#pragma mark - JDExtraPluginsDataLoaderDelegate
+-(void)finishedLoadingExtraPluginsData
+{
+    [self.delegate finishedLoadingExtraPluginsData];
 }
 
 @end

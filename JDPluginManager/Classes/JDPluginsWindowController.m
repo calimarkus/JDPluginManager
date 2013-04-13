@@ -7,20 +7,18 @@
 //
 
 #import "JDPluginsWindowController.h"
-#import "JDPluginsRepository.h"
+
 #import "JDPluginMetaData.h"
 #import "JDPluginInstaller.h"
 #import "JDPluginsCellView.h"
 #import "NSURL+JDPluginManager.h"
 #import "global.h"
 
-@interface JDPluginsWindowController ()
-
-@end
 
 @implementation JDPluginsWindowController
 @synthesize segmentControl = _segmentControl;
 @synthesize pluginsTableView = _pluginsTableView;
+@synthesize customInstallUrlTextField = _customInstallUrlTextField;
 
 -(BOOL *)segmentControlSetOnAvailablePlugins
 {
@@ -45,12 +43,17 @@
     return self;
 }
 
+
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+    [JDPluginsRepository sharedInstance].delegate = self;
+    [[JDPluginsRepository sharedInstance] getPluginsExtraData];
+    self.customInstallUrlTextField.stringValue =  JDLocalize(@"keyInstallAlertExampleText");
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
+#pragma mark - Buttons
 -(IBAction)segmentedControllerChangedSelection:(id)sender
 {
     [self.pluginsTableView reloadData];
@@ -69,6 +72,14 @@
     {
         [self removePlugin:pluginMetaData.name atIndexInTable:selectedRow];
     }
+}
+-(IBAction)didPressViewReadme:(id)sender
+{
+    NSInteger selectedRow = [self.pluginsTableView rowForView:sender];
+    JDPluginMetaData *pluginMetaData = [self getPluginMetaDataAtIndex:selectedRow];
+    NSString *readmePath = [pluginMetaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    if (readmePath)
+        [[NSWorkspace sharedWorkspace] openFile:readmePath];
 }
 
 -(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable
@@ -104,7 +115,6 @@
 #
 -(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	NSInteger count =  self.segmentControlSetOnAvailablePlugins ? [JDPluginsRepository sharedInstance].availablePlugins.count :[JDPluginsRepository sharedInstance].installedPlugins.count;
-    NSLog(@"number of plugins: %li", (long)count);
     return count;
 }
 
@@ -114,7 +124,6 @@
     
 	if ([tableColumn.identifier isEqualToString:@"MainCell"]) {
         JDPluginsCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-        NSLog(@"JDPluginsCellView loaded: %@", cellView);
         [cellView setCellWithPluginMetaData:pluginMetaData canBeInstalled: self.segmentControlSetOnAvailablePlugins];
         return cellView;
 	}
@@ -125,6 +134,13 @@
 -(JDPluginMetaData *)getPluginMetaDataAtIndex:(NSInteger)index
 {
     return self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: index] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: index];
+}
+
+#pragma makr- JDExtraPluginsDataLoaderDelegate
+-(void)finishedLoadingExtraPluginsData
+{
+    NSLog(@"about to reload table with data");
+    [self.pluginsTableView reloadData];
 }
 
 @end

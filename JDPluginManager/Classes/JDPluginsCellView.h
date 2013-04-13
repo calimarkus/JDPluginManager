@@ -11,7 +11,7 @@
 
 @interface JDPluginsCellView : NSTableCellView
 {
-    IBOutlet NSTextField *subTitleTextField;
+    IBOutlet NSTextField *subTitleTextField, *lastPushDate;
     IBOutlet NSButton *installUnInstallButton;
 
 }

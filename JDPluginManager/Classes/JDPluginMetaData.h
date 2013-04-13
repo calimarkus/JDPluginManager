@@ -12,13 +12,18 @@ extern NSString *const JDPluginManagerMetaDataRepositoryKey;
 extern NSString *const JDPluginManagerMetaDataReadmePathKey;
 
 @interface JDPluginMetaData : NSObject {
-    NSMutableDictionary* _dictionary;
-    NSString* _pluginPath;
-    NSString* _name;
+    NSMutableDictionary *_dictionary;
+    NSString *_pluginPath;
+    NSString *_name;
+    NSString *_gitHubDescription;
+    NSDate *_lastPushDate, *_localPluginModifiedDate;
 }
 
 @property (nonatomic, copy, readonly) NSString *name;
-
+@property (nonatomic, copy) NSString *gitHubDescription;
+@property (nonatomic, copy) NSDate *lastPushDate, *localPluginModifiedDate;
+@property (nonatomic, readonly) NSString *gitHubApiRepoURL;
+@property (nonatomic, readonly) BOOL *needsUpdate;
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath andName:(NSString *)name;

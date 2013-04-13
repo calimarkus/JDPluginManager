@@ -16,17 +16,14 @@
 {
     NSArray *availablePluginsJSONArray = [NSFileManager readPluginsJSONFile];
 
-    NSLog(@"plugins json array count: %li", (unsigned long)availablePluginsJSONArray.count);
     NSMutableArray *availablePlugins = [NSMutableArray arrayWithCapacity:availablePluginsJSONArray.count];
     for (NSDictionary *plugin in availablePluginsJSONArray)
     {
         NSString *repoPath = [plugin objectForKey:@"git"];
-//        NSString *description = [plugin objectForKey:@"description"];
         NSString *name = [plugin objectForKey:@"title"];
         JDPluginMetaData *pluginMetaData = [[JDPluginMetaData alloc] initWithPluginPath:nil andName:name];
         
         [pluginMetaData setObject:repoPath forKey:JDPluginManagerMetaDataRepositoryKey];
-        NSLog(@"plugin added: %@", pluginMetaData.description);
         [availablePlugins addObject:pluginMetaData];
     }
     
