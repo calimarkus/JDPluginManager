@@ -12,16 +12,11 @@
 #import "JDPluginMetaData.h"
 #import "JDAvialablePluginsLoader.h"
 
-@interface  JDPluginsRepository  ()
-
-@end
-
 @implementation JDPluginsRepository
 
 @synthesize installedPlugins = _installedPlugins;
 @synthesize availablePlugins = _availablePlugins;
 @synthesize extraPluginsDataLoader = _extraPluginsDataLoader;
-@synthesize delegate = _delegate;
 
 +(JDPluginsRepository *)sharedInstance
 {
@@ -58,11 +53,11 @@
     return self;
 }
 
--(void)getPluginsExtraData
+-(void)getPluginsExtraDataWithDelegate:(id<JDExtraPluginsDataLoaderDelegate>)delegate
 {
     if (self.extraPluginsDataLoader != nil) return; //we already got them
     self.extraPluginsDataLoader = [[JDExtraPluginsDataLoader alloc] init];
-    self.extraPluginsDataLoader.delegate = self;
+    self.extraPluginsDataLoader.delegate = delegate;
     [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.availablePlugins];
     [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.installedPlugins];
 }
@@ -84,12 +79,6 @@
             continue;
         [self.availablePlugins removeObjectAtIndex:indexOfObject];
     }
-}
-
-#pragma mark - JDExtraPluginsDataLoaderDelegate
--(void)finishedLoadingExtraPluginsData
-{
-    [self.delegate finishedLoadingExtraPluginsData];
 }
 
 @end

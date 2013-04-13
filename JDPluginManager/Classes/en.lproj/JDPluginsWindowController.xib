@@ -840,6 +840,14 @@
 					</object>
 					<int key="connectionID">633</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">readmeButton</string>
+						<reference key="source" ref="322927609"/>
+						<reference key="destination" ref="942151151"/>
+					</object>
+					<int key="connectionID">881</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -1800,7 +1808,7 @@
 							<reference ref="318671592"/>
 						</array>
 						<reference key="parent" ref="322927609"/>
-						<string key="objectName">Push Button - Uninstall</string>
+						<string key="objectName">Push Button - Readme</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">386</int>
@@ -2568,7 +2576,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">880</int>
+			<int key="maxID">881</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2579,6 +2587,7 @@
 						<string key="installUnInstallButton">NSButton</string>
 						<string key="lastPushDate">NSTextField</string>
 						<string key="needsUpdateButton">NSButton</string>
+						<string key="readmeButton">NSButton</string>
 						<string key="revealInFinderButton">NSButton</string>
 						<string key="subTitleTextField">NSTextField</string>
 					</dictionary>
@@ -2593,6 +2602,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="needsUpdateButton">
 							<string key="name">needsUpdateButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="readmeButton">
+							<string key="name">readmeButton</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="revealInFinderButton">
