@@ -19,6 +19,6 @@
 }
 @property (nonatomic, assign) id<JDExtraPluginsDataLoaderDelegate> delegate;
 
--(void)getPluginExtraDataFromGithub:(NSArray *)plugins;
+-(void)getPluginsExtraDataFromGithub:(NSArray *)plugins;
 
 @end

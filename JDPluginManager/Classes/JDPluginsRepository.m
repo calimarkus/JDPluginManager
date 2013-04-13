@@ -58,8 +58,8 @@
     if (self.extraPluginsDataLoader != nil) return; //we already got them
     self.extraPluginsDataLoader = [[JDExtraPluginsDataLoader alloc] init];
     self.extraPluginsDataLoader.delegate = delegate;
-    [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.availablePlugins];
-    [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.installedPlugins];
+    [self.extraPluginsDataLoader getPluginsExtraDataFromGithub:[self.availablePlugins arrayByAddingObjectsFromArray:self.installedPlugins] ];
+//    [self.extraPluginsDataLoader getPluginExtraDataFromGithub:self.installedPlugins];
 }
 
 -(void)removedUnInstalledPlugin:(NSInteger)index
