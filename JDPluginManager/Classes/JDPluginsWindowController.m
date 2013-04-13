@@ -102,6 +102,14 @@
     }
 }
 
+-(IBAction)didPressRevealInFinderButton:(id)sender
+{
+    NSString *pluginName = [self getPluginMetaDataFromSenderButtonInRow:sender].name;
+    NSURL *url = [NSURL pluginURLForPluginNamed:pluginName];
+    // open finder
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
+}
+
 -(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable
 {
     // construct alert
