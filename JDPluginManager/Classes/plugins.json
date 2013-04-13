@@ -1,10 +1,26 @@
 [
-  {
-    "title": "OMColorSense",
-    "git": "git@github.com:omz/ColorSense-for-Xcode.git",
-  },
-  {
+ {
     "title": "Dash",
-    "git": "git@github.com:omz/Dash-Plugin-for-Xcode.git",
-  }
+    "git": "git@github.com:omz/Dash-Plugin-for-Xcode.git"
+ },
+ {
+    "title": "HOStringSense for Xcode",
+    "git": "git@github.com:holtwick/HOStringSense-for-Xcode.git"
+ },
+ {
+    "title": "KSImageNamed-Xcode",
+    "git": "git@github.com:ksuther/KSImageNamed-Xcode.git"
+ },
+ {
+    "title": "Mini Xcode Plugin",
+    "git": "git@github.com:omz/MiniXcode.git"
+ },
+ {
+    "title": "OMColorSense",
+    "git": "git@github.com:omz/ColorSense-for-Xcode.git"
+ },
+ {
+    "title": "XVim",
+    "git": "git@github.com:JugglerShu/XVim.git"
+ }
 ]
