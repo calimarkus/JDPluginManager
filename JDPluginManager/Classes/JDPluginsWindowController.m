@@ -89,6 +89,8 @@
 -(IBAction)didPressViewOnGithubButton:(id)sender
 {
     NSString *gitURL = [[self getPluginMetaDataFromSenderButtonInRow:sender] objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    if (!gitURL || gitURL.length == 0 ) return;
+    
     gitURL = [gitURL stringByReplacingOccurrencesOfString:@"git@github.com:" withString:@"github.com/"];
     if (![gitURL hasPrefix:@"HTTP"] || ![gitURL hasPrefix:@"http"]) {
         gitURL = [NSString stringWithFormat: @"http://%@", gitURL];

@@ -1,26 +1,42 @@
 [
  {
-    "title": "Dash",
-    "git": "git@github.com:omz/Dash-Plugin-for-Xcode.git"
+ "title": "Dash",
+ "git": "git@github.com:omz/Dash-Plugin-for-Xcode.git"
  },
  {
-    "title": "HOStringSense for Xcode",
-    "git": "git@github.com:holtwick/HOStringSense-for-Xcode.git"
+ "title": "HOStringSense for Xcode",
+ "git": "git@github.com:holtwick/HOStringSense-for-Xcode.git"
  },
  {
-    "title": "KSImageNamed-Xcode",
-    "git": "git@github.com:ksuther/KSImageNamed-Xcode.git"
+ "title": "instacodes-for-xcode",
+ "git": "git@github.com:parametr/instacodes-for-xcode.git"
  },
  {
-    "title": "Mini Xcode Plugin",
-    "git": "git@github.com:omz/MiniXcode.git"
+ "title": "KSImageNamed-Xcode",
+ "git": "git@github.com:ksuther/KSImageNamed-Xcode.git"
  },
  {
-    "title": "OMColorSense",
-    "git": "git@github.com:omz/ColorSense-for-Xcode.git"
+ "title": "Mini Xcode Plugin",
+ "git": "git@github.com:omz/MiniXcode.git"
  },
  {
-    "title": "XVim",
-    "git": "git@github.com:JugglerShu/XVim.git"
+ "title": "NoLastUpgradeCheck",
+ "git": "git@github.com:0xced/NoLastUpgradeCheck.git"
+ },
+ {
+ "title": "OMColorSense",
+ "git": "git@github.com:omz/ColorSense-for-Xcode.git"
+ },
+ {
+ "title": "XcodeColors",
+ "git": "git@github.com:robbiehanson/XcodeColors.git"
+ },
+ {
+ "title": "Xcode Explorer",
+ "git": "git@github.com:edwardaux/XcodeExplorer.git"
+ },
+ {
+ "title": "XVim",
+ "git": "git@github.com:JugglerShu/XVim.git"
  }
 ]
