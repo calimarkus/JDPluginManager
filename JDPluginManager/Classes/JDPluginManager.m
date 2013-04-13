@@ -86,10 +86,10 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
         [[pluginsMenuItem submenu] addItem:showDirectoryItem];
 		
         // separator
-		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+//		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
         
         // each plugin as subitem
-        [self readAndAddPluginsToMenu:[pluginsMenuItem submenu]];
+//        [self readAndAddPluginsToMenu:[pluginsMenuItem submenu]];
 		
         // separator
 		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
