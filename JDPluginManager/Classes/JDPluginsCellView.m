@@ -17,9 +17,8 @@
     installUnInstallButton.title = isInstalledPlugin ? @"UnInstall" : @"Install";
     revealInFinderButton.hidden = !isInstalledPlugin;
     lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
-    BOOL doesPluginNeedsUpdate = pluginData.needsUpdate;
-    NSLog(@"plugins needs update: %@", doesPluginNeedsUpdate ? @"YES" : @"NO");
     needsUpdateButton.hidden = !pluginData.needsUpdate;
+    readmeButton.hidden = !isInstalledPlugin;
 }
 
 @end

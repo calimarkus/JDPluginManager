@@ -46,8 +46,7 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    [JDPluginsRepository sharedInstance].delegate = self;
-    [[JDPluginsRepository sharedInstance] getPluginsExtraData];
+    [[JDPluginsRepository sharedInstance] getPluginsExtraDataWithDelegate:self];
     [[self.customInstallUrlTextField cell] setPlaceholderString: JDLocalize(@"keyInstallAlertExampleText")];
 }
 
@@ -111,7 +110,6 @@
 -(IBAction)didPressManualInstallButton:(id)sender
 {
     NSString *gitUrl = self.customInstallUrlTextField.stringValue;
-    NSLog(@"did press manual install with giturl: %@", gitUrl);
     if (gitUrl && gitUrl.length > 0)
         [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitUrl searchInSubdirectories:NO];
 }
@@ -168,7 +166,6 @@
 #pragma makr- JDExtraPluginsDataLoaderDelegate
 -(void)finishedLoadingExtraPluginsData
 {
-    NSLog(@"about to reload table with data");
     [self.pluginsTableView reloadData];
 }
 
