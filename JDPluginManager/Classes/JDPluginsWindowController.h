@@ -25,4 +25,5 @@
 -(IBAction)didPressViewReadmeButton:(id)sender;
 -(IBAction)didPressViewOnGithubButton:(id)sender;
 -(IBAction)didPressUpdateButton:(id)sender;
+-(IBAction)didPressRevealInFinderButton:(id)sender;
 @end
