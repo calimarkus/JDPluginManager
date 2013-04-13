@@ -19,7 +19,10 @@
 @property (nonatomic, retain) IBOutlet NSTableView *pluginsTableView;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl *segmentControl;
 @property (nonatomic, readonly) BOOL *segmentControlSetOnAvailablePlugins;
+
 -(IBAction)segmentedControllerChangedSelection:(id)sender;
 -(IBAction)didPressInstallOrUnInstallButton:(id)sender;
--(IBAction)didPressViewReadme:(id)sender;
+-(IBAction)didPressViewReadmeButton:(id)sender;
+-(IBAction)didPressViewOnGithubButton:(id)sender;
+-(IBAction)didPressUpdateButton:(id)sender;
 @end
