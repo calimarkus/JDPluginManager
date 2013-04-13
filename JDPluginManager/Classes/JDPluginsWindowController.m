@@ -158,7 +158,7 @@
     
 	if ([tableColumn.identifier isEqualToString:@"MainCell"]) {
         JDPluginsCellView *cellView = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self];
-        [cellView setCellWithPluginMetaData:pluginMetaData canBeInstalled: self.segmentControlSetOnAvailablePlugins];
+        [cellView setCellWithPluginMetaData:pluginMetaData isInstalledPlugin: !self.segmentControlSetOnAvailablePlugins];
         return cellView;
 	}
     return nil;

@@ -10,12 +10,12 @@
 
 @implementation JDPluginsCellView
 
--(void)setCellWithPluginMetaData:(JDPluginMetaData *)pluginData canBeInstalled:(BOOL)canBeInstalled
+-(void)setCellWithPluginMetaData:(JDPluginMetaData *)pluginData isInstalledPlugin:(BOOL)isInstalledPlugin
 {
     subTitleTextField.stringValue = pluginData.gitHubDescription ? pluginData.gitHubDescription : @"Loading...";
     self.textField.stringValue = pluginData.name;
-    installUnInstallButton.title = canBeInstalled ? @"Install" : @"UnInstall";
-    revealInFinderButton.hidden = canBeInstalled;
+    installUnInstallButton.title = isInstalledPlugin ? @"UnInstall" : @"Install";
+    revealInFinderButton.hidden = !isInstalledPlugin;
     lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
     BOOL doesPluginNeedsUpdate = pluginData.needsUpdate;
     NSLog(@"plugins needs update: %@", doesPluginNeedsUpdate ? @"YES" : @"NO");
