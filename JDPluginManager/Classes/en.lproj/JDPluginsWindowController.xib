@@ -113,7 +113,7 @@
 											<string key="NSFrameSize">{549, 277}</string>
 											<reference key="NSSuperview" ref="631426799"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="322927609"/>
+											<reference key="NSNextKeyView" ref="19733732"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -276,7 +276,7 @@
 							<string key="NSFrame">{{10, 129}, {551, 295}}</string>
 							<reference key="NSSuperview" ref="558200545"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="19733732"/>
+							<reference key="NSNextKeyView" ref="631426799"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="347803260"/>
@@ -385,7 +385,6 @@
 							<string key="NSFrame">{{435, 20}, {100, 19}}</string>
 							<reference key="NSSuperview" ref="558200545"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:22</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="73118871">
@@ -540,6 +539,7 @@
 								<reference key="NSControlView" ref="881791614"/>
 								<int key="NSButtonFlags">-2038284288</int>
 								<int key="NSButtonFlags2">129</int>
+								<reference key="NSAlternateImage" ref="1034097857"/>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -1880,11 +1880,6 @@
 						<reference key="parent" ref="322927609"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">547</int>
-						<reference key="object" ref="530514241"/>
-						<reference key="parent" ref="881791614"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">559</int>
 						<reference key="object" ref="639274065"/>
 						<array class="NSMutableArray" key="children">
@@ -2330,11 +2325,6 @@
 						<reference key="parent" ref="322927609"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">915</int>
-						<reference key="object" ref="731291442"/>
-						<reference key="parent" ref="322927609"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">917</int>
 						<reference key="object" ref="458730194"/>
 						<reference key="parent" ref="1044728332"/>
@@ -2357,6 +2347,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">927</int>
 						<reference key="object" ref="160514382"/>
+						<reference key="parent" ref="322927609"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">547</int>
+						<reference key="object" ref="530514241"/>
+						<reference key="parent" ref="881791614"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">915</int>
+						<reference key="object" ref="731291442"/>
 						<reference key="parent" ref="322927609"/>
 					</object>
 				</array>
@@ -2584,7 +2584,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">927</int>
+			<int key="maxID">929</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
