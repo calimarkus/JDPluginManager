@@ -15,5 +15,5 @@
     IBOutlet NSButton *installUnInstallButton, *needsUpdateButton, *revealInFinderButton;
 }
 
--(void)setCellWithPluginMetaData:(JDPluginMetaData *)pluginData canBeInstalled:(BOOL)canBeInstalled;
+-(void)setCellWithPluginMetaData:(JDPluginMetaData *)pluginData isInstalledPlugin:(BOOL)isInstalledPlugin;
 @end
