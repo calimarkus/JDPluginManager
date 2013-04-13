@@ -2472,6 +2472,14 @@
 				<string key="533.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="545.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="547.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<object class="NSMutableDictionary" key="559.IBAttributePlaceholdersKey">
+					<string key="NS.key.0">ToolTip</string>
+					<object class="IBToolTipAttribute" key="NS.object.0">
+						<string key="name">ToolTip</string>
+						<reference key="object" ref="639274065"/>
+						<string key="toolTip">Reveal In Finder</string>
+					</object>
+				</object>
 				<array key="559.IBNSViewMetadataConstraints">
 					<reference ref="304940539"/>
 					<reference ref="883196093"/>
