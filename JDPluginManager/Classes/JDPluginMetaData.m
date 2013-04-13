@@ -126,8 +126,11 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 -(BOOL *)needsUpdate
 {
-    if (!self.localPluginModifiedDate) return NO;
-    return [self.localPluginModifiedDate isEqualToDate:self.lastPushDate];
+    if (!self.localPluginModifiedDate || !self.lastPushDate)
+        return NO;
+
+    NSLog(@"comparing last modified date: %@, push date: %@", self.localPluginModifiedDate, self.lastPushDate);
+    return [self.localPluginModifiedDate compare:self.lastPushDate] == NSOrderedAscending;
 }
 
 -(NSString *)gitHubApiRepoURL

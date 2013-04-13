@@ -16,6 +16,8 @@
     self.textField.stringValue = pluginData.name;
     installUnInstallButton.title = canBeInstalled ? @"Install" : @"UnInstall";
     lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
+    BOOL doesPluginNeedsUpdate = pluginData.needsUpdate;
+    NSLog(@"plugins needs update: %@", doesPluginNeedsUpdate ? @"YES" : @"NO");
     needsUpdateButton.hidden = !pluginData.needsUpdate;
 }
 
