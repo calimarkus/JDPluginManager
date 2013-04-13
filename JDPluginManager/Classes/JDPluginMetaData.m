@@ -24,6 +24,9 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 @synthesize dictionary = _dictionary;
 @synthesize pluginPath = _pluginPath;
 @synthesize name = _name;
+@synthesize gitHubDescription = _gitHubDescription;
+@synthesize lastPushDate = _lastPushDate;
+@synthesize localPluginModifiedDate = _localPluginModifiedDate;
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath
 {
@@ -120,6 +123,39 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     
     return succes;
 }
+
+-(BOOL *)needsUpdate
+{
+    if (!self.localPluginModifiedDate) return NO;
+    return [self.localPluginModifiedDate isEqualToDate:self.lastPushDate];
+}
+
+-(NSString *)gitHubApiRepoURL
+{
+    NSString *pluginRepo = [self objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    if (pluginRepo == nil || pluginRepo.length == 0) return nil;
+    NSURL *gitRepoUrl = [NSURL URLWithString:pluginRepo];
+    NSString *gitHubUser = @"";
+    NSString *repoName = @"";
+    for (NSString *comp in gitRepoUrl.pathComponents) {
+        if ([comp rangeOfString:@":"].location != NSNotFound)
+        {
+            gitHubUser = [[comp componentsSeparatedByString:@":"] objectAtIndex:1];
+            continue;
+        }
+        NSRange dotGit = [comp rangeOfString:@".git"];
+        if (dotGit.location != NSNotFound)
+        {
+            repoName = [comp substringWithRange:NSMakeRange(0, dotGit.location)];
+            continue;
+        }
+    }
+    if (repoName.length == 0 || gitHubUser.length == 0)
+        return nil;
+
+    return [NSString stringWithFormat:@"https://api.github.com/repos/%@/%@", gitHubUser, repoName];
+}
+
 
 -(NSString *)description
 {
