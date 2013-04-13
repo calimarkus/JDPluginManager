@@ -76,6 +76,12 @@
     }
 }
 
+-(IBAction)didPressUpdateButton:(id)sender
+{
+    NSString *gitURL = [[self getPluginMetaDataFromSenderButtonInRow:sender ] objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitURL searchInSubdirectories:NO];
+}
+
 -(IBAction)didPressViewReadmeButton:(id)sender
 {
     NSString *readmePath = [[self getPluginMetaDataFromSenderButtonInRow:sender] objectForKey:JDPluginManagerMetaDataReadmePathKey];
