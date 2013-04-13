@@ -31,6 +31,15 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 
 In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterwards.
 
+## Plugin Developers:
+1.  Fork the JDPluginManager:  
+  https://github.com/dannyshmueli/JDPluginManager
+
+2.  Add your Xcode plugin to plugins.json:  
+  ```{"title": "OMColorSense", "git": "git@github.com:omz/ColorSense-for-Xcode.git"}```  
+  Please add it in alphabetical order to help prevent conflicts.
+3.  Send a pull request.
+
 ## Twitter
 
 I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
