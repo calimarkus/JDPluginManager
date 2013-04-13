@@ -16,6 +16,7 @@
     self.textField.stringValue = pluginData.name;
     installUnInstallButton.title = canBeInstalled ? @"Install" : @"UnInstall";
     lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
+    needsUpdateButton.hidden = !pluginData.needsUpdate;
 }
 
 @end

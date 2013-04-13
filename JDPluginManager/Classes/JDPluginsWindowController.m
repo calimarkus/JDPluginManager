@@ -65,21 +65,35 @@
     
     if (self.segmentControlSetOnAvailablePlugins)
     {
+        //Install
         NSString *gitUrl = [pluginMetaData objectForKey:JDPluginManagerMetaDataRepositoryKey];
         [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitUrl searchInSubdirectories:NO];
     }
     else
     {
+        //Uninstall
         [self removePlugin:pluginMetaData.name atIndexInTable:selectedRow];
     }
 }
--(IBAction)didPressViewReadme:(id)sender
+
+-(IBAction)didPressViewReadmeButton:(id)sender
 {
-    NSInteger selectedRow = [self.pluginsTableView rowForView:sender];
-    JDPluginMetaData *pluginMetaData = [self getPluginMetaDataAtIndex:selectedRow];
-    NSString *readmePath = [pluginMetaData objectForKey:JDPluginManagerMetaDataReadmePathKey];
+    NSString *readmePath = [[self getPluginMetaDataFromSenderButtonInRow:sender] objectForKey:JDPluginManagerMetaDataReadmePathKey];
     if (readmePath)
         [[NSWorkspace sharedWorkspace] openFile:readmePath];
+}
+
+-(IBAction)didPressViewOnGithubButton:(id)sender
+{
+    NSString *gitURL = [[self getPluginMetaDataFromSenderButtonInRow:sender] objectForKey:JDPluginManagerMetaDataRepositoryKey];
+    gitURL = [gitURL stringByReplacingOccurrencesOfString:@"git@github.com:" withString:@"github.com/"];
+    if (![gitURL hasPrefix:@"HTTP"] || ![gitURL hasPrefix:@"http"]) {
+        gitURL = [NSString stringWithFormat: @"http://%@", gitURL];
+    }
+    NSURL *url = [NSURL URLWithString:gitURL];
+    if (url) {
+        [[NSWorkspace sharedWorkspace] openURL:url];
+    }
 }
 
 -(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable
@@ -131,16 +145,23 @@
     
 }
 
--(JDPluginMetaData *)getPluginMetaDataAtIndex:(NSInteger)index
-{
-    return self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: index] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: index];
-}
-
 #pragma makr- JDExtraPluginsDataLoaderDelegate
 -(void)finishedLoadingExtraPluginsData
 {
     NSLog(@"about to reload table with data");
     [self.pluginsTableView reloadData];
+}
+
+#pragma mark - Private
+-(JDPluginMetaData *)getPluginMetaDataFromSenderButtonInRow:(id)sender
+{
+    NSInteger selectedRow = [self.pluginsTableView rowForView:sender];
+    return[self getPluginMetaDataAtIndex:selectedRow];
+}
+
+-(JDPluginMetaData *)getPluginMetaDataAtIndex:(NSInteger)index
+{
+    return self.segmentControlSetOnAvailablePlugins ? [[JDPluginsRepository sharedInstance].availablePlugins objectAtIndex: index] : [[JDPluginsRepository sharedInstance].installedPlugins objectAtIndex: index];
 }
 
 @end
