@@ -43,16 +43,14 @@
     return self;
 }
 
-
-
 - (void)windowDidLoad
 {
     [super windowDidLoad];
     [JDPluginsRepository sharedInstance].delegate = self;
     [[JDPluginsRepository sharedInstance] getPluginsExtraData];
-    self.customInstallUrlTextField.stringValue =  JDLocalize(@"keyInstallAlertExampleText");
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    [[self.customInstallUrlTextField cell] setPlaceholderString: JDLocalize(@"keyInstallAlertExampleText")];
 }
+
 #pragma mark - Buttons
 -(IBAction)segmentedControllerChangedSelection:(id)sender
 {
@@ -108,6 +106,14 @@
     NSURL *url = [NSURL pluginURLForPluginNamed:pluginName];
     // open finder
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
+}
+
+-(IBAction)didPressManualInstallButton:(id)sender
+{
+    NSString *gitUrl = self.customInstallUrlTextField.stringValue;
+    NSLog(@"did press manual install with giturl: %@", gitUrl);
+    if (gitUrl && gitUrl.length > 0)
+        [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitUrl searchInSubdirectories:NO];
 }
 
 -(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable

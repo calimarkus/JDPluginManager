@@ -26,4 +26,5 @@
 -(IBAction)didPressViewOnGithubButton:(id)sender;
 -(IBAction)didPressUpdateButton:(id)sender;
 -(IBAction)didPressRevealInFinderButton:(id)sender;
+-(IBAction)didPressManualInstallButton:(id)sender;
 @end
