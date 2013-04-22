@@ -75,6 +75,7 @@
 		D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginMetaData.m; sourceTree = "<group>"; };
 		D24DA8591725736600174F7C /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plugins.json; sourceTree = "<group>"; };
 		D24DA8681725740D00174F7C /* JDPluginsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDPluginsWindowController.xib; sourceTree = "<group>"; };
+		D24DA87217257A6400174F7C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D2E2D2E016D42CCC00447430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = JDPluginManager/Info.plist; sourceTree = "<group>"; };
 		D2E2D2E216D42CE900447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDPluginManager/Localizable.strings; sourceTree = "<group>"; };
 		D2E2D2E316D42CF800447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = JDPluginManager/global.h; sourceTree = SOURCE_ROOT; };
@@ -96,6 +97,7 @@
 		089C166AFE841209C02AAC07 /* QuietXcode */ = {
 			isa = PBXGroup;
 			children = (
+				D24DA87217257A6400174F7C /* README.md */,
 				D2E2D2E016D42CCC00447430 /* Info.plist */,
 				D24DA8571725736600174F7C /* Data */,
 				D237992F16EBB62C006F9412 /* Classes */,
