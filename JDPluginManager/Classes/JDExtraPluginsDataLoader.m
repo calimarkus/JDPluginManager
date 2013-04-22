@@ -9,6 +9,12 @@
 #import "JDExtraPluginsDataLoader.h"
 #import "JDPluginMetaData.h"
 
+@interface JDExtraPluginsDataLoader ()
+{
+    int toFinishCounter;
+    id<JDExtraPluginsDataLoaderDelegate> _delegate;
+}
+@end
 
 @implementation JDExtraPluginsDataLoader
 
@@ -17,7 +23,7 @@
 -(void)getPluginsExtraDataFromGithub:(NSArray *)plugins
 {
     toFinishCounter = (int)plugins.count;
-    NSLog(@"starting fething extra data for %d plugins", toFinishCounter);
+    NSLog(@"starting to fetch extra data for %d plugins", toFinishCounter);
     for (JDPluginMetaData *plugin in plugins) {
         [self getExtraDataForPlugin:plugin];
     }
@@ -34,44 +40,50 @@
     }
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:gitPluginApiRepoUrl]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue currentQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         if (error)
-         {
-             NSLog(@"failed loading extra data for plugin: %@", gitPluginApiRepoUrl);
+         if (error || !data || data.length == 0) {
+             NSLog(@"error loading extra data for plugin: %@", gitPluginApiRepoUrl);
              [self decrementToFinishCountAndCheckIfFinished];
              return;
          }
-         @try {
-             NSError *error1;
-             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error1];
-             NSString *gitHubDescription = [json objectForKey:@"description"];
-             if (!gitHubDescription || gitHubDescription.length == 0)
-                 [NSException exceptionWithName:@"ErrorParsingGithubJSONException" reason:nil userInfo:nil];
+         
+         // parse json
+         NSError *jsonError;
+         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data
+                                                              options:NSJSONReadingAllowFragments
+                                                                error:&jsonError];
+         
+         // save description or error messsage
+         NSString *gitHubDescription = [json objectForKey:@"description"];
+         if (!gitHubDescription || gitHubDescription.length == 0) {
+             plugin.gitHubDescription = [json objectForKey:@"message"];
+         } else {
              plugin.gitHubDescription = gitHubDescription;
-             
-             NSString *lastPush = [json objectForKey:@"pushed_at"];
+         }
+         
+         // save date, if available
+         NSString *lastPush = [json objectForKey:@"pushed_at"];
+         if (lastPush) {
              plugin.lastPushDate = [NSDate dateWithNaturalLanguageString:lastPush];
-
          }
-         @catch (NSException *exception) {
-             NSLog(@"error parsing json from github %@", exception.userInfo);
-         }
-         @finally {
-            [self decrementToFinishCountAndCheckIfFinished]; 
-         }
+         
+         [self decrementToFinishCountAndCheckIfFinished];
      }];
 }
 
 -(void)decrementToFinishCountAndCheckIfFinished
 {
     toFinishCounter--;
-    if (toFinishCounter == 0)
-    {
+    
+    if (toFinishCounter == 0) {
         NSLog(@"finished fetching extra data for all plugins");
-        [self.delegate finishedLoadingExtraPluginsData];
+        [self.delegate extraPluginsDataLoaderDidFinish:self];
     }
     
 }
 
 @end
+

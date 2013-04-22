@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+
+@class JDExtraPluginsDataLoader;
+
 @protocol JDExtraPluginsDataLoaderDelegate <NSObject>
--(void)finishedLoadingExtraPluginsData;
+- (void)extraPluginsDataLoaderDidFinish:(JDExtraPluginsDataLoader*)loader;
 @end
 
 @interface JDExtraPluginsDataLoader : NSObject
-{
-    int toFinishCounter;
-    id<JDExtraPluginsDataLoaderDelegate> _delegate;
-}
+
 @property (nonatomic, assign) id<JDExtraPluginsDataLoaderDelegate> delegate;
 
 -(void)getPluginsExtraDataFromGithub:(NSArray *)plugins;

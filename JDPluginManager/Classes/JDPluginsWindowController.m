@@ -157,8 +157,9 @@
     
 }
 
-#pragma makr- JDExtraPluginsDataLoaderDelegate
--(void)finishedLoadingExtraPluginsData
+#pragma mark - JDExtraPluginsDataLoaderDelegate
+
+-(void)extraPluginsDataLoaderDidFinish:(JDExtraPluginsDataLoader *)loader;
 {
     [self.pluginsTableView reloadData];
 }
