@@ -11,11 +11,12 @@
 
 
 @implementation JDExtraPluginsDataLoader
+
 @synthesize delegate = _delegate;
 
 -(void)getPluginsExtraDataFromGithub:(NSArray *)plugins
 {
-    toFinishCounter = plugins.count;
+    toFinishCounter = (int)plugins.count;
     NSLog(@"starting fething extra data for %d plugins", toFinishCounter);
     for (JDPluginMetaData *plugin in plugins) {
         [self getExtraDataForPlugin:plugin];

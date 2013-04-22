@@ -124,7 +124,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     return succes;
 }
 
--(BOOL *)needsUpdate
+-(BOOL)needsUpdate
 {
     if (!self.localPluginModifiedDate || !self.lastPushDate)
         return NO;

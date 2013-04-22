@@ -18,7 +18,7 @@
 @property (nonatomic, retain) IBOutlet NSTextField *customInstallUrlTextField; 
 @property (nonatomic, retain) IBOutlet NSTableView *pluginsTableView;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl *segmentControl;
-@property (nonatomic, readonly) BOOL *segmentControlSetOnAvailablePlugins;
+@property (nonatomic, readonly) BOOL segmentControlSetOnAvailablePlugins;
 
 -(IBAction)segmentedControllerChangedSelection:(id)sender;
 -(IBAction)didPressInstallOrUnInstallButton:(id)sender;

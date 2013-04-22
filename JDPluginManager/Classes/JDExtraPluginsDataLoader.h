@@ -13,7 +13,6 @@
 
 @interface JDExtraPluginsDataLoader : NSObject
 {
-    @private
     int toFinishCounter;
     id<JDExtraPluginsDataLoaderDelegate> _delegate;
 }

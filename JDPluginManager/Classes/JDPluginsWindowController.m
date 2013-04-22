@@ -20,9 +20,9 @@
 @synthesize pluginsTableView = _pluginsTableView;
 @synthesize customInstallUrlTextField = _customInstallUrlTextField;
 
--(BOOL *)segmentControlSetOnAvailablePlugins
+-(BOOL)segmentControlSetOnAvailablePlugins
 {
-   return self.segmentControl.selectedSegment == 0;
+   return (self.segmentControl.selectedSegment == 0);
 }
 
 -(id)init

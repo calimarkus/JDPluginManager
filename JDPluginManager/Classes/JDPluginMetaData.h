@@ -19,11 +19,13 @@ extern NSString *const JDPluginManagerMetaDataReadmePathKey;
     NSDate *_lastPushDate, *_localPluginModifiedDate;
 }
 
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy) NSString *gitHubDescription;
-@property (nonatomic, copy) NSDate *lastPushDate, *localPluginModifiedDate;
+@property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *gitHubApiRepoURL;
-@property (nonatomic, readonly) BOOL *needsUpdate;
+@property (nonatomic, copy) NSString *gitHubDescription;
+
+@property (nonatomic, strong) NSDate *lastPushDate;
+@property (nonatomic, strong) NSDate *localPluginModifiedDate;
+@property (nonatomic, readonly) BOOL needsUpdate;
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath andName:(NSString *)name;
