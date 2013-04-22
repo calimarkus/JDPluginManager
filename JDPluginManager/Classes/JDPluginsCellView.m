@@ -14,12 +14,22 @@
                isInstalledPlugin:(BOOL)isInstalledPlugin
 {
     self.textField.stringValue = pluginData.name;
-    subTitleTextField.stringValue = pluginData.gitHubDescription ? pluginData.gitHubDescription : @"Loading Description from GitHub...";
+    
+    if (pluginData.gitHubDescription.length > 0) {
+        subTitleTextField.stringValue = pluginData.gitHubDescription;
+    } else if (!pluginData.gitHubDescription) {
+        subTitleTextField.stringValue = @"Loading Description from GitHub...";
+    } else {
+        subTitleTextField.stringValue = @"No Description";
+    }
+    
     installUnInstallButton.title  = isInstalledPlugin ? @"Uninstall" : @"Install";
     revealInFinderButton.hidden = !isInstalledPlugin;
     lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
     needsUpdateButton.hidden = !pluginData.needsUpdate;
     readmeButton.hidden = !isInstalledPlugin;
+    
+    NSLog(@"%@ / %@", pluginData.name, pluginData.gitHubDescription);
 }
 
 @end
