@@ -48,6 +48,8 @@
     [super windowDidLoad];
     [[JDPluginsRepository sharedInstance] getPluginsExtraDataWithDelegate:self];
     [[self.customInstallUrlTextField cell] setPlaceholderString: JDLocalize(@"keyInstallAlertExampleText")];
+    
+    self.pluginsTableView.headerView = nil;
 }
 
 #pragma mark - Buttons
