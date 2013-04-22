@@ -60,6 +60,9 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
 {
     @try {
         NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"com.nxtbgthng.JDPluginManager"];
+        #if JDPluginManagerTest == 1
+            pluginBundle = [NSBundle mainBundle];
+        #endif
         NSString *pluginsJSONPath = [pluginBundle pathForResource:@"plugins" ofType:@"json"];
         if (!pluginsJSONPath) return nil;
         NSData *pluginsJSONData = [NSData dataWithContentsOfFile:pluginsJSONPath];
@@ -80,4 +83,7 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
         
     }
 }
+
 @end
+
+
