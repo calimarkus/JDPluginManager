@@ -26,7 +26,13 @@
     }
     
     // date
-    lastPushDate.stringValue = pluginData.lastPushDate ? [pluginData.lastPushDate description] : @"";
+    lastPushDate.stringValue = @"";
+    if (pluginData.lastPushDate) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        lastPushDate.stringValue = [dateFormatter stringFromDate:pluginData.lastPushDate];
+    }
 
     // install button
     installUnInstallButton.title  = isInstalledPlugin ? @"Uninstall" : @"Install";
