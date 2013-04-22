@@ -10,12 +10,10 @@
 
 @interface JDPluginsWindowController : NSWindowController <NSTableViewDataSource, JDExtraPluginsDataLoaderDelegate>
 {
-    @private
     IBOutlet NSTableView *_pluginsTableView;
     IBOutlet NSSegmentedControl *_segmentControl;
-    IBOutlet NSTextField *_customInstallUrlTextField;
 }
-@property (nonatomic, retain) IBOutlet NSTextField *customInstallUrlTextField; 
+
 @property (nonatomic, retain) IBOutlet NSTableView *pluginsTableView;
 @property (nonatomic, retain) IBOutlet NSSegmentedControl *segmentControl;
 @property (nonatomic, readonly) BOOL segmentControlSetOnAvailablePlugins;
@@ -26,5 +24,5 @@
 -(IBAction)didPressViewOnGithubButton:(id)sender;
 -(IBAction)didPressUpdateButton:(id)sender;
 -(IBAction)didPressRevealInFinderButton:(id)sender;
--(IBAction)didPressManualInstallButton:(id)sender;
+
 @end

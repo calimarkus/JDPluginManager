@@ -18,7 +18,6 @@
 @implementation JDPluginsWindowController
 @synthesize segmentControl = _segmentControl;
 @synthesize pluginsTableView = _pluginsTableView;
-@synthesize customInstallUrlTextField = _customInstallUrlTextField;
 
 -(BOOL)segmentControlSetOnAvailablePlugins
 {
@@ -47,8 +46,6 @@
 {
     [super windowDidLoad];
     [[JDPluginsRepository sharedInstance] getPluginsExtraDataWithDelegate:self];
-    [[self.customInstallUrlTextField cell] setPlaceholderString: JDLocalize(@"keyInstallAlertExampleText")];
-    
     self.pluginsTableView.headerView = nil;
 }
 
@@ -109,13 +106,6 @@
     NSURL *url = [NSURL pluginURLForPluginNamed:pluginName];
     // open finder
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
-}
-
--(IBAction)didPressManualInstallButton:(id)sender
-{
-    NSString *gitUrl = self.customInstallUrlTextField.stringValue;
-    if (gitUrl && gitUrl.length > 0)
-        [[[[JDPluginInstaller alloc] init] autorelease] beginInstallWithRepositoryPath:gitUrl searchInSubdirectories:NO];
 }
 
 -(void)removePlugin:(NSString *)name atIndexInTable:(NSInteger)indexInTable

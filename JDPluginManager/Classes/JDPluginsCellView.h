@@ -11,9 +11,16 @@
 
 @interface JDPluginsCellView : NSTableCellView
 {
-    IBOutlet NSTextField *subTitleTextField, *lastPushDate;
-    IBOutlet NSButton *installUnInstallButton, *readmeButton, *needsUpdateButton, *revealInFinderButton;
+    IBOutlet NSTextField *subTitleTextField;
+    IBOutlet NSTextField *lastPushDate;
+    
+    IBOutlet NSButton *installUnInstallButton;
+    IBOutlet NSButton *readmeButton;
+    IBOutlet NSButton *needsUpdateButton;
+    IBOutlet NSButton *revealInFinderButton;
 }
 
--(void)setCellWithPluginMetaData:(JDPluginMetaData *)pluginData isInstalledPlugin:(BOOL)isInstalledPlugin;
+-(void)setCellWithPluginMetaData:(JDPluginMetaData*)pluginData
+               isInstalledPlugin:(BOOL)isInstalledPlugin;
+
 @end

@@ -493,6 +493,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
+						<string key="label">_pluginsTableView</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1069351163"/>
+					</object>
+					<int key="connectionID">1085</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">_segmentControl</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="700652689"/>
+					</object>
+					<int key="connectionID">1086</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="369339012"/>
 						<reference key="destination" ref="1001"/>
@@ -577,7 +593,7 @@
 								<object class="NSTextField" id="1033139198">
 									<reference key="NSNextResponder" ref="322927609"/>
 									<int key="NSvFlags">267</int>
-									<string key="NSFrame">{{423, 66}, {135, 13}}</string>
+									<string key="NSFrame">{{496, 64}, {62, 15}}</string>
 									<reference key="NSSuperview" ref="322927609"/>
 									<reference key="NSNextKeyView" ref="288510219"/>
 									<string key="NSAntiCompressionPriority">{250, 750}</string>
@@ -994,7 +1010,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1084</int>
+			<int key="maxID">1086</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1045,7 +1061,6 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="didPressInstallOrUnInstallButton:">id</string>
-						<string key="didPressManualInstallButton:">id</string>
 						<string key="didPressRevealInFinderButton:">id</string>
 						<string key="didPressUpdateButton:">id</string>
 						<string key="didPressViewOnGithubButton:">id</string>
@@ -1055,10 +1070,6 @@
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="didPressInstallOrUnInstallButton:">
 							<string key="name">didPressInstallOrUnInstallButton:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="didPressManualInstallButton:">
-							<string key="name">didPressManualInstallButton:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="didPressRevealInFinderButton:">
@@ -1083,18 +1094,12 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="_customInstallUrlTextField">NSTextField</string>
 						<string key="_pluginsTableView">NSTableView</string>
 						<string key="_segmentControl">NSSegmentedControl</string>
-						<string key="customInstallUrlTextField">NSTextField</string>
 						<string key="pluginsTableView">NSTableView</string>
 						<string key="segmentControl">NSSegmentedControl</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="_customInstallUrlTextField">
-							<string key="name">_customInstallUrlTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="_pluginsTableView">
 							<string key="name">_pluginsTableView</string>
 							<string key="candidateClassName">NSTableView</string>
@@ -1102,10 +1107,6 @@
 						<object class="IBToOneOutletInfo" key="_segmentControl">
 							<string key="name">_segmentControl</string>
 							<string key="candidateClassName">NSSegmentedControl</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="customInstallUrlTextField">
-							<string key="name">customInstallUrlTextField</string>
-							<string key="candidateClassName">NSTextField</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="pluginsTableView">
 							<string key="name">pluginsTableView</string>
