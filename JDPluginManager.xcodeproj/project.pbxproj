@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		30073DBC171087C700D92117 /* JDPluginsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 30073DBB171087C700D92117 /* JDPluginsRepository.m */; };
-		301C3B0D1710863A007265D8 /* JDPluginsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */; };
 		3023CCB3171340FF009B7C31 /* JDAvialablePluginsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3023CCB2171340FF009B7C31 /* JDAvialablePluginsLoader.m */; };
 		3027340817173A310086C749 /* JDPluginsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3027340717173A310086C749 /* JDPluginsCellView.m */; };
 		30C131D8171066690074D903 /* JDPluginsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C131D6171066690074D903 /* JDPluginsWindowController.m */; };
-		30C29F1A1714831F007D0907 /* plugins.json in Resources */ = {isa = PBXBuildFile; fileRef = 30C29F191714831F007D0907 /* plugins.json */; };
 		30FBF46317184CF6001E69AB /* JDExtraPluginsDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 30FBF46217184CF6001E69AB /* JDExtraPluginsDataLoader.m */; };
 		7F2EB89C145057F200E97A87 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F2EB899145057EA00E97A87 /* AppKit.framework */; };
 		D22B0BB316D4310D0035D03B /* Localizable.strings in CopyFiles */ = {isa = PBXBuildFile; fileRef = D2E2D2E216D42CE900447430 /* Localizable.strings */; };
@@ -25,6 +23,8 @@
 		D237994716EBB62C006F9412 /* NSURL+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D237993F16EBB62C006F9412 /* NSURL+JDPluginManager.m */; };
 		D23E31C116EC0F90001B2086 /* NSFileManager+JDPluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D23E31C016EC0F90001B2086 /* NSFileManager+JDPluginManager.m */; };
 		D23E31C416EC0FA3001B2086 /* JDPluginMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */; };
+		D24DA85A1725736600174F7C /* plugins.json in Resources */ = {isa = PBXBuildFile; fileRef = D24DA8591725736600174F7C /* plugins.json */; };
+		D24DA8691725740D00174F7C /* JDPluginsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24DA8681725740D00174F7C /* JDPluginsWindowController.xib */; };
 		DA1B5D020E64686800921439 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 089C1672FE841209C02AAC07 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,14 +45,12 @@
 		089C1672FE841209C02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		30073DBA171087C700D92117 /* JDPluginsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsRepository.h; sourceTree = "<group>"; };
 		30073DBB171087C700D92117 /* JDPluginsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsRepository.m; sourceTree = "<group>"; };
-		301C3B0A171084BF007265D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/JDPluginsWindowController.xib; sourceTree = "<group>"; };
 		3023CCB1171340FF009B7C31 /* JDAvialablePluginsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDAvialablePluginsLoader.h; sourceTree = "<group>"; };
 		3023CCB2171340FF009B7C31 /* JDAvialablePluginsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDAvialablePluginsLoader.m; sourceTree = "<group>"; };
 		3027340617173A310086C749 /* JDPluginsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsCellView.h; sourceTree = "<group>"; };
 		3027340717173A310086C749 /* JDPluginsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsCellView.m; sourceTree = "<group>"; };
 		30C131D5171066690074D903 /* JDPluginsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsWindowController.h; sourceTree = "<group>"; };
 		30C131D6171066690074D903 /* JDPluginsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsWindowController.m; sourceTree = "<group>"; };
-		30C29F191714831F007D0907 /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plugins.json; sourceTree = "<group>"; };
 		30FBF46117184CF6001E69AB /* JDExtraPluginsDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDExtraPluginsDataLoader.h; sourceTree = "<group>"; };
 		30FBF46217184CF6001E69AB /* JDExtraPluginsDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDExtraPluginsDataLoader.m; sourceTree = "<group>"; };
 		7F2EB899145057EA00E97A87 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -75,6 +73,8 @@
 		D23E31C016EC0F90001B2086 /* NSFileManager+JDPluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+JDPluginManager.m"; sourceTree = "<group>"; };
 		D23E31C216EC0FA3001B2086 /* JDPluginMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginMetaData.h; sourceTree = "<group>"; };
 		D23E31C316EC0FA3001B2086 /* JDPluginMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginMetaData.m; sourceTree = "<group>"; };
+		D24DA8591725736600174F7C /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plugins.json; sourceTree = "<group>"; };
+		D24DA8681725740D00174F7C /* JDPluginsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDPluginsWindowController.xib; sourceTree = "<group>"; };
 		D2E2D2E016D42CCC00447430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = JDPluginManager/Info.plist; sourceTree = "<group>"; };
 		D2E2D2E216D42CE900447430 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = JDPluginManager/Localizable.strings; sourceTree = "<group>"; };
 		D2E2D2E316D42CF800447430 /* global.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global.h; path = JDPluginManager/global.h; sourceTree = SOURCE_ROOT; };
@@ -97,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				D2E2D2E016D42CCC00447430 /* Info.plist */,
+				D24DA8571725736600174F7C /* Data */,
 				D237992F16EBB62C006F9412 /* Classes */,
 				089C1671FE841209C02AAC07 /* Frameworks and Libraries */,
 				19C28FB8FE9D52D311CA2CBB /* Products */,
@@ -134,7 +135,6 @@
 		D237992F16EBB62C006F9412 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				30C29F191714831F007D0907 /* plugins.json */,
 				089C167CFE841241C02AAC07 /* Localization */,
 				D237994B16EBB6BE006F9412 /* Plugin Logic */,
 				D237994916EBB676006F9412 /* UI */,
@@ -165,7 +165,7 @@
 				D237993316EBB62C006F9412 /* JDInstallProgressWindow.m */,
 				30C131D5171066690074D903 /* JDPluginsWindowController.h */,
 				30C131D6171066690074D903 /* JDPluginsWindowController.m */,
-				301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */,
+				D24DA8681725740D00174F7C /* JDPluginsWindowController.xib */,
 				3027340617173A310086C749 /* JDPluginsCellView.h */,
 				3027340717173A310086C749 /* JDPluginsCellView.m */,
 			);
@@ -200,6 +200,23 @@
 				30FBF46217184CF6001E69AB /* JDExtraPluginsDataLoader.m */,
 			);
 			name = "Plugin Logic";
+			sourceTree = "<group>";
+		};
+		D24DA8571725736600174F7C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D24DA8581725736600174F7C /* Plugins */,
+			);
+			name = Data;
+			path = JDPluginManager/Data;
+			sourceTree = "<group>";
+		};
+		D24DA8581725736600174F7C /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				D24DA8591725736600174F7C /* plugins.json */,
+			);
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +273,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				301C3B0D1710863A007265D8 /* JDPluginsWindowController.xib in Resources */,
-				30C29F1A1714831F007D0907 /* plugins.json in Resources */,
+				D24DA85A1725736600174F7C /* plugins.json in Resources */,
+				D24DA8691725740D00174F7C /* JDPluginsWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,17 +303,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		301C3B0B171084BF007265D8 /* JDPluginsWindowController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				301C3B0A171084BF007265D8 /* en */,
-			);
-			name = JDPluginsWindowController.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB913B08733D840010E9CD /* Debug */ = {
