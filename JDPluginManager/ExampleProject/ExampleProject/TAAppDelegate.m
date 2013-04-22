@@ -22,6 +22,9 @@
     
     // install a new plugin
 //    [JDPluginInstaller installPlugin];
+    
+    // show manager
+    [self.manager.jdpm showWindow:[NSApp mainWindow]];
 }
 
 @end
