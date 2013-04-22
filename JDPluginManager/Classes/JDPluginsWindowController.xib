@@ -60,7 +60,7 @@
 						<object class="NSSegmentedControl" id="700652689">
 							<reference key="NSNextResponder" ref="558200545"/>
 							<int key="NSvFlags">269</int>
-							<string key="NSFrame">{{82, 429}, {407, 25}}</string>
+							<string key="NSFrame">{{82, 426}, {407, 25}}</string>
 							<reference key="NSSuperview" ref="558200545"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="690026977"/>
@@ -106,7 +106,7 @@
 											<reference key="NSNextResponder" ref="631426799"/>
 											<int key="NSvFlags">256</int>
 											<array class="NSMutableArray" key="NSSubviews"/>
-											<string key="NSFrameSize">{570, 407}</string>
+											<string key="NSFrameSize">{570, 399}</string>
 											<reference key="NSSuperview" ref="631426799"/>
 											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="322927609"/>
@@ -212,7 +212,7 @@
 											<int key="NSTableViewGroupRowStyle">1</int>
 										</object>
 									</array>
-									<string key="NSFrame">{{0, 17}, {570, 407}}</string>
+									<string key="NSFrame">{{0, 17}, {570, 399}}</string>
 									<reference key="NSSuperview" ref="690026977"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="1069351163"/>
@@ -238,7 +238,7 @@
 								<object class="NSScroller" id="480474417">
 									<reference key="NSNextResponder" ref="690026977"/>
 									<int key="NSvFlags">-2147483392</int>
-									<string key="NSFrame">{{1, 228}, {549, 16}}</string>
+									<string key="NSFrame">{{0, 400}, {570, 16}}</string>
 									<reference key="NSSuperview" ref="690026977"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView"/>
@@ -247,7 +247,7 @@
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="690026977"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.94329896907216493</double>
+									<double key="NSPercent">0.98958333333333337</double>
 								</object>
 								<object class="NSClipView" id="19733732">
 									<reference key="NSNextResponder" ref="690026977"/>
@@ -265,7 +265,7 @@
 									<int key="NScvFlags">4</int>
 								</object>
 							</array>
-							<string key="NSFrameSize">{570, 424}</string>
+							<string key="NSFrameSize">{570, 416}</string>
 							<reference key="NSSuperview" ref="558200545"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="19733732"/>
@@ -1010,7 +1010,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1086</int>
+			<int key="maxID">1129</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
