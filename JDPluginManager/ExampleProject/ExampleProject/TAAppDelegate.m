@@ -21,7 +21,7 @@
     [self.manager extendXcodeMenu];
     
     // install a new plugin
-    [JDPluginInstaller installPlugin];
+//    [JDPluginInstaller installPlugin];
 }
 
 @end
