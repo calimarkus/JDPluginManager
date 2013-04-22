@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D246418916C04B21005DB12C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D246418816C04B21005DB12C /* Cocoa.framework */; };
+		D24DA85E1725738200174F7C /* plugins.json in Resources */ = {isa = PBXBuildFile; fileRef = D24DA85D1725738200174F7C /* plugins.json */; };
+		D24DA865172573E900174F7C /* JDAvialablePluginsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D24DA860172573E900174F7C /* JDAvialablePluginsLoader.m */; };
+		D24DA866172573E900174F7C /* JDExtraPluginsDataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D24DA862172573E900174F7C /* JDExtraPluginsDataLoader.m */; };
+		D24DA867172573E900174F7C /* JDPluginsRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = D24DA864172573E900174F7C /* JDPluginsRepository.m */; };
+		D24DA86F1725742200174F7C /* JDPluginsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = D24DA86B1725742200174F7C /* JDPluginsCellView.m */; };
+		D24DA8701725742200174F7C /* JDPluginsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D24DA86D1725742200174F7C /* JDPluginsWindowController.m */; };
+		D24DA8711725742200174F7C /* JDPluginsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D24DA86E1725742200174F7C /* JDPluginsWindowController.xib */; };
 		D2765EE416EBDA360095A9C9 /* JDGitCloneTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED516EBDA360095A9C9 /* JDGitCloneTask.m */; };
 		D2765EE516EBDA360095A9C9 /* JDInstallProgressWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED716EBDA360095A9C9 /* JDInstallProgressWindow.m */; };
 		D2765EE616EBDA360095A9C9 /* JDPluginInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = D2765ED916EBDA360095A9C9 /* JDPluginInstaller.m */; };
@@ -29,6 +36,18 @@
 		D246418B16C04B21005DB12C /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D246418C16C04B21005DB12C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D246418D16C04B21005DB12C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D24DA85D1725738200174F7C /* plugins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plugins.json; sourceTree = "<group>"; };
+		D24DA85F172573E900174F7C /* JDAvialablePluginsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDAvialablePluginsLoader.h; sourceTree = "<group>"; };
+		D24DA860172573E900174F7C /* JDAvialablePluginsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDAvialablePluginsLoader.m; sourceTree = "<group>"; };
+		D24DA861172573E900174F7C /* JDExtraPluginsDataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDExtraPluginsDataLoader.h; sourceTree = "<group>"; };
+		D24DA862172573E900174F7C /* JDExtraPluginsDataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDExtraPluginsDataLoader.m; sourceTree = "<group>"; };
+		D24DA863172573E900174F7C /* JDPluginsRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsRepository.h; sourceTree = "<group>"; };
+		D24DA864172573E900174F7C /* JDPluginsRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsRepository.m; sourceTree = "<group>"; };
+		D24DA86A1725742200174F7C /* JDPluginsCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsCellView.h; sourceTree = "<group>"; };
+		D24DA86B1725742200174F7C /* JDPluginsCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsCellView.m; sourceTree = "<group>"; };
+		D24DA86C1725742200174F7C /* JDPluginsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDPluginsWindowController.h; sourceTree = "<group>"; };
+		D24DA86D1725742200174F7C /* JDPluginsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDPluginsWindowController.m; sourceTree = "<group>"; };
+		D24DA86E1725742200174F7C /* JDPluginsWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JDPluginsWindowController.xib; sourceTree = "<group>"; };
 		D2765ED416EBDA360095A9C9 /* JDGitCloneTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDGitCloneTask.h; sourceTree = "<group>"; };
 		D2765ED516EBDA360095A9C9 /* JDGitCloneTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDGitCloneTask.m; sourceTree = "<group>"; };
 		D2765ED616EBDA360095A9C9 /* JDInstallProgressWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDInstallProgressWindow.h; sourceTree = "<group>"; };
@@ -105,9 +124,27 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
+		D24DA85B1725738200174F7C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D24DA85C1725738200174F7C /* Plugins */,
+			);
+			name = Data;
+			path = ../Data;
+			sourceTree = "<group>";
+		};
+		D24DA85C1725738200174F7C /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				D24DA85D1725738200174F7C /* plugins.json */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
 		D2765ED316EBDA360095A9C9 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				D24DA85B1725738200174F7C /* Data */,
 				D2765EEF16EBDA4B0095A9C9 /* Localization */,
 				D2765EF016EBDA570095A9C9 /* Actual Plugin */,
 				D2765EF116EBDA6B0095A9C9 /* UI */,
@@ -136,6 +173,12 @@
 				D2765EDB16EBDA360095A9C9 /* JDPluginManager.m */,
 				D2765EDC16EBDA360095A9C9 /* JDPluginMetaData.h */,
 				D2765EDD16EBDA360095A9C9 /* JDPluginMetaData.m */,
+				D24DA863172573E900174F7C /* JDPluginsRepository.h */,
+				D24DA864172573E900174F7C /* JDPluginsRepository.m */,
+				D24DA85F172573E900174F7C /* JDAvialablePluginsLoader.h */,
+				D24DA860172573E900174F7C /* JDAvialablePluginsLoader.m */,
+				D24DA861172573E900174F7C /* JDExtraPluginsDataLoader.h */,
+				D24DA862172573E900174F7C /* JDExtraPluginsDataLoader.m */,
 			);
 			name = "Actual Plugin";
 			sourceTree = "<group>";
@@ -145,6 +188,11 @@
 			children = (
 				D2765ED616EBDA360095A9C9 /* JDInstallProgressWindow.h */,
 				D2765ED716EBDA360095A9C9 /* JDInstallProgressWindow.m */,
+				D24DA86C1725742200174F7C /* JDPluginsWindowController.h */,
+				D24DA86D1725742200174F7C /* JDPluginsWindowController.m */,
+				D24DA86E1725742200174F7C /* JDPluginsWindowController.xib */,
+				D24DA86A1725742200174F7C /* JDPluginsCellView.h */,
+				D24DA86B1725742200174F7C /* JDPluginsCellView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -249,6 +297,8 @@
 			files = (
 				D2E2D32716D4304B00447430 /* MainMenu.xib in Resources */,
 				D2765EEE16EBDA470095A9C9 /* Localizable.strings in Resources */,
+				D24DA85E1725738200174F7C /* plugins.json in Resources */,
+				D24DA8711725742200174F7C /* JDPluginsWindowController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +320,11 @@
 				D2765EEA16EBDA360095A9C9 /* NSTaskWithProgress.m in Sources */,
 				D2765EEB16EBDA360095A9C9 /* NSURL+JDPluginManager.m in Sources */,
 				D2765EF616EBED830095A9C9 /* NSFileManager+JDPluginManager.m in Sources */,
+				D24DA865172573E900174F7C /* JDAvialablePluginsLoader.m in Sources */,
+				D24DA866172573E900174F7C /* JDExtraPluginsDataLoader.m in Sources */,
+				D24DA867172573E900174F7C /* JDPluginsRepository.m in Sources */,
+				D24DA86F1725742200174F7C /* JDPluginsCellView.m in Sources */,
+				D24DA8701725742200174F7C /* JDPluginsWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
