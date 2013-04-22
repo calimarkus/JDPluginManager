@@ -53,6 +53,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
+				<string key="NSWindowContentMinSize">{420, 340}</string>
 				<object class="NSView" key="NSWindowView" id="558200545">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
@@ -136,7 +137,7 @@
 													<string key="NSIdentifier">MainCell</string>
 													<double key="NSWidth">567</double>
 													<double key="NSMinWidth">40</double>
-													<double key="NSMaxWidth">1000</double>
+													<double key="NSMaxWidth">1500</double>
 													<object class="NSTableHeaderCell" key="NSHeaderCell">
 														<int key="NSCellFlags">75497536</int>
 														<int key="NSCellFlags2">134219776</int>
@@ -247,7 +248,7 @@
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="690026977"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.98958333333333337</double>
+									<double key="NSPercent">0.99824868651488619</double>
 								</object>
 								<object class="NSClipView" id="19733732">
 									<reference key="NSNextResponder" ref="690026977"/>
@@ -288,6 +289,7 @@
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
+				<string key="NSMinSize">{420, 362}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
@@ -540,7 +542,7 @@
 							<array class="NSMutableArray" key="NSSubviews">
 								<object class="NSTextField" id="288510219">
 									<reference key="NSNextResponder" ref="322927609"/>
-									<int key="NSvFlags">268</int>
+									<int key="NSvFlags">290</int>
 									<string key="NSFrameSize">{567, 34}</string>
 									<reference key="NSSuperview" ref="322927609"/>
 									<reference key="NSNextKeyView" ref="1044728332"/>
@@ -984,6 +986,8 @@
 				<string key="386.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="399.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="401.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersHorizontal"/>
+				<boolean value="YES" key="5.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="5.NSWindowTemplate.visibleAtLaunch"/>
 				<string key="510.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
