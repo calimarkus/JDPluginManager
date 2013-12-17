@@ -56,4 +56,28 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
     return filesAndProperties;
 }
 
++(NSArray *)readPluginsJSONFile
+{
+    @try {
+        NSBundle *pluginBundle = [NSBundle bundleWithIdentifier:@"com.nxtbgthng.JDPluginManager"];
+        NSString *pluginsJSONPath = [pluginBundle pathForResource:@"plugins" ofType:@"json"];
+        if (!pluginsJSONPath) return nil;
+        NSData *pluginsJSONData = [NSData dataWithContentsOfFile:pluginsJSONPath];
+        if (!pluginsJSONData)
+        {
+            return nil;
+        }
+        NSError *error;
+        id plugins = [NSJSONSerialization JSONObjectWithData:pluginsJSONData options:NSJSONReadingAllowFragments error:&error];
+        NSArray *plgns = plugins;
+        return plgns;
+
+    }
+    @catch (NSException *exception) {
+        NSLog(@"json error: %@", exception.userInfo);
+    }
+    @finally {
+        
+    }
+}
 @end

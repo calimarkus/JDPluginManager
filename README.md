@@ -7,6 +7,7 @@ This plugin makes it easy to install, update and remove them. It adds a new Menu
 
 **Key Features:**
 
+- Discover new plugins
 - Install plugins easily by just entering a git repository url
 - One-click updates (for plugins installed with JDPluginManager)
 - Uninstall plugins
@@ -14,11 +15,17 @@ This plugin makes it easy to install, update and remove them. It adds a new Menu
 
 *This is tested on OS X 10.8 with Xcode 4.6 only, but probably runs also in older environments.*
 
-**Screenshots:**
-
-![Screenshot](assets/screenshot1.png "Menu Screenshot")
+**Screenshots:**  
+Launch the manager from the menu:  
+![Screenshot](assets/screenshot4.png "Menu Screenshot")  
+Manage Installed Plugins and be notified on avialable plugin updates:  
+![Screenshot](assets/screenshot5.png "Installed Plugins Screenshot")  
+Discover new Xcode Plugins:  
+![Screenshot](assets/screenshot6.png "Available Plugins Screenshot")  
+Manually install Plugin:  
+![Screenshot](assets/screenshot3.png "Installation Screenshot")  
+Uninstalling is just as easy:  
 ![Screenshot](assets/screenshot2.png "Uninstall Screenshot")
-![Screenshot](assets/screenshot3.png "Installation Screenshot")
 
 ## Installation
 
@@ -30,6 +37,14 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 ## Uninstall
 
 In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterwards.
+
+## Plugin Developers:
+To get listed in the available plugins list:  
+1.  Fork the JDPluginManager: https://github.com/dannyshmueli/JDPluginManager  
+2. Add your Xcode plugin to `plugins.json`:  
+  ```{"title": "OMColorSense", "git": "git@github.com:omz/ColorSense-for-Xcode.git"}```  
+  Please add it in alphabetical order to help prevent conflicts.  
+3.  Send a pull request.
 
 ## Twitter
 
