@@ -192,7 +192,7 @@
 {
     // run xcodebuild for each path given
     if (self.pathsToBuild.count > 0) {
-        NSString *path = self.pathsToBuild.lastObject;
+        NSString *path = [self.pathsToBuild.lastObject copy];
         [self.pathsToBuild removeObject:path];
         
         // directoryContentsBefore
