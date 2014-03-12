@@ -75,7 +75,7 @@
         return;
     }
     
-    [[[[self alloc] init] autorelease] showInstallPrompt];
+    [[[self alloc] init] showInstallPrompt];
 }
 
 - (void)showInstallPrompt;
@@ -89,19 +89,19 @@
     alert.alertStyle = NSInformationalAlertStyle;
     
     // add text field
-    NSTextField *input = [[[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)] autorelease];
+    NSTextField *input = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 30, 460, 24)];
     [input setStringValue:JDLocalize(@"keyInstallAlertExampleText")];
     [input setBezeled:YES];
     [input setBezelStyle:NSTextFieldRoundedBezel];
     
     // add checkbox
-    NSButton *checkbox = [[[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)] autorelease];
+    NSButton *checkbox = [[NSButton alloc] initWithFrame:NSMakeRect(0, 0, 20, 20)];
     [checkbox setButtonType:NSSwitchButton];
     [checkbox setTitle:JDLocalize(@"keyInstallAlertCheckboxText")];
     [checkbox sizeToFit];
     
     // build accessory view
-    NSView *view = [[[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)] autorelease];
+    NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0, 0, 460, 50)];
     [view addSubview:input];
     [view addSubview:checkbox];
     [alert setAccessoryView:view];
@@ -161,7 +161,7 @@
             }
             
             // save paths
-            self.pathsToBuild = [[pathsToCheck mutableCopy] autorelease];
+            self.pathsToBuild = [pathsToCheck mutableCopy];
                                                                  
             // start xcode build
             [self startXcodeBuildWithCompletion:^{
@@ -245,7 +245,6 @@
         [metaData findAndSetReadmeAtBuildPath:buildPath];
         [metaData setObject:self.repositoryPath forKey:JDPluginManagerMetaDataRepositoryKey];
         [metaData save];
-        [metaData release];
         
         // inform user
         [self.progressWindow appendTitle:[NSString stringWithFormat:JDLocalize(@"keyInstallSuccessMessageFormat"), changedPlugin]];
@@ -254,7 +253,7 @@
 
 - (void)showProgressPanel;
 {
-    self.progressWindow = [[[JDInstallProgressWindow alloc] initWithContentRect:NSMakeRect(0, 0, 568, 320)] autorelease];
+    self.progressWindow = [[JDInstallProgressWindow alloc] initWithContentRect:NSMakeRect(0, 0, 568, 320)];
     
     // show window
     [self.progressWindow makeKeyAndOrderFront:self];

@@ -66,7 +66,6 @@
         [task setStandardError:task.standardOutput];
         [task setLaunchPath:launchPath];
         self.task = task;
-        [task release];
         
         // set arguments, if available
         if (arguments != nil && arguments.count > 0) {
@@ -98,7 +97,7 @@
              // catch output
              NSPipe* outPipe = task.standardOutput;
              NSData* output = [[outPipe fileHandleForReading] readDataToEndOfFile];
-             NSString* outputString = [[[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding] autorelease];
+             NSString* outputString = [[NSString alloc] initWithData:output encoding:NSUTF8StringEncoding];
              
              // call completion block
              if (completionBlock) {
@@ -111,13 +110,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    self.task = nil;
-    self.progressBlock = nil;
-    
-    [super dealloc];
-}
 
 - (void)readPipe:(NSNotification*)notification;
 {
