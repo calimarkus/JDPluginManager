@@ -14,7 +14,7 @@
 
 @synthesize textView = _textView;
 
-- (id)initWithContentRect:(NSRect)contentRect;
+- (id)initWithContentRect:(NSRect)contentRect
 {
     self = [super initWithContentRect:contentRect styleMask:NSTitledWindowMask | NSMiniaturizableWindowMask
                               backing:NSBackingStoreBuffered defer:NO];
@@ -62,7 +62,7 @@
 }
 
 
-- (void)appendLine:(NSString*)line;
+- (void)appendLine:(NSString*)line
 {
     if (line) {
         self.textView.string = [NSString stringWithFormat: @"%@%@\n", self.textView.string, line];
@@ -70,7 +70,7 @@
     }
 }
 
-- (void)appendTitle:(NSString*)title;
+- (void)appendTitle:(NSString*)title
 {
     NSString *topSeparator    = @"----------------------------------------------------------- JDPluginManager -----";
     NSString *bottomSeparator = @"---------------------------------------------------------------------------------";
@@ -85,7 +85,7 @@
     [self appendLine:bottomSeparator];
 }
 
-- (void)scrollToBottom;
+- (void)scrollToBottom
 {
     [self.textView scrollRangeToVisible:NSMakeRange([self.textView.string length]-1,1)];
 }

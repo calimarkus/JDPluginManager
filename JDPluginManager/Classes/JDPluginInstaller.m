@@ -36,7 +36,7 @@
 @synthesize pathsToBuild = _pathsToBuild;
 @synthesize progressWindow = _progressWindow;
 
-+ (BOOL)toolsAreAvailable;
++ (BOOL)toolsAreAvailable
 {
     NSString *errorTitle = nil, *errorMessage = nil;
     
@@ -69,7 +69,7 @@
     return YES;
 }
 
-+ (void)installPlugin;
++ (void)installPlugin
 {
     if (![self toolsAreAvailable]) {
         return;
@@ -78,7 +78,7 @@
     [[[self alloc] init] showInstallPrompt];
 }
 
-- (void)showInstallPrompt;
+- (void)showInstallPrompt
 {
     // setup input alert
     NSAlert *alert = [NSAlert alertWithMessageText:JDLocalize(@"keyInstallAlertTitleFormat")
@@ -117,7 +117,7 @@
     [self beginInstallWithRepositoryPath:input.stringValue searchInSubdirectories:searchSubdirectories];
 }
 
-- (void)beginInstallWithRepositoryPath:(NSString*)repositoryPath searchInSubdirectories:(BOOL)searchSubdirectories;
+- (void)beginInstallWithRepositoryPath:(NSString*)repositoryPath searchInSubdirectories:(BOOL)searchSubdirectories
 {
     if (![JDPluginInstaller toolsAreAvailable]) {
         return;
@@ -188,7 +188,7 @@
     }
 }
 
-- (void)startXcodeBuildWithCompletion:(void(^)(void))completion;
+- (void)startXcodeBuildWithCompletion:(void(^)(void))completion
 {
     // run xcodebuild for each path given
     if (self.pathsToBuild.count > 0) {
@@ -221,7 +221,7 @@
 
 - (void)checkSuccessAndUpdateMetaDataWithContentsBefore:(NSArray*)directoryContentsBefore
                                                andAfter:(NSArray*)directoryContentsAfter
-                                          withBuildPath:(NSString*)buildPath;
+                                          withBuildPath:(NSString*)buildPath
 {
     __block NSString *changedPlugin = nil;
     
@@ -251,7 +251,7 @@
     }
 }
 
-- (void)showProgressPanel;
+- (void)showProgressPanel
 {
     self.progressWindow = [[JDInstallProgressWindow alloc] initWithContentRect:NSMakeRect(0, 0, 568, 320)];
     
@@ -260,7 +260,7 @@
     [self.progressWindow center];
 }
 
-- (void)emptyTempDirectory;
+- (void)emptyTempDirectory
 {
     // read contents of tmp dir
     NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:tmpClonePath error:nil];

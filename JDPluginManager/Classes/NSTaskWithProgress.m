@@ -22,7 +22,7 @@
 + (instancetype)launchedTaskWithLaunchPath:(NSString*)launchPath
                                  arguments:(NSArray*)arguments
                                   progress:(NSTaskWithOutputProgressBlock)progressBlock
-                                completion:(NSTaskWithOutputProgressBlock)completionBlock;
+                                completion:(NSTaskWithOutputProgressBlock)completionBlock
 {
     return [self launchedTaskWithLaunchPath:launchPath
                                   arguments:arguments
@@ -35,7 +35,7 @@
                                  arguments:(NSArray*)arguments
                       currentDirectoryPath:(NSString*)currentDirectoryPath
                                   progress:(NSTaskWithOutputProgressBlock)progressBlock
-                                completion:(NSTaskWithOutputProgressBlock)completionBlock;
+                                completion:(NSTaskWithOutputProgressBlock)completionBlock
 {
     NSTaskWithProgress* task =  [[self alloc] initWithLaunchPath:launchPath
                                                        arguments:arguments
@@ -54,7 +54,7 @@
                arguments:(NSArray*)arguments
     currentDirectoryPath:(NSString*)currentDirectoryPath
                 progress:(NSTaskWithOutputProgressBlock)progressBlock
-              completion:(NSTaskWithOutputProgressBlock)completionBlock;
+              completion:(NSTaskWithOutputProgressBlock)completionBlock
 {
     self = [super init];
     if (self) {
@@ -111,7 +111,7 @@
 }
 
 
-- (void)readPipe:(NSNotification*)notification;
+- (void)readPipe:(NSNotification*)notification
 {
     if (self.progressBlock) {
         NSData *data = [notification.userInfo objectForKey:NSFileHandleNotificationDataItem];

@@ -27,7 +27,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 
 + (instancetype)launchedTaskWithRepositoryPath:(NSString*)repositoryPath
                                progressWindow:(JDInstallProgressWindow*)progressWindow
-                                   completion:(void(^)(NSString *clonePath))completion;
+                                   completion:(void(^)(NSString *clonePath))completion
 {
 
     JDGitCloneTask *task = [[JDGitCloneTask alloc] initWithRepositoryPath:repositoryPath
@@ -39,7 +39,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 
 - (id)initWithRepositoryPath:(NSString*)repositoryPath
              progressWindow:(JDInstallProgressWindow*)progressWindow
-                 completion:(void(^)(NSString *clonePath))completion;
+                 completion:(void(^)(NSString *clonePath))completion
 {
     [progressWindow appendTitle:JDLocalize(@"keyInstallCloneMessage")];
     [progressWindow appendLine:[NSString stringWithFormat: @"Repository: %@\n", repositoryPath]];
@@ -68,7 +68,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 #pragma mark handle output
 
 - (void)handleGitOutput:(NSString*)output
-       inProgressWindow:(JDInstallProgressWindow*)progressWindow;
+       inProgressWindow:(JDInstallProgressWindow*)progressWindow
 {
     [self.allGitOutput appendString:output];
 
@@ -78,7 +78,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
     [progressWindow scrollToBottom];
 }
 
-- (NSString*)minimizedGitOutput;
+- (NSString*)minimizedGitOutput
 {
     NSMutableString *minimizedOutput = [NSMutableString string];
     NSString *previousLine = nil;

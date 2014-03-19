@@ -24,7 +24,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 @synthesize dictionary = _dictionary;
 @synthesize pluginPath = _pluginPath;
 
-+ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
++ (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath
 {
     JDPluginMetaData *metaData = [[JDPluginMetaData alloc] initWithPluginPath:pluginPath];
 
@@ -46,7 +46,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     return metaData;
 }
 
-- (id)initWithPluginPath:(NSString*)pluginPath;
+- (id)initWithPluginPath:(NSString*)pluginPath
 {
     self = [super init];
     if (self) {
@@ -59,15 +59,15 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 #pragma mark data
 
-- (id)objectForKey:(id)aKey; {
+- (id)objectForKey:(id)aKey {
     return [self.dictionary objectForKey:aKey];
 }
 
-- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey; {
+- (void)setObject:(id)anObject forKey:(id <NSCopying>)aKey {
     [self.dictionary setObject:anObject forKey:aKey];
 }
 
-- (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath;
+- (void)findAndSetReadmeAtBuildPath:(NSString*)buildPath
 {
     NSString *sourcePath = [buildPath stringByAppendingPathComponent:@"README.md"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:sourcePath]) {
@@ -90,7 +90,7 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     }
 }
 
-- (BOOL)save;
+- (BOOL)save
 {
     NSString *path = [self.pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
     BOOL succes = [self.dictionary writeToFile:path atomically:YES];

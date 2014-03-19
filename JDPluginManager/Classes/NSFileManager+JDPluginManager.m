@@ -16,7 +16,7 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
 
 @implementation NSFileManager (JDPluginManager)
 
-+ (NSArray*)allPluginsWithModifiedDate:(BOOL)withModifiedDate;
++ (NSArray*)allPluginsWithModifiedDate:(BOOL)withModifiedDate
 {
     NSError* error = nil;
     NSArray* filesArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSURL pluginsDirectoryURL] path] error:&error];

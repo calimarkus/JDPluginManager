@@ -13,7 +13,7 @@ NSString *const xcodePluginSuffix = @".xcplugin";
 
 @implementation NSURL (JDPluginManager)
 
-+ (NSURL*)pluginURLForPluginNamed:(NSString*)pluginName;
++ (NSURL*)pluginURLForPluginNamed:(NSString*)pluginName
 {
     if (![pluginName hasSuffix:xcodePluginSuffix]) {
         pluginName = [pluginName stringByAppendingString:xcodePluginSuffix];
@@ -23,7 +23,7 @@ NSString *const xcodePluginSuffix = @".xcplugin";
     return [NSURL fileURLWithPath:pluginPath];
 }
 
-+ (NSURL*)pluginsDirectoryURL;
++ (NSURL*)pluginsDirectoryURL
 {
     return [NSURL fileURLWithPath:[pluginsDirectoryPath stringByExpandingTildeInPath] isDirectory:YES];
 }

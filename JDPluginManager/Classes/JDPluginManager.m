@@ -93,7 +93,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     }
 }
 
-- (void)readAndAddPluginsToMenu:(NSMenu*)menu;
+- (void)readAndAddPluginsToMenu:(NSMenu*)menu
 {
     NSArray *contents = [NSFileManager allPluginsWithModifiedDate:NO];
     if (!contents || contents.count == 0) {
@@ -114,7 +114,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     }
 }
 
-- (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
+- (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu
 {
     // plugin item
     NSMenuItem *pluginItem = [[NSMenuItem alloc] initWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""];
@@ -166,7 +166,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 #pragma mark actions
 
-- (void)showPlugin:(NSMenuItem*)sender;
+- (void)showPlugin:(NSMenuItem*)sender
 {
     NSURL *url = [NSURL pluginsDirectoryURL];
     if (sender.tag == JDRevealPluginInFinderTag) {
@@ -181,7 +181,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]];
 }
 
-- (void)updatePlugin:(NSMenuItem*)sender;
+- (void)updatePlugin:(NSMenuItem*)sender
 {
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
@@ -190,7 +190,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     [[[JDPluginInstaller alloc] init] beginInstallWithRepositoryPath:gitURL searchInSubdirectories:NO];
 }
 
-- (void)showReadme:(NSMenuItem*)sender;
+- (void)showReadme:(NSMenuItem*)sender
 {
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
@@ -199,7 +199,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     [[NSWorkspace sharedWorkspace] openFile:readmePath];
 }
 
-- (void)showOnGithub:(NSMenuItem*)sender;
+- (void)showOnGithub:(NSMenuItem*)sender
 {
     NSString *pluginName = [sender parentItem].title;
     JDPluginMetaData *metaData = [JDPluginMetaData metaDataForPluginAtPath:[[NSURL pluginURLForPluginNamed:pluginName] path]];
@@ -216,7 +216,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     }
 }
 
-- (void)deletePlugin:(NSMenuItem*)sender;
+- (void)deletePlugin:(NSMenuItem*)sender
 {
     NSString *pluginName = [sender parentItem].title;
     
@@ -246,7 +246,7 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     }
 }
 
-- (void)installPlugin:(NSMenuItem*)sender;
+- (void)installPlugin:(NSMenuItem*)sender
 {
     [JDPluginInstaller installPlugin];
 }

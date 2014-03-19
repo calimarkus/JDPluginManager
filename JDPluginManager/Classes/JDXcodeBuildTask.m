@@ -27,7 +27,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 
 + (instancetype)launchedTaskWithCurrentDirectoryPath:(NSString*)currentDirectory
                                       progressWindow:(JDInstallProgressWindow*)progressWindow
-                                          completion:(void(^)())completion;
+                                          completion:(void(^)())completion
 {
     
     JDXcodeBuildTask *task = [[JDXcodeBuildTask alloc] initWithCurrentDirectoryPath:currentDirectory
@@ -39,7 +39,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 
 - (id)initWithCurrentDirectoryPath:(NSString*)currentDirectory
                                       progressWindow:(JDInstallProgressWindow*)progressWindow
-                                          completion:(void(^)())completion;
+                                          completion:(void(^)())completion
 {
     [progressWindow appendTitle:JDLocalize(@"keyInstallBuildMessage")];
     
@@ -64,7 +64,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
 #pragma mark handle output
 
 - (void)handleXcodeBuildOutput:(NSString*)output
-       inProgressWindow:(JDInstallProgressWindow*)progressWindow;
+       inProgressWindow:(JDInstallProgressWindow*)progressWindow
 {
     [self.allXcodeBuildOutput appendString:output];
     
@@ -74,7 +74,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
     [progressWindow scrollToBottom];
 }
 
-- (NSString*)minimizedXcodeBuildOutput;
+- (NSString*)minimizedXcodeBuildOutput
 {
     NSMutableString *minimizedOutput = [NSMutableString string];
     NSArray *allLines = [self.allXcodeBuildOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
