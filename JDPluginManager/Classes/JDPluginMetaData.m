@@ -26,12 +26,12 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
 
 + (JDPluginMetaData*)metaDataForPluginAtPath:(NSString*)pluginPath;
 {
-    JDPluginMetaData *metaData = [[[JDPluginMetaData alloc] initWithPluginPath:pluginPath] autorelease];
+    JDPluginMetaData *metaData = [[JDPluginMetaData alloc] initWithPluginPath:pluginPath];
 
     // read saved meta data
     NSString *path = [pluginPath stringByAppendingPathComponent:JDPluginManagerMetaDataFileName];
     if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-        NSMutableDictionary *dictionary = [[[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy] autorelease];
+        NSMutableDictionary *dictionary = [[NSDictionary dictionaryWithContentsOfFile:path] mutableCopy];
         if (dictionary) {
             metaData.dictionary = dictionary;
         }
@@ -56,12 +56,6 @@ NSString *const JDPluginManagerMetaDataReadmePathKey = @"JDPluginManagerMetaData
     return self;
 }
 
-- (void)dealloc
-{
-    self.dictionary = nil;
-    self.pluginPath = nil;
-    [super dealloc];
-}
 
 #pragma mark data
 

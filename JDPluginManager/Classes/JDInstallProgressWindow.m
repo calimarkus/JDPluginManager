@@ -26,7 +26,7 @@
         
         // setup scrollView
         NSView *contentView = self.contentView;
-        NSScrollView *scrollView = [[[NSScrollView alloc] initWithFrame:NSInsetRect(contentView.bounds, 10, 10)] autorelease];
+        NSScrollView *scrollView = [[NSScrollView alloc] initWithFrame:NSInsetRect(contentView.bounds, 10, 10)];
         scrollView.backgroundColor = [NSColor colorWithCalibratedWhite:0 alpha:0.77];
         scrollView.borderType = NSNoBorder;
         scrollView.hasVerticalScroller = YES;
@@ -37,7 +37,7 @@
         // setup textView
         NSSize contentSize = scrollView.contentSize;
         NSRect contentSizeRect = NSMakeRect(0, 0,contentSize.width, contentSize.height);
-        NSTextView *textView = [[[NSTextView alloc] initWithFrame:contentSizeRect] autorelease];
+        NSTextView *textView = [[NSTextView alloc] initWithFrame:contentSizeRect];
         textView.autoresizingMask = NSViewWidthSizable;
         textView.minSize = contentSize;
         textView.maxSize = NSMakeSize(FLT_MAX, FLT_MAX);

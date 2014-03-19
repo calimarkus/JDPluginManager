@@ -64,12 +64,6 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
     return self;
 }
 
-- (void)dealloc
-{
-    self.allGitOutput = nil;
-    self.previousProgressText = nil;
-    [super dealloc];
-}
 
 #pragma mark handle output
 
@@ -88,7 +82,7 @@ NSString *const tmpClonePath   = @"/tmp/JDPluginManager/";
 {
     NSMutableString *minimizedOutput = [NSMutableString string];
     NSString *previousLine = nil;
-    for (NSString *line in [self.allGitOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
+    for (__strong NSString *line in [self.allGitOutput componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]]) {
         line = [line stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         static NSInteger refLength = 15;
         if (previousLine && previousLine.length > refLength && line.length > refLength &&

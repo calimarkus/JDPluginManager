@@ -60,12 +60,6 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
     return self;
 }
 
-- (void)dealloc
-{
-    self.allXcodeBuildOutput = nil;
-    self.previousProgressText = nil;
-    [super dealloc];
-}
 
 #pragma mark handle output
 
