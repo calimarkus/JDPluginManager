@@ -14,9 +14,6 @@
 #import "global.h"
 
 
-NSInteger const JDRevealPluginInFinderTag = 1337;
-
-
 @interface JDPluginManager () <NSAlertDelegate>
 - (void)readAndAddPluginsToMenu:(NSMenu*)menu;
 - (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu;
@@ -59,26 +56,28 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 - (void)extendXcodeMenu
 {
-    // find window menu item
-	NSInteger menuIndex=[[NSApp mainMenu] indexOfItemWithTitle:@"Window"];
-	if(menuIndex<0) {
-		menuIndex=[[NSApp mainMenu] numberOfItems];
+    NSMenuItem *pluginsMenuItem = [[NSApp mainMenu] itemWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle")];
+    if (!pluginsMenuItem) {
+        // find window menu item
+        NSInteger menuIndex = [[NSApp mainMenu] indexOfItemWithTitle:@"Window"];
+        if (menuIndex < 0) {
+            menuIndex = [[NSApp mainMenu] numberOfItems];
+        }
+        
+        // insert plugins item
+        pluginsMenuItem = [[NSApp mainMenu] insertItemWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle") action:nil keyEquivalent:@"" atIndex:menuIndex];
+        pluginsMenuItem.submenu = [[NSMenu alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle")];
     }
-	
-    // insert plugins item
-	NSMenuItem *pluginsMenuItem=[[NSApp mainMenu] insertItemWithTitle:@"" action:nil keyEquivalent:@"" atIndex:menuIndex];
-    NSMenu *subMenu = [[NSMenu alloc] initWithTitle:JDLocalize(@"keyManagePluginsMenuItemTitle")];
-	[pluginsMenuItem setSubmenu:subMenu];
     
     // add menu entries
 	if (pluginsMenuItem) {
         // directory item
-        NSMenuItem *showDirectoryItem = [[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowDirectoryMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""];
+        NSMenuItem *showDirectoryItem = [[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyShowDirectoryMenuItemTitle") action:@selector(showPluginsDirectory:) keyEquivalent:@""];
         [showDirectoryItem setTarget:self];
-        [[pluginsMenuItem submenu] addItem:showDirectoryItem];
+        [[pluginsMenuItem submenu] insertItem:showDirectoryItem atIndex:0];
 		
         // separator
-		[[pluginsMenuItem submenu] addItem:[NSMenuItem separatorItem]];
+        [[pluginsMenuItem submenu] insertItem:[NSMenuItem separatorItem] atIndex:1];
         
         // each plugin as subitem
         [self readAndAddPluginsToMenu:[pluginsMenuItem submenu]];
@@ -117,11 +116,12 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 - (void)addPluginNamed:(NSString*)name toMenu:(NSMenu*)menu
 {
     // plugin item
-    NSMenuItem *pluginItem = [[NSMenuItem alloc] initWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""];
-    [pluginItem setSubmenu:[[NSMenu alloc] init]];
-    [pluginItem setTag:JDRevealPluginInFinderTag];
-    [pluginItem setTarget:self];
-    [menu addItem:pluginItem];
+    NSMenuItem *pluginItem = [menu itemWithTitle:name];
+    if (!pluginItem) {
+        pluginItem = [menu addItemWithTitle:name action:@selector(showPlugin:) keyEquivalent:@""];
+        pluginItem.submenu = [[NSMenu alloc] init];
+        pluginItem.target = self;
+    }
     
     // delete item
     NSMenuItem *deleteItem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat: @"%@…", JDLocalize(@"keyUninstall")] action:@selector(deletePlugin:) keyEquivalent:@""];
@@ -152,7 +152,6 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
     
     // reveal in finder item
     NSMenuItem *revealInFinderItem = [[NSMenuItem alloc] initWithTitle:JDLocalize(@"keyRevealInFinderMenuItemTitle") action:@selector(showPlugin:) keyEquivalent:@""];
-    [revealInFinderItem setTag:JDRevealPluginInFinderTag];
     [revealInFinderItem setTarget:self];
     [[pluginItem submenu] addItem:revealInFinderItem];
     
@@ -166,15 +165,18 @@ NSInteger const JDRevealPluginInFinderTag = 1337;
 
 #pragma mark actions
 
+- (void)showPluginsDirectory:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL pluginsDirectoryURL]]];
+}
+
 - (void)showPlugin:(NSMenuItem*)sender
 {
-    NSURL *url = [NSURL pluginsDirectoryURL];
-    if (sender.tag == JDRevealPluginInFinderTag) {
-        if ([sender.title isEqualToString:JDLocalize(@"keyRevealInFinderMenuItemTitle")]) {
-            url = [NSURL pluginURLForPluginNamed:[sender parentItem].title];
-        } else {
-            url = [NSURL pluginURLForPluginNamed:sender.title];
-        }
+    NSURL *url;
+    if ([sender.title isEqualToString:JDLocalize(@"keyRevealInFinderMenuItemTitle")]) {
+        url = [NSURL pluginURLForPluginNamed:[sender parentItem].title];
+    } else {
+        url = [NSURL pluginURLForPluginNamed:sender.title];
     }
     
     // open finder

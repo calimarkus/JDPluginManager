@@ -29,7 +29,6 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
                                       progressWindow:(JDInstallProgressWindow*)progressWindow
                                           completion:(void(^)())completion
 {
-    
     JDXcodeBuildTask *task = [[JDXcodeBuildTask alloc] initWithCurrentDirectoryPath:currentDirectory
                                                                      progressWindow:progressWindow
                                                                          completion:completion];
@@ -41,6 +40,7 @@ NSString *const xcodeBuildPath = @"/Applications/Xcode.app/Contents/Developer/us
                                       progressWindow:(JDInstallProgressWindow*)progressWindow
                                           completion:(void(^)())completion
 {
+    completion = [completion copy];
     [progressWindow appendTitle:JDLocalize(@"keyInstallBuildMessage")];
     
     self = [super initWithLaunchPath:xcodeBuildPath arguments:nil currentDirectoryPath:currentDirectory progress:^(NSTask *task, NSString *output) {

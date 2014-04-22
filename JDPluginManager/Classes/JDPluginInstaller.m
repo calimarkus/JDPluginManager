@@ -198,10 +198,11 @@
         // directoryContentsBefore
         NSArray *directoryContentsBefore = [NSFileManager allPluginsWithModifiedDate:YES];
         
+        completion = [completion copy];
+        
         self.activeTask = [JDXcodeBuildTask launchedTaskWithCurrentDirectoryPath:path
                                                                   progressWindow:self.progressWindow
-                                                                      completion:^
-        {
+                                                                      completion:^{
             // directory contents after
             NSArray *directoryContentsAfter = [NSFileManager allPluginsWithModifiedDate:YES];
             [self checkSuccessAndUpdateMetaDataWithContentsBefore:directoryContentsBefore
@@ -212,10 +213,10 @@
             [self startXcodeBuildWithCompletion:completion];
         }];
     }
-    
-    // completion
-    else if(completion) {
-        completion();
+    else {
+        if (completion) {
+            completion();
+        }
     }
 }
 

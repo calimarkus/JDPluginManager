@@ -19,8 +19,7 @@ NSString *const xcodePluginSuffix = @".xcplugin";
         pluginName = [pluginName stringByAppendingString:xcodePluginSuffix];
     }
     
-    NSString *pluginPath = [[[self pluginsDirectoryURL] path] stringByAppendingPathComponent:pluginName];
-    return [NSURL fileURLWithPath:pluginPath];
+    return [[self pluginsDirectoryURL] URLByAppendingPathComponent:pluginName isDirectory:YES];
 }
 
 + (NSURL*)pluginsDirectoryURL
