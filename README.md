@@ -11,9 +11,6 @@ This plugin makes it easy to install, update and remove them. It adds a new Menu
 - One-click updates (for plugins installed with JDPluginManager)
 - Uninstall plugins
 
-
-*This is tested on OS X 10.8 with Xcode 4.6 only, but probably runs also in older environments.*
-
 **Screenshots:**
 
 ![Screenshot](assets/screenshot1.png "Menu Screenshot")
@@ -33,8 +30,4 @@ In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterw
 
 ## Twitter
 
-I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter.  
-Feel free to [post a tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3), if you like this plugin.  
-
-[![TweetButton](assets/tweetbutton.png "Tweet")](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3)
-
+I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter. Please [tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3) about the plugin. 
