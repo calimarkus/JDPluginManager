@@ -20,8 +20,8 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
 {
     NSError* error = nil;
     NSArray* filesArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[[NSURL pluginsDirectoryURL] path] error:&error];
-    if(error != nil) {
-        NSLog(@"error getting plugin files at path %@", [[NSURL pluginsDirectoryURL] path]);
+    if (!filesArray) {
+        NSLog(@"error getting plugin files at path %@: %@", [[NSURL pluginsDirectoryURL] path], error);
         return nil;
     }
     
@@ -37,7 +37,7 @@ NSString const* JDPluginModifiedDate = @"JDPluginModifiedDate";
     
     // read modified date
     NSMutableArray* filesAndProperties = [NSMutableArray arrayWithCapacity:[filesArray count]];
-    for(NSString* file in filesArray) {
+    for (NSString* file in filesArray) {
         NSString* filePath = [[[NSURL pluginsDirectoryURL] path] stringByAppendingPathComponent:file];
         NSDictionary* properties = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
         NSDate* modDate = [properties objectForKey:NSFileModificationDate];
