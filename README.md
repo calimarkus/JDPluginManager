@@ -27,7 +27,3 @@ If you get a "Permission Denied" error while building, please see [this issue](h
 ## Uninstall
 
 In Xcode, go to *Plugins > JDPluginManager > Uninstall* and restart Xcode afterwards.
-
-## Twitter
-
-I'm [@jaydee3](http://twitter.com/jaydee3) on Twitter. Please [tweet](https://twitter.com/intent/tweet?button_hashtag=JDPluginManager&text=This%20plugin%20manages%20Xcode%20plugins!%20Easy%20installing%20and%20uninstalling%20for%20plugins!%20https%3A%2F%2Fgithub.com%2Fjaydee3%2FJDPluginManager&via=jaydee3) about the plugin. 
